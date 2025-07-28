@@ -58,66 +58,67 @@ function App() {
               <p>
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
-<picture>
-  <source 
-    srcSet="
+	      <picture>
+		<source 
+		  srcSet="
       /bilder/zahlenzauberer-480.webp?v=1 480w,
       /bilder/zahlenzauberer-640.webp?v=1 640w,
       /bilder/zahlenzauberer-800.webp?v=1 800w,
       /bilder/zahlenzauberer-1280.webp?v=1 1280w,
       /bilder/zahlenzauberer-1920.webp?v=1 1920w
     "
-    type="image/webp"
-    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
-  />
-  <source 
-    srcSet="
+		  type="image/webp"
+		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+		/>
+		<source 
+		  srcSet="
       /bilder/zahlenzauberer-480.png?v=1 480w,
       /bilder/zahlenzauberer-640.png?v=1 640w,
       /bilder/zahlenzauberer-800.png?v=1 800w,
       /bilder/zahlenzauberer-1280.png?v=1 1280w,
       /bilder/zahlenzauberer-1920.png?v=1 1920w
     "
-    type="image/png"
-    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
-  />
-  <img 
-    src="/bilder/zahlenzauberer-1280.png"
-    alt="Personer i forskjellige aktiviteter"
-    style="width: 100%; height: auto; border-radius: 8px"
-  />
-</picture>
+		  type="image/png"
+		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+		/>
+		<img 
+		  src="/bilder/zahlenzauberer-1280.png"
+		  alt="Personer i forskjellige aktiviteter"
+		  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+		/>
+	      </picture>
 
-            <div className="register-box">
-              <h3>Registrer deg</h3>
-              <form onSubmit={handleSubmit}>
-		<label>
-                  E-post:
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-		</label>
+              <div className="register-box">
+		<h3>Registrer deg</h3>
+		<form onSubmit={handleSubmit}>
+		  <label>
+                    E-post:
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+		  </label>
 
-		<label>
-                  Passord:
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-		</label>
+		  <label>
+                    Passord:
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+		  </label>
 
-		<button type="submit">Registrer</button>
-              </form>
+		  <button type="submit">Registrer</button>
+		</form>
 
-              {message && (
-		<div className="message">{message}</div>
-              )}
-            </div>
+		{message && (
+		  <div className="message">{message}</div>
+		)}
+              </div>
+	    </div>
 	  </div>
         </main>
       </div>
