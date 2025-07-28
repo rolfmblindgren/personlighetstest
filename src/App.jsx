@@ -67,16 +67,21 @@ function App() {
               </p>
 
 	      <picture>
-		<source 
-		  srcSet={`${img480webp} 480w, ${img960webp} 960w, ${img1920webp} 1920w`}
-		  type="image/webp"
-		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-		/>
-		<source 
-		  srcSet={`${img480png} 480w, ${img960png} 960w, ${img1920png} 1920w`}
-		  type="image/png"
-		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-		/>
+<source
+  srcSet={`${img480webp} 480w, ${img960webp} 960w, ${img1920webp} 1920w`}
+  type="image/webp"
+  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+/>
+<source
+  srcSet={`${img480png} 480w, ${img960png} 960w, ${img1920png} 1920w`}
+  type="image/png"
+  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+/>
+<img
+  src={img960png}
+  alt="Personer i forskjellige aktiviteter"
+  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+/>
 		<img 
 		  src={img960png}
 		  alt="Personer i forskjellige aktiviteter"
