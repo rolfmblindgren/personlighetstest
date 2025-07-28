@@ -45,11 +45,6 @@ main {
   margin: 0 auto;
 }
 
-/* Kolonner – mobil først */
-.left-column,
-.right-column {
-  width: 100%;
-}
 
 .right-column {
   border: 1px solid #ccc;
