@@ -1,4 +1,4 @@
-/* Reset og grunnleggende layout */
+z/* Reset og grunnleggende layout */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -48,14 +48,24 @@ main {
 
 .main-content {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 2rem;
+  max-width: 1200px; /* eller fjern helt */
+  margin: 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 /* Info- og registreringsbokser */
-.info-box,
+.info-box {
+  flex: 2;
+  min-width: 300px;
+}
+
 .register-box {
-  width: 100%;
+  flex: 1;
+  min-width: 250px;
 }
 
 .register-box {
