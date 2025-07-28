@@ -58,9 +58,20 @@ function App() {
               <p>
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
-
-
-	    </div>
+<picture>
+<img
+    type="image/webp"
+    srcSet="
+      /bilder/zahlenzauberer-480.webp 480w,
+      /bilder/zahlenzauberer-640.webp 640w,
+      /bilder/zahlenzauberer-800.webp 800w,
+      /bilder/zahlenzauberer-1280.webp 1280w,
+      /bilder/zahlenzauberer-1920.webp 1920w
+    "
+    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+/>
+</picture>
+</div>
 
             <div className="register-box">
               <h3>Registrer deg</h3>
