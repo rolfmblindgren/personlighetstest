@@ -38,7 +38,7 @@ function App() {
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
 
-      <div className="container">
+      <div className="page-container">
         <header>
           <div className="header-inner">
             {logo && <img src={logo} alt="Grendel logo" />}
@@ -47,7 +47,7 @@ function App() {
         </header>
 
         <main>
-          <div className="left-column">
+          <div className="info-box">
             <h2>Hva er dette?</h2>
             <p>
               Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
@@ -58,7 +58,7 @@ function App() {
             </p>
           </div>
 
-          <div className="right-column">
+          <div className="register-box">
             <h3>Registrer deg</h3>
             <form onSubmit={handleSubmit}>
               <label>
