@@ -37,58 +37,60 @@ function App() {
         <title>Grendel Personlighetstest</title>
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
-
       <div className="main-content">
-        <header>
-          <div className="header-inner">
-            {logo && <img src={logo} alt="Grendel logo" />}
-            <h1>Grendel Personlighetstest</h1>
-          </div>
-        </header>
 
-        <main>
-          <div className="info-box">
-            <h2>Hva er dette?</h2>
-            <p>
-              Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
-              Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
-            </p>
-            <p>
-              Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
-            </p>
-          </div>
+	<div className="page-container">
+          <header>
+            <div className="header-inner">
+              {logo && <img src={logo} alt="Grendel logo" />}
+              <h1>Grendel Personlighetstest</h1>
+            </div>
+          </header>
 
-          <div className="register-box">
-            <h3>Registrer deg</h3>
-            <form onSubmit={handleSubmit}>
-              <label>
-                E-post:
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </label>
+          <main>
+            <div className="info-box">
+              <h2>Hva er dette?</h2>
+              <p>
+		Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
+		Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
+              </p>
+              <p>
+		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
+              </p>
+            </div>
 
-              <label>
-                Passord:
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </label>
+            <div className="register-box">
+              <h3>Registrer deg</h3>
+              <form onSubmit={handleSubmit}>
+		<label>
+                  E-post:
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+		</label>
 
-              <button type="submit">Registrer</button>
-            </form>
+		<label>
+                  Passord:
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+		</label>
 
-            {message && (
-              <div className="message">{message}</div>
-            )}
-          </div>
-        </main>
+		<button type="submit">Registrer</button>
+              </form>
+
+              {message && (
+		<div className="message">{message}</div>
+              )}
+            </div>
+          </main>
+	</div>
       </div>
     </>
   )
