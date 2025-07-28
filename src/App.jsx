@@ -59,32 +59,19 @@ function App() {
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
 
-<picture>
+	      <picture>
   <source
-    srcSet="
-      /bilder/zahlenzauberer-480.webp 480w,
-      /bilder/zahlenzauberer-640.webp 640w,
-      /bilder/zahlenzauberer-800.webp 800w,
-      /bilder/zahlenzauberer-1280.webp 1280w,
-      /bilder/zahlenzauberer-1920.webp 1920w"
+    srcSet="/bilder/zahlenzauberer-480.webp"
     type="image/webp"
-    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
-  />
-  <source
-    srcSet="
-      /bilder/zahlenzauberer-480.png 480w,
-      /bilder/zahlenzauberer-1280.png 1280w,
-      /bilder/zahlenzauberer-1920.png 1920w"
-    type="image/png"
-    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
   />
   <img
-    src="/bilder/zahlenzauberer-1280.png"
+    src="/bilder/zahlenzauberer-480.png"
     alt="Personer i forskjellige aktiviteter"
     style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
   />
 </picture>
-            </div>
+
+	    </div>
 
             <div className="register-box">
               <h3>Registrer deg</h3>
