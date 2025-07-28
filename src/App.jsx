@@ -60,15 +60,16 @@ function App() {
               </p>
 <picture>
 <img
-    type="image/webp"
-    srcSet="
+  srcSet="
       /bilder/zahlenzauberer-480.webp 480w,
       /bilder/zahlenzauberer-640.webp 640w,
       /bilder/zahlenzauberer-800.webp 800w,
       /bilder/zahlenzauberer-1280.webp 1280w,
       /bilder/zahlenzauberer-1920.webp 1920w
     "
-    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+  src="/bilder/zahlenzauberer-1920.webp"
+  alt="heroes"
 />
 </picture>
 </div>
