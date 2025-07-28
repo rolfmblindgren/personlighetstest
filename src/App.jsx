@@ -60,7 +60,7 @@ function App() {
               </p>
 <picture>
   <source
-    srcSet="/bilder/zahlenzauberer-480.webp 480w, /bilder/zahlenzauberer-640.webp 640w"
+    srcSet="/bilder/zahlenzauberer-480.webp 480w, /bilder/zahlenzauberer-640.webp 640w, /bilder/zahlenzauberer-800.webp 800w, /bilder/zahlenzauberer-1280.webp 1280w, /bilder/zahlenzauberer-1920.webp 1920w"
     type="image/webp"
     sizes="100vw"
   />
