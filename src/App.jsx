@@ -37,17 +37,17 @@ function App() {
         <title>Grendel Personlighetstest</title>
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
-      <div className="main-content">
 
-	<div className="page-container">
-          <header>
-            <div className="header-inner">
-              {logo && <img src={logo} alt="Grendel logo" />}
-              <h1>Grendel Personlighetstest</h1>
-            </div>
-          </header>
+      <div className="page-container">
+        <header>
+          <div className="header-inner">
+            {logo && <img src={logo} alt="Grendel logo" />}
+            <h1>Grendel Personlighetstest</h1>
+          </div>
+        </header>
 
-          <main>
+        <main>
+	  <div className="main-content">
             <div className="info-box">
               <h2>Hva er dette?</h2>
               <p>
@@ -89,8 +89,8 @@ function App() {
 		<div className="message">{message}</div>
               )}
             </div>
-          </main>
-	</div>
+	  </div>
+        </main>
       </div>
     </>
   )
