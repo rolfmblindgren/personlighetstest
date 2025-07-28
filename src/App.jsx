@@ -59,10 +59,22 @@ function App() {
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
 <picture>
-<img
-  src="/bilder/zahlenzauberer-1920.webp"
-  alt="heroes"
-/>
+<picture>
+  <source
+    srcSet="/bilder/zahlenzauberer-480.webp 480w, /bilder/zahlenzauberer-640.webp 640w"
+    type="image/webp"
+    sizes="100vw"
+  />
+  <source
+    srcSet="/bilder/zahlenzauberer-480.png 480w, /bilder/zahlenzauberer-640.png 640w"
+    type="image/png"
+    sizes="100vw"
+  />
+  <img
+    src="/bilder/zahlenzauberer-640.png"
+    alt="Personer i forskjellige aktiviteter"
+    style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+  />
 </picture>
 </div>
 
