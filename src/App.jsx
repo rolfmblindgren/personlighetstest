@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import logo from './assets/Grendel-G.png' // hvis du har denne
+import logo from './assets/Grendel-G.png'
+import './App.css'
 
 function App() {
   const [email, setEmail] = useState('')
@@ -36,84 +37,60 @@ function App() {
         <title>Grendel Personlighetstest</title>
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
-      {/* resten av komponenten */}
 
-      <div className="container" >
-      {/* Header */}
-      <header style={{ padding: '1rem 2rem', backgroundColor: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {logo && <img src={logo} alt="Grendel logo" style={{ height: '40px', marginRight: '1rem' }} />}
-          <h1 style={{ margin: 0, fontSize: '1.5rem' }}>Grendel Personlighetstest</h1>
-        </div>
-      </header>
+      <div className="container">
+        <header>
+          <div className="header-inner">
+            {logo && <img src={logo} alt="Grendel logo" />}
+            <h1>Grendel Personlighetstest</h1>
+          </div>
+        </header>
 
-      {/* To-kolonne layout */}
-      <main style={{ display: 'flex', flex: 1, padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-        {/* Venstre kolonne */}
-        <div className = "left-column">
-          <h2>Hva er dette?</h2>
-          <p>
-            Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
-            Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
-          </p>
-          <p>
-            Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
-          </p>
-        </div>
+        <main>
+          <div className="left-column">
+            <h2>Hva er dette?</h2>
+            <p>
+              Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
+              Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
+            </p>
+            <p>
+              Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
+            </p>
+          </div>
 
-        {/* Høyre kolonne */}
-        <div className = "right-column">
-          <h3>Registrer deg</h3>
-          <form onSubmit={handleSubmit}>
-            <label style={{ display: 'block', marginTop: '1rem' }}>
-              E-post:
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-              />
-            </label>
+          <div className="right-column">
+            <h3>Registrer deg</h3>
+            <form onSubmit={handleSubmit}>
+              <label>
+                E-post:
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
 
-            <label style={{ display: 'block', marginTop: '1rem' }}>
-              Passord:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-              />
-            </label>
+              <label>
+                Passord:
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </label>
 
-            <button
-              type="submit"
-              style={{
-                width: '100%',
-                marginTop: '1.5rem',
-                padding: '0.75rem',
-                backgroundColor: '#007bff',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '4px',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              Registrer
-            </button>
-          </form>
+              <button type="submit">Registrer</button>
+            </form>
 
-          {message && (
-            <div style={{ marginTop: '1rem', backgroundColor: '#e6f7ff', borderLeft: '4px solid #1890ff', padding: '0.75rem' }}>
-              {message}
-            </div>
-          )}
-        </div>
-      </main>
-    </div>
-    </>	
+            {message && (
+              <div className="message">{message}</div>
+            )}
+          </div>
+        </main>
+      </div>
+    </>
   )
 }
 
