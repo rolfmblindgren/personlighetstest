@@ -1,0 +1,49 @@
+import logo from './assets/Grendel-G.png'
+import RegisterForm from './RegisterForm'
+
+function App() {
+  return (
+    <div style={{ fontFamily: 'sans-serif' }}>
+      <header style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        padding: '1rem 2rem',
+        borderBottom: '1px solid #ddd'
+      }}>
+        <img src={logo} alt="Logo" style={{ height: '50px' }} />
+        <h1 style={{ margin: 0 }}>Grendel personlighetstest</h1>
+      </header>
+
+      <main style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: '2rem',
+        gap: '2rem'
+      }}>
+        <div style={{ flex: 2 }}>
+          <h2>Hva er dette?</h2>
+          <p>
+            Dette er en forskningsbasert personlighetstest basert på femfaktormodellen. Den tar omtrent 10 minutter å fullføre.
+          </p>
+          <p>
+            Du får en detaljert rapport etterpå, og kan velge å få den tilsendt.
+          </p>
+        </div>
+
+        <div style={{
+          flex: 1,
+          padding: '2rem',
+          backgroundColor: '#f9f9f9',
+          border: '1px solid #ccc',
+          borderRadius: '8px'
+        }}>
+          <RegisterForm />
+        </div>
+      </main>
+    </div>
+  )
+}
+
+export default App
