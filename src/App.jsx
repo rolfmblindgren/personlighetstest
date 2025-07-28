@@ -38,7 +38,7 @@ function App() {
       </Helmet>
       {/* resten av komponenten */}
 
-      <div style={{ fontFamily: 'sans-serif', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div className="container" >
       {/* Header */}
       <header style={{ padding: '1rem 2rem', backgroundColor: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -50,7 +50,7 @@ function App() {
       {/* To-kolonne layout */}
       <main style={{ display: 'flex', flex: 1, padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
         {/* Venstre kolonne */}
-        <div style={{ flex: 2, paddingRight: '2rem' }}>
+        <div className = "left-column">
           <h2>Hva er dette?</h2>
           <p>
             Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
@@ -62,7 +62,7 @@ function App() {
         </div>
 
         {/* Høyre kolonne */}
-        <div style={{ flex: 1, border: '1px solid #ccc', borderRadius: '8px', padding: '1.5rem', backgroundColor: '#fafafa' }}>
+        <div className = "right-column">
           <h3>Registrer deg</h3>
           <form onSubmit={handleSubmit}>
             <label style={{ display: 'block', marginTop: '1rem' }}>
