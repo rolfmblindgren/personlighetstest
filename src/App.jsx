@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import logo from './assets/Grendel-G.png' // hvis du har denne
 
 function App() {
@@ -30,6 +31,13 @@ function App() {
   }
 
   return (
+    <>
+      <Helmet>
+        <title>Grendel Personlighetstest</title>
+        <meta name="description" content="Vitenskapelig testing av personlighet" />
+      </Helmet>
+      {/* resten av komponenten */}
+    </>	
     <div style={{ fontFamily: 'sans-serif', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <header style={{ padding: '1rem 2rem', backgroundColor: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
