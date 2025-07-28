@@ -1,13 +1,6 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet'
 
-import logo from './assets/Grendel-G.png'
-import img480webp from '/bilder/zahlenzauberer-480.webp';
-import img960webp from '/bilder/zahlenzauberer-960.webp';
-import img1920webp from '/bilder/zahlenzauberer-1920.webp';
-import img480png from '/bilder/zahlenzauberer-480.png';
-import img960png from '/bilder/zahlenzauberer-960.png';
-import img1920png from '/bilder/zahlenzauberer-1920.png';
 
 import './App.css'
 
@@ -66,28 +59,38 @@ function App() {
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
 
-	      <picture>
-<source
-  srcSet={`${img480webp} 480w, ${img960webp} 960w, ${img1920webp} 1920w`}
-  type="image/webp"
-  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-/>
-<source
-  srcSet={`${img480png} 480w, ${img960png} 960w, ${img1920png} 1920w`}
-  type="image/png"
-  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-/>
-<img
-  src={img960png}
-  alt="Personer i forskjellige aktiviteter"
-  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-/>
-		<img 
-		  src={img960png}
-		  alt="Personer i forskjellige aktiviteter"
-		  style={{ width: '100%', height: 'auto', borderRadius: '8px' }} 
-		/>
-	      </picture>
+<picture>
+  <source
+    srcSet="
+      /bilder/zahlenzauberer-480.webp 480w,
+      /bilder/zahlenzauberer-640.webp 640w,
+      /bilder/zahlenzauberer-800.webp 800w,
+      /bilder/zahlenzauberer-1280.webp 1280w,
+      /bilder/zahlenzauberer-1920.webp 1920w
+    "
+    type="image/webp"
+    sizes="(max-width: 600px) 100vw, 
+           (max-width: 1200px) 80vw, 
+           60vw"
+  />
+  <source
+    srcSet="
+      /bilder/zahlenzauberer-480.png 480w,
+      /bilder/zahlenzauberer-640.png 640w,
+      /bilder/zahlenzauberer-1280.png 1280w,
+      /bilder/zahlenzauberer-1920.png 1920w
+    "
+    type="image/png"
+    sizes="(max-width: 600px) 100vw, 
+           (max-width: 1200px) 80vw, 
+           60vw"
+  />
+  <img
+    src="/bilder/zahlenzauberer-640.png"
+    alt="Personer i forskjellige aktiviteter"
+    style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+  />
+</picture>
 	      
             </div>
 
