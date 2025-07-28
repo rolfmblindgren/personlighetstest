@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { Helmet } from 'react-helmet'
 
 import logo from './assets/Grendel-G.png'
-import img480webp from './bilder/zahlenzauberer-480.webp';
-import img960webp from './bilder/zahlenzauberer-960.webp';
-import img1920webp from './bilder/zahlenzauberer-1920.webp';
-import img480png from './bilder/zahlenzauberer-480.png';
-import img960png from './bilder/zahlenzauberer-960.png';
-import img1920png from './bilder/zahlenzauberer-1920.png';
+import img480webp from '/bilder/zahlenzauberer-480.webp';
+import img960webp from '/bilder/zahlenzauberer-960.webp';
+import img1920webp from '/bilder/zahlenzauberer-1920.webp';
+import img480png from '/bilder/zahlenzauberer-480.png';
+import img960png from '/bilder/zahlenzauberer-960.png';
+import img1920png from '/bilder/zahlenzauberer-1920.png';
 
 import './App.css'
 
