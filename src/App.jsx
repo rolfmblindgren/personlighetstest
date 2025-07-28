@@ -38,7 +38,7 @@ function App() {
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
 
-      <div className="page-container">
+      <div className="main-content">
         <header>
           <div className="header-inner">
             {logo && <img src={logo} alt="Grendel logo" />}
