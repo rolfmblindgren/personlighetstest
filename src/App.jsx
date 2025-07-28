@@ -37,8 +37,8 @@ function App() {
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
       {/* resten av komponenten */}
-    </>	
-    <div style={{ fontFamily: 'sans-serif', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+
+      <div style={{ fontFamily: 'sans-serif', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <header style={{ padding: '1rem 2rem', backgroundColor: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -113,6 +113,7 @@ function App() {
         </div>
       </main>
     </div>
+    </>	
   )
 }
 
