@@ -59,7 +59,6 @@ function App() {
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
 <picture>
-<picture>
   <source
     srcSet="/bilder/zahlenzauberer-480.webp 480w, /bilder/zahlenzauberer-640.webp 640w"
     type="image/webp"
