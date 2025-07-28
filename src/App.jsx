@@ -57,6 +57,31 @@ function App() {
               <p>
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
+
+
+	      <picture>
+		<source
+		  srcSet="/bilder/zahlenzauberer-1920.webp"
+		  media="(min-width: 1280px)"
+		  type="image/webp"
+		/>
+		<source
+		  srcSet="/bilder/zahlenzauberer-1280.webp"
+		  media="(min-width: 768px)"
+		  type="image/webp"
+		/>
+		<source
+		  srcSet="/bilder/zahlenzauberer-768.webp"
+		  media="(max-width: 767px)"
+		  type="image/webp"
+		/>
+		<img
+		  src="/bilder/zahlenzauberer-1920.png"
+		  alt="Fargerikt gruppebilde"
+		  style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
+		/>
+	      </picture>
+	      
             </div>
 
             <div className="register-box">
