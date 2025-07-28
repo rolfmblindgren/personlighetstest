@@ -11,10 +11,11 @@ body {
 }
 
 /* Root container */
-.container {
+.page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 1rem;
 }
 
 /* Header */
@@ -34,35 +35,34 @@ header {
   margin-right: 1rem;
 }
 
-/* Main layout */
+/* Main-innhold */
 main {
   flex: 1;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-.right-column {
-  border: 1px solid #ccc;
+/* Info- og registreringsbokser */
+.info-box,
+.register-box {
+  width: 100%;
+}
+
+.register-box {
+  background-color: #f9f9f9;
+  padding: 2rem;
   border-radius: 8px;
-  padding: 1.5rem;
-  background-color: #fafafa;
-}
-
-@media (min-width: 768px) {
-  .info-box {
-    flex: 0 0 66.66%;
-    max-width: 66.66%;
-  }
-
-  .register-box {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
-  }
+  border: 1px solid #ddd;
 }
 
 /* Skjemastil */
@@ -97,34 +97,20 @@ form button {
   padding: 0.75rem;
 }
 
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: sans-serif;
-  padding: 1rem;
-}
+/* Desktop-visning */
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 2rem;
-}
+  .info-box {
+    flex: 0 0 66.66%;
+    max-width: 66.66%;
+  }
 
-
-.register-box {
-  background-color: #f9f9f9;
-  padding: 2rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-* {
-  box-sizing: border-box;
+  .register-box {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
 }
