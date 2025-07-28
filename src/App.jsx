@@ -58,30 +58,35 @@ function App() {
 		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
               </p>
 
-
 	      <picture>
-		<source
-		  srcSet="/bilder/zahlenzauberer-1920.webp"
-		  media="(min-width: 1280px)"
+		<source 
+		  srcSet="
+      ./bilder/zahlenzauberer-480.webp 480w,
+      ./bilder/zahlenzauberer-960.webp 960w,
+      ./bilder/zahlenzauberer-1920.webp 1920w
+    "
 		  type="image/webp"
+		  sizes="(max-width: 600px) 100vw, 
+           (max-width: 1200px) 50vw, 
+           33vw"
 		/>
-		<source
-		  srcSet="/bilder/zahlenzauberer-1280.webp"
-		  media="(min-width: 768px)"
-		  type="image/webp"
+		<source 
+		  srcSet="
+      ./bilder/zahlenzauberer-480.png 480w,
+      ./bilder/zahlenzauberer-960.png 960w,
+      ./bilder/zahlenzauberer-1920.png 1920w
+    "
+		  type="image/png"
+		  sizes="(max-width: 600px) 100vw, 
+           (max-width: 1200px) 50vw, 
+           33vw"
 		/>
-		<source
-		  srcSet="/bilder/zahlenzauberer-768.webp"
-		  media="(max-width: 767px)"
-		  type="image/webp"
-		/>
-		<img
-		  src="/bilder/zahlenzauberer-1920.png"
-		  alt="Fargerikt gruppebilde"
-		  style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
+		<img 
+		  src="./bilder/zahlenzauberer-960.png" 
+		  alt="Personer i forskjellige aktiviteter" 
+		  style={{ width: '100%', height: 'auto', borderRadius: '8px' }} 
 		/>
 	      </picture>
-	      
             </div>
 
             <div className="register-box">
