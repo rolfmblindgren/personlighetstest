@@ -65,7 +65,7 @@ function App() {
     sizes="100vw"
   />
   <source
-    srcSet="/bilder/zahlenzauberer-480.png 480w, /bilder/zahlenzauberer-640.png 640w"
+    srcSet="/bilder/zahlenzauberer-480.png 480w, /bilder/zahlenzauberer-640.png 640w, /bilder/zahlenzauberer-800.png 800w"
     type="image/png"
     sizes="100vw"
   />
