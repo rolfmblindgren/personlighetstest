@@ -67,7 +67,7 @@ function App() {
       /bilder/zahlenzauberer-1280.webp 1280w,
       /bilder/zahlenzauberer-1920.webp 1920w
     "
-  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+  sizes="(max-width: 600px) 1920w, (max-width: 1200px) 1280w, 800w"
   src="/bilder/zahlenzauberer-1920.webp"
   alt="heroes"
 />
