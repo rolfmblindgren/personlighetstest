@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet'
+
 import logo from './assets/Grendel-G.png'
+import img480webp from './bilder/zahlenzauberer-480.webp';
+import img960webp from './bilder/zahlenzauberer-960.webp';
+import img1920webp from './bilder/zahlenzauberer-1920.webp';
+import img480png from './bilder/zahlenzauberer-480.png';
+import img960png from './bilder/zahlenzauberer-960.png';
+import img1920png from './bilder/zahlenzauberer-1920.png';
+
 import './App.css'
 
 function App() {
@@ -60,33 +68,22 @@ function App() {
 
 	      <picture>
 		<source 
-		  srcSet="
-      ./bilder/zahlenzauberer-480.webp 480w,
-      ./bilder/zahlenzauberer-960.webp 960w,
-      ./bilder/zahlenzauberer-1920.webp 1920w
-    "
+		  srcSet={`${img480webp} 480w, ${img960webp} 960w, ${img1920webp} 1920w`}
 		  type="image/webp"
-		  sizes="(max-width: 600px) 100vw, 
-           (max-width: 1200px) 50vw, 
-           33vw"
+		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
 		/>
 		<source 
-		  srcSet="
-      ./bilder/zahlenzauberer-480.png 480w,
-      ./bilder/zahlenzauberer-960.png 960w,
-      ./bilder/zahlenzauberer-1920.png 1920w
-    "
+		  srcSet={`${img480png} 480w, ${img960png} 960w, ${img1920png} 1920w`}
 		  type="image/png"
-		  sizes="(max-width: 600px) 100vw, 
-           (max-width: 1200px) 50vw, 
-           33vw"
+		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
 		/>
 		<img 
-		  src="./bilder/zahlenzauberer-960.png" 
-		  alt="Personer i forskjellige aktiviteter" 
+		  src={img960png}
+		  alt="Personer i forskjellige aktiviteter"
 		  style={{ width: '100%', height: 'auto', borderRadius: '8px' }} 
 		/>
 	      </picture>
+	      
             </div>
 
             <div className="register-box">
