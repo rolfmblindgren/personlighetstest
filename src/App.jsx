@@ -119,9 +119,7 @@ function App() {
 		)}
               </div>
 	  </div>
-        </main>
-      </div>
-      <script>
+	        <script lang="ts">
   document.querySelector("form").addEventListener("submit", function(e) {
     const emailField = document.getElementById("email");
     const email = emailField.value.trim();
@@ -135,6 +133,9 @@ function App() {
   });
 </script>
 
+
+        </main>
+      </div>
     </>
   )
 
