@@ -53,22 +53,20 @@ main {
   align-items: flex-start;
   justify-content: space-between;
   padding: 0 0 0  2rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Info- og registreringsbokser */
 .info-box {
-  flex: 0 0 66%;
+  flex: 0 0 60%;
   min-width: 300px;
-  max-width: 66%;
+  max-width: 60%;
   border: 1px dashed red;
 }
 
 .register-box {
-  flex: 0 0 33%;
-  min-width: 250px;
-  max-width: 33%;
+  flex: 0 0 30%;
+  min-width: 200px;
+  max-width: 30%;
 }
 
 .register-box {
