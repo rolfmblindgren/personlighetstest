@@ -65,17 +65,15 @@ main {
 
 .register-box {
   flex: 0 0 30%;
-  min-width: 200px;
+  min-width: 50px;
   max-width: 30%;
   background-color: #f9f9f9;
-  padding: 0 2rem;
+  padding: 2rem;
   border-radius: 8px;
   border: 1px solid #ddd;
   border: 1px dashed red;
 }
 
-.register-box {
-}
 
 /* Skjemastil */
 form label {
@@ -117,12 +115,12 @@ form button {
   }
 
   .info-box {
-    flex: 0 0 66.66%;
-    max-width: 66.66%;
+    flex: 0 0 60%;
+    max-width: 60%;
   }
 
   .register-box {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
+    flex: 0 0 30%;
+    max-width: 30%;
   }
 }
