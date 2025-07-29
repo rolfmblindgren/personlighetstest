@@ -1,12 +1,13 @@
 /* index.css */
 
+/* Reset og globale regler */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: system-ui, sans-serif;
   background-color: #f0f2f5;
   display: flex;
@@ -15,8 +16,12 @@ body {
   min-height: 100vh;
 }
 
+/* Root-container for React */
 #root {
   width: 100%;
-  min-height: 100vh;
-  background-color: #f0f2f5;
+  max-width: 1200px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px #0000001a;
 }

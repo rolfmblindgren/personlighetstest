@@ -67,11 +67,7 @@ function LandingPage() {
             <div className="info-box">
               <h2>Hva er dette?</h2>
               <p>
-                Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
-                Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
-              </p>
-              <p>
-                Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
+                Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring. 
               </p>
 
               <picture>
