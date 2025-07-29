@@ -91,7 +91,7 @@ function LandingPage() {
               </picture>
             </div>
 
-            <div className="register-bok">
+            <div className="register-box">
               <h3>Registrer deg</h3>
               <form onSubmit={handleSubmit} autoComplete="on">
                 <label>
