@@ -67,14 +67,14 @@ main {
   flex: 0 0 30%;
   min-width: 200px;
   max-width: 30%;
-  border: 1px dashed red;
-}
-
-.register-box {
   background-color: #f9f9f9;
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid #ddd;
+  border: 1px dashed red;
+}
+
+.register-box {
 }
 
 /* Skjemastil */
