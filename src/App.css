@@ -60,7 +60,6 @@ main {
   flex: 0 0 60%;
   min-width: 300px;
   max-width: 60%;
-  border: 1px dashed red;
 }
 
 .register-box {
@@ -71,7 +70,6 @@ main {
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid #ddd;
-  border: 1px dashed red;
 }
 
 

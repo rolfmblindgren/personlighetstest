@@ -125,4 +125,18 @@ function App() {
   )
 }
 
+<script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+    const emailField = document.getElementById("email");
+    const email = emailField.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      e.preventDefault(); // Stopper innsending
+      alert("Vennligst oppgi en gyldig e-postadresse.");
+      emailField.focus();
+    }
+  });
+</script>
+
 export default App
