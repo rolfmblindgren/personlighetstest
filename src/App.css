@@ -62,13 +62,15 @@ main {
 
 /* Info- og registreringsbokser */
 .info-box {
-  flex: 2;
+  flex: 0 0 66%;
   min-width: 300px;
+  max-width: 66%;
 }
 
 .register-box {
-  flex: 1;
+  flex: 0 0 33%;
   min-width: 250px;
+  max-width: 33%;
 }
 
 .register-box {
