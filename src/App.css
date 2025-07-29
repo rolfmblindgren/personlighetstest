@@ -115,12 +115,12 @@ form button {
   }
 
   .info-box {
-    flex: 0 0 60%;
-    max-width: 60%;
+    flex: 0 0 63%;
+    max-width: 630%;
   }
 
   .register-box {
-    flex: 0 0 30%;
-    max-width: 30%;
+    flex: 0 0 33%;
+    max-width: 33%;
   }
 }
