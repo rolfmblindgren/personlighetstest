@@ -1,62 +1,188 @@
-export default function LandingPage() {
+import { useState } from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
+import logo from './assets/Grendel-G.png'
+
+function landingPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState(null)
+
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage(null);
+
+    // E-postvalidering
+    const emailTrimmed = email.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(emailTrimmed)) {
+      setMessage("E-postadressen er ikke gyldig.");
+      return;
+    }
+
+    // Passordvalidering
+    const validatePassword = (password) => {
+      const errors = []
+      
+      if (password.length < 8) {
+	errors.push('Passordet må være minst 8 tegn.')
+      }
+
+      if (!/[A-ZÆØÅ]/.test(password)) {
+	errors.push('Passordet må inneholde minst én stor bokstav.')
+      }
+
+      if (!/[a-zæøå]/.test(password)) {
+	errors.push('Passordet må inneholde minst én liten bokstav.')
+      }
+
+      if (!/[0-9]/.test(password)) {
+	errors.push('Passordet må inneholde minst ett tall.')
+      }
+
+      if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) {
+	errors.push('Passordet må inneholde minst ett spesialtegn.')
+      }
+      
+      return errors
+    }
+
+    const errors = validatePassword(password)
+
+    if (errors.length > 0) {
+      setMessage(errors.join(' '))
+      return
+    }
+    
+    try {
+      const response = await fetch('/api/register', {
+	method: 'POST',
+	headers: { 'Content-Type': 'application/json' },
+	body: JSON.stringify({ email: emailTrimmed, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+	setMessage(data.message || 'Registrering vellykket!');
+      } else {
+	setMessage(data.error || 'Noe gikk galt.');
+      }
+    } catch (error) {
+      setMessage('Feil ved tilkobling til server.');
+      console.error(error);
+    }
+  };
+
   return (
-<div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-  <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full">
-    <header className="flex items-center mb-8">
-      <img src={logo} alt="Logo" className="w-12 h-12 mr-4" />
-      <h1 className="text-2xl font-bold">Grendel personlighetstest</h1>
-    </header>
+    <>
+      <Helmet>
+        <title>Grendel Personlighetstest</title>
+        <meta name="description" content="Vitenskapelig testing av personlighet" />
+      </Helmet>
 
-    <hr className="mb-8" />
+      <div className="page-container">
+        <header>
+          <div className="header-inner">
+            {logo && <img src={logo} alt="Grendel logo" />}
+            <h1>Grendel Personlighetstest</h1>
+          </div>
+        </header>
 
-    <div className="flex flex-col md:flex-row gap-8">
-      <div className="md:w-2/3">
-        <h2 className="text-xl font-semibold mb-2">Hva er dette?</h2>
-        <p className="text-gray-700 mb-2">
-          Dette er en forskningsbasert personlighetstest basert på femfaktormodellen.
-          Den tar omtrent 10 minutter å fullføre.
-        </p>
-        <p className="text-gray-700">
-          Du får en detaljert rapport etterpå, og kan velge å få den tilsendt.
-        </p>
+        <main>
+	  <div className="main-content">
+            <div className="info-box">
+              <h2>Hva er dette?</h2>
+              <p>
+		Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
+		Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
+              </p>
+              <p>
+		Systemet er utviklet av psykologer med erfaring fra forskning, praksis og teknologi.
+              </p>
+	      <picture>
+		<source 
+		  srcSet="
+      /bilder/zahlenzauberer-480.webp?v=1 480w,
+      /bilder/zahlenzauberer-640.webp?v=1 640w,
+      /bilder/zahlenzauberer-800.webp?v=1 800w,
+      /bilder/zahlenzauberer-1280.webp?v=1 1280w,
+      /bilder/zahlenzauberer-1920.webp?v=1 1920w
+    "
+		  type="image/webp"
+		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+		/>
+		<source 
+		  srcSet="
+      /bilder/zahlenzauberer-480.png?v=1 480w,
+      /bilder/zahlenzauberer-640.png?v=1 640w,
+      /bilder/zahlenzauberer-800.png?v=1 800w,
+      /bilder/zahlenzauberer-1280.png?v=1 1280w,
+      /bilder/zahlenzauberer-1920.png?v=1 1920w
+    "
+		  type="image/png"
+		  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 60vw"
+		/>
+		<img 
+		  src="/bilder/zahlenzauberer-1280.png"
+		  alt="Personer i forskjellige aktiviteter"
+		  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+		/>
+	      </picture>
+	    </div>
+            <div className="register-box">
+	      <h3>Registrer deg</h3>
+	      <form onSubmit={handleSubmit} autocomplete="on">
+		<label>
+                  E-post:
+                  <input
+		    id="email"
+                    type="email"
+		    name="email"
+		    autoComplete="username"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+		</label>
+
+		<label>
+                  Passord:
+                  <input
+		    id="password"
+                    type={showPassword ? "text" : "password"}
+		    autoComplete="new-password"
+                    value={password}
+		    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+		</label>
+		<label style={{ display: 'block', marginTop: '0.5rem' }}>
+		  <input
+		    type="checkbox"
+		    checked={showPassword}
+		    onChange={() => setShowPassword(!showPassword)}
+		  />
+		  Vis passord
+		</label>
+
+		<button type="submit">Registrer</button>
+	      </form>
+
+	      {message && (
+		<div className="message">{message}</div>
+	      )}
+            </div>
+	  </div>
+        </main>
+
+
+	
       </div>
-
-      <div className="md:w-1/3 bg-gray-50 rounded-md p-4 border">
-        <form onSubmit={handleSubmit}>
-          <label className="block font-semibold mb-1">E-post</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
-          />
-
-          <label className="block font-semibold mb-1">Passord</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700 transition"
-          >
-            Registrer
-          </button>
-        </form>
-
-        {message && (
-          <p className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 text-blue-800">
-            {message}
-          </p>
-        )}
-      </div>
-    </div>
-  </div>
-</div>
-  );
+    </>
+  )
 }
+
+export default landingPage
