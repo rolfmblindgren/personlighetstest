@@ -140,12 +140,14 @@ function App() {
 	    </div>
             <div className="register-box">
 	      <h3>Registrer deg</h3>
-	      <form onSubmit={handleSubmit}>
+	      <form onSubmit={handleSubmit} autocomplete="on">
 		<label>
                   E-post:
                   <input
 		    id="email"
                     type="email"
+		    name="email"
+		    autoComplete="username"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -155,8 +157,11 @@ function App() {
 		<label>
                   Passord:
                   <input
+		    id="password"
                     type="password"
+		    autoComplete="new-password""
                     value={password}
+		    name="password"
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
