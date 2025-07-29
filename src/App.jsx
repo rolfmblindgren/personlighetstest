@@ -9,6 +9,8 @@ function App() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
 
+  const [showPassword, setShowPassword] = useState(false);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(null);
@@ -17,6 +19,10 @@ function App() {
     const emailTrimmed = email.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (!emailRegex.test(emailTrimmed)) {
+      setMessage("E-postadressen er ikke gyldig.");
+      return;
+    }
 
     // Passordvalidering
     const validatePassword = (password) => {
@@ -52,11 +58,6 @@ function App() {
       return
     }
 
-
-    const hasUpper = /[A-Z]/.test(password);
-    const hasLower = /[a-z]/.test(password);
-    const hasNumber = /[0-9]/.test(password);
-    const hasSymbol = /[^A-Za-z0-9]/.test(password);
 
     if (!(hasUpper && hasLower && hasNumber && hasSymbol)) {
       setMessage('Passordet må inneholde store og små bokstaver, tall og spesialtegn.');
@@ -158,13 +159,21 @@ function App() {
                   Passord:
                   <input
 		    id="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
 		    autoComplete="new-password"
                     value={password}
 		    name="password"
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
+		</label>
+		<label style={{ display: 'block', marginTop: '0.5rem' }}>
+		  <input
+		    type="checkbox"
+		    checked={showPassword}
+		    onChange={() => setShowPassword(!showPassword)}
+		  />
+		  Vis passord
 		</label>
 
 		<button type="submit">Registrer</button>
