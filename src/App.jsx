@@ -59,10 +59,6 @@ function App() {
     }
 
 
-    if (!(hasUpper && hasLower && hasNumber && hasSymbol)) {
-      setMessage('Passordet må inneholde store og små bokstaver, tall og spesialtegn.');
-      return;
-    }
     
     try {
       const response = await fetch('/api/register', {
