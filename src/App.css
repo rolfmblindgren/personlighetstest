@@ -68,7 +68,7 @@ main {
   min-width: 200px;
   max-width: 30%;
   background-color: #f9f9f9;
-  padding: 2rem;
+  padding: 0 2rem;
   border-radius: 8px;
   border: 1px solid #ddd;
   border: 1px dashed red;
