@@ -87,7 +87,7 @@ function App() {
 		  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
 		/>
 	      </picture>
-
+	    </div>
               <div className="register-box">
 		<h3>Registrer deg</h3>
 		<form onSubmit={handleSubmit}>
@@ -118,7 +118,6 @@ function App() {
 		  <div className="message">{message}</div>
 		)}
               </div>
-	    </div>
 	  </div>
         </main>
       </div>
