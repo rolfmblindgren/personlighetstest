@@ -10,27 +10,77 @@ function App() {
   const [message, setMessage] = useState(null)
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setMessage(null)
+    e.preventDefault();
+    setMessage(null);
 
+    // E-postvalidering
+    const emailTrimmed = email.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    // Passordvalidering
+    const validatePassword = (password) => {
+      const errors = []
+      
+      if (password.length < 8) {
+	errors.push('Passordet må være minst 8 tegn.')
+      }
+
+      if (!/[A-ZÆØÅ]/.test(password)) {
+	errors.push('Passordet må inneholde minst én stor bokstav.')
+      }
+
+      if (!/[a-zæøå]/.test(password)) {
+	errors.push('Passordet må inneholde minst én liten bokstav.')
+      }
+
+      if (!/[0-9]/.test(password)) {
+	errors.push('Passordet må inneholde minst ett tall.')
+      }
+
+      if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) {
+	errors.push('Passordet må inneholde minst ett spesialtegn.')
+      }
+      
+      return errors
+    }
+
+    const errors = validatePassword(password)
+
+    if (errors.length > 0) {
+      setMessage(errors.join(' '))
+      return
+    }
+
+
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSymbol = /[^A-Za-z0-9]/.test(password);
+
+    if (!(hasUpper && hasLower && hasNumber && hasSymbol)) {
+      setMessage('Passordet må inneholde store og små bokstaver, tall og spesialtegn.');
+      return;
+    }
+    
     try {
       const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
+	method: 'POST',
+	headers: { 'Content-Type': 'application/json' },
+	body: JSON.stringify({ email: emailTrimmed, password }),
+      });
 
-      const data = await response.json()
+      const data = await response.json();
       if (response.ok) {
-        setMessage(data.message || 'Registrering vellykket!')
+	setMessage(data.message || 'Registrering vellykket!');
       } else {
-        setMessage(data.error || 'Noe gikk galt.')
+	setMessage(data.error || 'Noe gikk galt.');
       }
     } catch (error) {
-      setMessage('Feil ved tilkobling til server.')
-      console.error(error)
+      setMessage('Feil ved tilkobling til server.');
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -88,52 +138,40 @@ function App() {
 		/>
 	      </picture>
 	    </div>
-              <div className="register-box">
-		<h3>Registrer deg</h3>
-		<form onSubmit={handleSubmit}>
-		  <label>
-                    E-post:
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-		  </label>
+            <div className="register-box">
+	      <h3>Registrer deg</h3>
+	      <form onSubmit={handleSubmit}>
+		<label>
+                  E-post:
+                  <input
+		    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+		</label>
 
-		  <label>
-                    Passord:
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-		  </label>
+		<label>
+                  Passord:
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+		</label>
 
-		  <button type="submit">Registrer</button>
-		</form>
+		<button type="submit">Registrer</button>
+	      </form>
 
-		{message && (
-		  <div className="message">{message}</div>
-		)}
-              </div>
+	      {message && (
+		<div className="message">{message}</div>
+	      )}
+            </div>
 	  </div>
         </main>
 
-	<script lang="ts">
-  document.querySelector("form").addEventListener("submit", function(e) {
-    const emailField = document.getElementById("email");
-    const email = emailField.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      e.preventDefault(); // Stopper innsending
-      alert("Vennligst oppgi en gyldig e-postadresse.");
-      emailField.focus();
-    }
-  });
-</script>
 
 	
       </div>
