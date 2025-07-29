@@ -7,13 +7,13 @@ import './LandingPage.css'
 
 function LandingPage() {
   const navigate = useNavigate();  // nødvendig for redirect
-
+/*
   useEffect(() => {
     if (localStorage.getItem('token')) {
       navigate('/kontrollpanel');
     }
   }, []);
-    
+    */
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
