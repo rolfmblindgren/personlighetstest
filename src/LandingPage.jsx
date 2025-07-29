@@ -63,8 +63,8 @@ function LandingPage() {
         </header>
 
         <main>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="w-full md:w-1/2">
+          <div className="main-content">
+            <div className="info-box">
               <h2>Hva er dette?</h2>
               <p>
                 Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five).
@@ -91,7 +91,7 @@ function LandingPage() {
               </picture>
             </div>
 
-            <div className="w-full md:w-1/2">
+            <div className="register-bok">
               <h3>Registrer deg</h3>
               <form onSubmit={handleSubmit} autoComplete="on">
                 <label>
