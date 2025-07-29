@@ -1,14 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { useNavigate } from 'react-router-dom'  
 import logo from './assets/Grendel-G.png'
 import './LandingPage.css'
 
+
 function LandingPage() {
+  const navigate = useNavigate();  // nødvendig for redirect
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/kontrollpanel');
+    }
+  }, []);
+    
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
   const [showPassword, setShowPassword] = useState(false)
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/login', {
+	method: 'POST',
+	headers: { 'Content-Type': 'application/json' },
+	body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      if (response.ok) {
+	const data = await response.json();
+	localStorage.setItem('token', data.token);
+	navigate('/kontrollpanel');
+      } else {
+	// vis feilmelding
+      }
+    } catch (error) {
+      console.error('Feil ved innlogging:', error);
+    }
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     setMessage(null)
@@ -88,7 +118,30 @@ function LandingPage() {
             </div>
 
             <div className="register-box">
-              <h3>Registrer deg</h3>
+              <h3>Logg inn!</h3>
+
+	      <form onSubmit={handleLogin}>
+		<label htmlFor="loginEmail">E-post:</label>
+		<input
+		  type="email"
+		  id="loginEmail"
+		  value={loginEmail}
+		  onChange={(e) => setLoginEmail(e.target.value)}
+		  required
+		/>
+		<label htmlFor="loginPassword">Passord:</label>
+		<input
+		  type="password"
+		  id="loginPassword"
+		  value={loginPassword}
+		  onChange={(e) => setLoginPassword(e.target.value)}
+		  required
+		/>
+		<button type="submit">Logg inn</button>
+	      </form>
+
+	      <h3 style={{ marginTop: '2rem' }}>Eller registrer deg</h3>
+	      
               <form onSubmit={handleSubmit} autoComplete="on">
                 <label>
                   E-post:
