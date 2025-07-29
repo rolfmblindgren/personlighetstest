@@ -123,7 +123,6 @@ function App() {
       </div>
     </>
   )
-}
 
 <script>
   document.querySelector("form").addEventListener("submit", function(e) {
@@ -138,5 +137,8 @@ function App() {
     }
   });
 </script>
+
+
+}
 
 export default App
