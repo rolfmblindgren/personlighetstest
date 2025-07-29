@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import logo from './assets/Grendel-G.png'
+import './LandingPage.css'
 
 function LandingPage() {
   const [email, setEmail] = useState('')
