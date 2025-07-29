@@ -72,7 +72,6 @@ main {
   flex: 0 0 33%;
   min-width: 250px;
   max-width: 33%;
-  border: 1px dashed red;
 }
 
 .register-box {
