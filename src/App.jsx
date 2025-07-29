@@ -119,10 +119,9 @@ function App() {
 		)}
               </div>
 	  </div>
-	        <script lang="ts">
-
-
         </main>
+
+	<script lang="ts">
   document.querySelector("form").addEventListener("submit", function(e) {
     const emailField = document.getElementById("email");
     const email = emailField.value.trim();
@@ -135,12 +134,11 @@ function App() {
     }
   });
 </script>
+
+	
       </div>
     </>
   )
-
-
-
 }
 
 export default App
