@@ -1,8 +1,8 @@
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
-import Kontrollpanel from './kontrollpanel'
-// import Dashboard from './kontrollpanel2'
+// import Kontrollpanel from './kontrollpanel'
+import Dashboard from './kontrollpanel2'
 
 function App() {
   console.log("App.jsx laster")
