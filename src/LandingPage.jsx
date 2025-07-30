@@ -34,7 +34,7 @@ function LandingPage() {
       if (response.ok) {
 	const data = await response.json();
 	localStorage.setItem('token', data.token);
-	navigate('/kontrollpanel');
+	navigate('/kontrollpanel2');
       } else {
 	// vis feilmelding
       }
