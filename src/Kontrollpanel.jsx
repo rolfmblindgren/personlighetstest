@@ -1,7 +1,18 @@
+const [antallBrukere, setAntallBrukere] = useState(0);
+const [aktiveTester, setAktiveTester] = useState(0);
+
+useEffect(() => {
+  fetch('/api/status')
+    .then(res => res.json())
+    .then(data => {
+      setAntallBrukere(data.antall_brukere);
+    });
+}, []);
+
 const answer = 17;
 const magick = 17;
 
-
+const 
 
 export default function Kontrollpanel() {
   return (
@@ -24,7 +35,7 @@ export default function Kontrollpanel() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Antall brukere</h3>
-            <p className="text-4xl mt-2">{ answer }</p>
+            <p className="text-4xl mt-2">{ antallBrukere }</p>
           </div>
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Aktive tester</h3>
