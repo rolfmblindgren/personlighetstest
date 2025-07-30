@@ -5,6 +5,8 @@ import LandingPage from './LandingPage'
 import Dashboard from './kontrollpanel2'
 
 function App() {
+  console.log("App.jsx laster")
+
   return (
     <HelmetProvider>
       <Router>
