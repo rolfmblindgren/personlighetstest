@@ -9,6 +9,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <Routes>
+	  <Route path="*" element={<div>Ingen rute matchet</div>} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/kontrollpanel2" element={<Dashboard />} />
 //          <Route path="/kontrollpanel" element={<Kontrollpanel />} />
