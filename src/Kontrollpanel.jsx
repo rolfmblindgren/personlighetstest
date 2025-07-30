@@ -23,7 +23,7 @@ export default function Kontrollpanel() {
       <aside className="w-64 bg-white shadow-lg p-4">
         <h1 className="text-2xl font-bold mb-6">Grendel Admin</h1>
         <nav className="space-y-2">
-          <a href="#" className="bock text-gray-700 hover:text-blue-600">Dashboard</a>
+          <a href="#" className="block text-gray-700 hover:text-blue-600">Dashboard</a>
           <a href="#" className="block text-gray-700 hover:text-blue-600">Brukere</a>
           <a href="#" className="block text-gray-700 hover:text-blue-600">Profiler</a>
           <a href="#" className="block text-gray-700 hover:text-blue-600">Tester</a>
