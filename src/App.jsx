@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/kontrollpanel2" element={<Dashboard />} />
+//          <Route path="/kontrollpanel" element={<Kontrollpanel />} />
         </Routes>
       </Router>
     </HelmetProvider>
