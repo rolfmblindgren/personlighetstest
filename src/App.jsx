@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/kontrollpanel2" element={<Kontrollpanel />} />
+          <Route path="/kontrollpanel2" element={<Dashboard />} />
         </Routes>
       </Router>
     </HelmetProvider>
