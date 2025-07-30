@@ -10,7 +10,7 @@ function LandingPage() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      navigate('/kontrollpanel');
+      navigate('/kontrollpanel2');
     }
   }, []);
 
