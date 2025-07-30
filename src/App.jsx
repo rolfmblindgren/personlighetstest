@@ -14,7 +14,9 @@ function App() {
 	  <Route path="*" element={<div>Ingen rute matchet</div>} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/kontrollpanel2" element={<Dashboard />} />
-//          <Route path="/kontrollpanel" element={<Kontrollpanel />} />
+	  {/*
+	  <Route path="/kontrollpanel" element={<Kontrollpanel />} />
+	   */}
         </Routes>
       </Router>
     </HelmetProvider>
