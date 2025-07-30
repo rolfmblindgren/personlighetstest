@@ -18,7 +18,7 @@ export default function Kontrollpanel() {
 
   
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="grid grid-cols-1 md:grid-cols-3">
       {/* Sidepanel */}
       <aside className="w-64 bg-white shadow-lg p-4">
         <h1 className="text-2xl font-bold mb-6">Grendel Admin</h1>
