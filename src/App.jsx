@@ -2,7 +2,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
 import Kontrollpanel from './Kontrollpanel'
-import Dashboard from ./Kontrollpanel2
+import Dashboard from './Kontrollpanel2'
 
 function App() {
   return (
