@@ -2,7 +2,6 @@ const answer = 17;
 const magick = 17;
 
 export default function Kontrollpanel() {
-  /*
 
     const [antallBrukere, setAntallBrukere] = useState(0);
   const [aktiveTester, setAktiveTester] = useState(0);
@@ -14,7 +13,6 @@ export default function Kontrollpanel() {
 	setAntallBrukere(data.antall_brukere);
       });
   }, []);
-  */
 
   
   return (
@@ -37,7 +35,7 @@ export default function Kontrollpanel() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Antall brukere</h3>
-            <p className="text-4xl mt-2"> 17 </p>
+            <p className="text-4xl mt-2"> { antallBrukere } </p>
           </div>
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Aktive tester</h3>
