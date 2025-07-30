@@ -1,6 +1,6 @@
 // src/components/ProtectedRoute.tsx
 import { Navigate } from "react-router-dom"
-import jwt_decode from "jwt-decode"
+import { jwtDecode } from "jwt-decode"
 
 function isTokenValid(): boolean {
   const token = localStorage.getItem("token")
