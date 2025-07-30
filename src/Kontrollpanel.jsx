@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
+
 const answer = 17;
 const magick = 17;
 
 export default function Kontrollpanel() {
 
-    const [antallBrukere, setAntallBrukere] = useState(0);
+  const [antallBrukere, setAntallBrukere] = useState(0);
   const [aktiveTester, setAktiveTester] = useState(0);
 
   useEffect(() => {
