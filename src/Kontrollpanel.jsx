@@ -1,20 +1,18 @@
-const [antallBrukere, setAntallBrukere] = useState(0);
-const [aktiveTester, setAktiveTester] = useState(0);
-
-useEffect(() => {
-  fetch('/api/status')
-    .then(res => res.json())
-    .then(data => {
-      setAntallBrukere(data.antall_brukere);
-    });
-}, []);
-
 const answer = 17;
 const magick = 17;
 
-const 
-
 export default function Kontrollpanel() {
+  const [antallBrukere, setAntallBrukere] = useState(0);
+  const [aktiveTester, setAktiveTester] = useState(0);
+
+  useEffect(() => {
+    fetch('/api/status')
+      .then(res => res.json())
+      .then(data => {
+	setAntallBrukere(data.antall_brukere);
+      });
+  }, []);
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidepanel */}
