@@ -1,3 +1,5 @@
+const answer = 42;
+
 export default function Kontrollpanel() {
   return (
     <div className="flex h-screen bg-gray-100">
@@ -19,7 +21,7 @@ export default function Kontrollpanel() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Antall brukere</h3>
-            <p className="text-4xl mt-2">17</p>
+            <p className="text-4xl mt-2">{ answer }</p>
           </div>
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Aktive tester</h3>
