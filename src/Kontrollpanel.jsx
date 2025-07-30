@@ -1,4 +1,7 @@
 const answer = 17;
+const magick = 17;
+
+
 
 export default function Kontrollpanel() {
   return (
@@ -25,7 +28,7 @@ export default function Kontrollpanel() {
           </div>
           <div className="p-4 bg-white shadow rounded">
             <h3 className="text-xl font-semibold">Aktive tester</h3>
-            <p className="text-4xl mt-2">23</p>
+            <p className="text-4xl mt-2">{ magick }</p>
           </div>
         </div>
       </main>
