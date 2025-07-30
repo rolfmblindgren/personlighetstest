@@ -1,4 +1,4 @@
-const answer = 42;
+const answer = 17;
 
 export default function Kontrollpanel() {
   return (
