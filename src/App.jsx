@@ -2,7 +2,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
 // import Kontrollpanel from './Kontrollpanel'
-import Dashboard from './kontrollpanel2.tsx'
+import Dashboard from './kontrollpanel'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/kontrollpanel2" element={<Kontrollpanel />} />
+          <Route path="/kontrollpanel" element={<Kontrollpanel />} />
         </Routes>
       </Router>
     </HelmetProvider>

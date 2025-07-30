@@ -10,7 +10,7 @@ function LandingPage() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      navigate('/kontrollpanel2');
+      navigate('/kontrollpanel');
     }
   }, []);
 
@@ -34,7 +34,7 @@ function LandingPage() {
       if (response.ok) {
 	const data = await response.json();
 	localStorage.setItem('token', data.token);
-	navigate('/kontrollpanel2');
+	navigate('/kontrollpanel');
       } else {
 	// vis feilmelding
       }
