@@ -1,8 +1,8 @@
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
-import Kontrollpanel from './kontrollpanel'
-import Dashboard from './kontrollpanel'
+// import Kontrollpanel from './kontrollpanel'
+import Dashboard from './kontrollpanel2'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/kontrollpanel" element={<Kontrollpanel />} />
+          <Route path="/kontrollpanel2" element={<Kontrollpanel />} />
         </Routes>
       </Router>
     </HelmetProvider>
