@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'  
 import logo from './assets/Grendel-G.png'
 import './LandingPage.css'
-
+import { isTokenValid } from './components/ProtectedRoute';
 
 function LandingPage() {
   const navigate = useNavigate();  // nødvendig for redirect
