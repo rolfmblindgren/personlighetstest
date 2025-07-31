@@ -9,11 +9,14 @@ function LandingPage() {
   const navigate = useNavigate();  // nødvendig for redirect
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      navigate('/dashboard');
+    if (isTokenValid()) {
+      // gyldig token: gå til dashbord
+      navigate('/dashboard')
+    } else {
+      // tom eller utløpt token: fjern den
+      localStorage.removeItem('token')
     }
-  }, []);
-
+  }, [navigate])
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
