@@ -12,7 +12,9 @@ function App() {
     <HelmetProvider>
       <Router>
         <Routes>
+
           <Route path="/" element={<LandingPage />} />
+
           <Route
             path="/dashboard"
             element={
@@ -21,6 +23,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+	  <Route
+	    path="/profile"
+	    element={
+	      <ProtectedRoute>
+		<Profile />
+	      </ProtectedRoute>
+	    }
+	  />
+	  
           <Route path="*" element={<div>Ingen rute matchet</div>} />
         </Routes>
       </Router>

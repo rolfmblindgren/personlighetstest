@@ -16,6 +16,9 @@ export function isTokenValid(): boolean {
     return false
   }
 }
-export default function ProtectedRoute({ children }: { children: JSX.Element }) {
-  return isTokenValid() ? children : <Navigate to="/" replace />
+
+export default function ProtectedRoute({ children }: { children: JSX.Element })
+{
+
+ return isTokenValid() ? children : <Navigate to="/" replace />
 }
