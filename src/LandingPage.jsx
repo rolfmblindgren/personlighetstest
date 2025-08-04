@@ -28,6 +28,8 @@ function LandingPage() {
   
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log('🔥 handleLogin kalles!', { loginEmail, loginPassword })
+    
     try {
       const response = await fetch('/api/login', {
 	method: 'POST',

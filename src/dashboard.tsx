@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { isTokenValid } from './auth'
 
 
