@@ -64,7 +64,7 @@ jobs:
           log-public-key: true
 
       - name: Legg til known_hosts
-        run: ssh-keyscan -H ${{ varss.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ vars.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
       - name: Opprett målmappe (om mangler)
         run: ssh ${{ secrets.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} 'mkdir -p ${{ vars.DEPLOY_PATH }}'
