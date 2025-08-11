@@ -73,7 +73,7 @@ jobs:
         run: |
           rsync -az --delete --no-perms --no-group --omit-dir-times \
             -e "ssh -o StrictHostKeyChecking=yes" \
-            dist/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
+            dist/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"dist/ ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PATH }}/
 
       - name: Reload Apache (valgfritt)
         run: ssh ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} 'sudo systemctl reload apache2 || true'
