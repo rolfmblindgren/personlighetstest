@@ -6,6 +6,8 @@ import './LandingPage.css'
 import { isTokenValid } from './components/ProtectedRoute';
 
 function LandingPage() {
+  const API = import.meta.env.VITE_API_BASE_URL
+
   const navigate = useNavigate();  // nødvendig for redirect
 
   useEffect(() => {
@@ -17,6 +19,7 @@ function LandingPage() {
       localStorage.removeItem('token')
     }
   }, [navigate])
+
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -31,7 +34,7 @@ function LandingPage() {
     console.log('🔥 handleLogin kalles!', { loginEmail, loginPassword })
     
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch(`${API}/login`, {
 	method: 'POST',
 	headers: { 'Content-Type': 'application/json' },
 	body: JSON.stringify({ email: loginEmail, password: loginPassword }),
@@ -72,8 +75,8 @@ function LandingPage() {
     }
 
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
+      const response = await fetch(`${API}/register`, {
+        method: 'api/',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailTrimmed, password }),
       })

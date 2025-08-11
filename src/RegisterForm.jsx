@@ -10,7 +10,7 @@ function RegisterForm() {
     setMessage(null)
 
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch(`${API}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
