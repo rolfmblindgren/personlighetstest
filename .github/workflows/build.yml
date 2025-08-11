@@ -1,0 +1,45 @@
+name: bygg-frontend
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sjekk ut kode
+        uses: actions/checkout@v4
+
+      - name: Sett opp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer avhengigheter
+        run: npm ci
+
+      # Sett prod-miljø for bygg. Legg verdien i repoets Secrets.
+      - name: Bygg for produksjon
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+        run: npm run build -- --mode production
+
+      # Røyktest: sjekk at riktig API-URL ble bakt inn i bundle
+      - name: Verifiser API-base-URL i dist
+        run: |
+          grep -R "${{ secrets.VITE_API_BASE_URL }}" dist -n
+
+      # (valgfritt) Kjør enhetstester / lint
+      # - run: npm test -- --ci
+      # - run: npm run lint
+
+      # (valgfritt) Last opp bygget som artefakt for nedlasting
+      - name: Last opp artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
