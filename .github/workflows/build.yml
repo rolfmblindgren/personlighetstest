@@ -8,6 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  permissions:
+    contents: read
+  concurrency:
+    group: deploy-personlighetstest
+  cancel-in-progress: true
   build:
     runs-on: ubuntu-latest
     steps:
@@ -71,7 +76,7 @@ jobs:
 
       - name: Rsync til webkatalog
         run: |
-          rsync -avz --delete \
+          rsync -az --delete --no-perms --no-group --omit-dir-times \
             -e "ssh -o StrictHostKeyChecking=yes" \
             dist/ ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PATH }}/
 
