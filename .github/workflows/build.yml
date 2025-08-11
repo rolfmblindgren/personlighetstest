@@ -1,37 +1,79 @@
-name: Bygg og deploy personlighetstest-frontend
+name: bygg-frontend
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Sjekk ut repo
+      - name: Sjekk ut kode
         uses: actions/checkout@v4
 
       - name: Sett opp Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
           cache: 'npm'
 
+      # NB: bruk legacy-peer-deps under install
       - name: Installer avhengigheter (legacy peer deps)
-        run: npm install --legacy-peer-deps
+        env:
+          npm_config_legacy_peer_deps: true
+        run: |
+          npm ci --no-audit --no-fund
 
-      - name: Bygg
-        run: npm run build
+      - name: Bygg for produksjon
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+        run: npm run build -- --mode production
 
-      - name: Installer SSH-nøkkel for deploy
+      - name: Verifiser at API-URL er bakt inn
+        run: |
+          grep -R "${{ secrets.VITE_API_BASE_URL }}" dist -n
+
+      - name: Last opp artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  # --------- valgfritt: automatisk deploy til server ---------
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Last ned bygget
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: installer ssh-nøkkel for deploy
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          log-public-key: true
+    
+      - name: Start ssh-agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+	  log-public-key: true
 
-      - name: Kopier bygget til server
+      - name: Legg til known_hosts
+        run: ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Rsync til webkatalog
         run: |
-          rsync -avz --delete \
-            dist/ \
-            vds@mysql.grendel.no:/path/til/www/personlighetstest/personlighetstest-frontend/dist/
+          rsync -avz --delete dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+
+      - name: Reload Apache
+        run: |
+          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl reload apache2'
