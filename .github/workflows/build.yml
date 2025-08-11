@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Sjekk ut kode
         uses: actions/checkout@v4
@@ -21,12 +20,10 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # NB: bruk legacy-peer-deps under install
       - name: Installer avhengigheter (legacy peer deps)
         env:
           npm_config_legacy_peer_deps: true
-        run: |
-          npm ci --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Bygg for produksjon
         env:
@@ -34,8 +31,7 @@ jobs:
         run: npm run build -- --mode production
 
       - name: Verifiser at API-URL er bakt inn
-        run: |
-          grep -R "${{ secrets.VITE_API_BASE_URL }}" dist -n
+        run: grep -R "${{ secrets.VITE_API_BASE_URL }}" dist -n
 
       - name: Last opp artefakt
         uses: actions/upload-artifact@v4
@@ -43,7 +39,6 @@ jobs:
           name: dist
           path: dist
 
-  # --------- valgfritt: automatisk deploy til server ---------
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: build
@@ -55,25 +50,30 @@ jobs:
           name: dist
           path: dist
 
-      - name: installer ssh-nøkkel for deploy
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          log-public-key: true
-    
+      - name: Sjekk at secrets finnes
+        run: |
+          test -n "${{ secrets.SSH_PRIVATE_KEY }}" || (echo "SSH_PRIVATE_KEY mangler"; exit 1)
+          test -n "${{ secrets.DEPLOY_HOST }}"     || (echo "DEPLOY_HOST mangler"; exit 1)
+          test -n "${{ secrets.DEPLOY_USER }}"     || (echo "DEPLOY_USER mangler"; exit 1)
+          test -n "${{ secrets.DEPLOY_PATH }}"     || (echo "DEPLOY_PATH mangler"; exit 1)
+
       - name: Start ssh-agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-	  log-public-key: true
+          log-public-key: true
 
       - name: Legg til known_hosts
         run: ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Opprett målmappe (om mangler)
+        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'mkdir -p ${{ secrets.DEPLOY_PATH }}'
+
       - name: Rsync til webkatalog
         run: |
-          rsync -avz --delete dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=yes" \
+            dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
 
-      - name: Reload Apache
-        run: |
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl reload apache2'
+      - name: Reload Apache (valgfritt)
+        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl reload apache2 || true'
