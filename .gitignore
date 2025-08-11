@@ -24,6 +24,4 @@ dist-ssr
 *.sw?
 *~
 .env
-package.json
-package-lock.json
 setupProxy.js
