@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { API } from './lib/apiBase'
 
 function RegisterForm() {
   const [email, setEmail] = useState('')

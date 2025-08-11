@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import logo from './assets/Grendel-G.png'
 import './LandingPage.css'
 import { isTokenValid } from './components/ProtectedRoute';
+import { API } from './lib/apiBase'
 
 function LandingPage() {
-  const API = import.meta.env.VITE_API_BASE_URL
-
   const navigate = useNavigate();  // nødvendig for redirect
 
   useEffect(() => {
@@ -76,13 +75,21 @@ function LandingPage() {
 
     try {
       const response = await fetch(`${API}/register`, {
-        method: 'api/',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailTrimmed, password }),
       })
 
+      
+
       const data = await response.json()
-      setMessage(response.ok ? data.message : data.error || 'Noe gikk galt.')
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}))
+        setMessage(err.error || `Server svarte ${response.status}`)
+        return
+      }
+
     } catch (err) {
       console.error(err)
       setMessage('Feil ved tilkobling til server.')

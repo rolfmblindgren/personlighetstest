@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import { API } from './lib/apiBase'
 
 const answer = 17;
 const magick = 17;
 
 export default function Kontrollpanel() {
-
+  
   const [antallBrukere, setAntallBrukere] = useState(0);
   const [aktiveTester, setAktiveTester] = useState(0);
 
   useEffect(() => {
-    fetch('/api/status')
+    fetch(`${API}/status`)
       .then(res => res.json())
       .then(data => {
 	setAntallBrukere(data.antall_brukere);

@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { API } from './lib/apiBase'
 
 export default function Profile() {
+
+  
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
   const [message, setMessage] = useState('')
@@ -15,7 +18,7 @@ export default function Profile() {
   // på mount: hent profil
   useEffect(() => {
     const token = localStorage.getItem('token')
-    fetch('/api/profile', {
+    fetch(`${API}/profile`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => {
@@ -42,7 +45,7 @@ export default function Profile() {
     const token = localStorage.getItem('token')
     try {
       const res = await fetch(`${API}/profile`, {
-        method: 'api/'
+        method: 'POST',
         headers: {
           'Content-Type': appplication/json,
           'Authorization': `Bearer ${token}`,
