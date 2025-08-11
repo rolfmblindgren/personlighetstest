@@ -47,7 +47,7 @@ export default function Profile() {
       const res = await fetch(`${API}/profile`, {
         method: 'POST',
         headers: {
-          'Content-Type': appplication/json,
+          'Content-Type': application/json,
           'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ navn, adresse, telefon, katt })
