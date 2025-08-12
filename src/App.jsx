@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
 import Dashboard from './dashboard'
 import Profile from './Profile'
-import ForgotPasswlrd from './ForgotPassword'
+import ForgotPassword from './ForgotPassword'
 import ProtectedRoute from './components/ProtectedRoute'  // <-- legg til
 
 
