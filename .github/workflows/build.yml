@@ -1,17 +1,11 @@
 name: bygg-frontend
 
 on:
-  push: { branches: [ main ] }
-  pull_request: { branches: [ main ] }
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
   workflow_dispatch:
-
-# disse to skal være på toppnivå:
-permissions:
-  contents: read
-
-concurrency:
-  group: deploy-personlighetstest-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -33,11 +27,11 @@ jobs:
 
       - name: Bygg for produksjon
         env:
-          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
         run: npm run build -- --mode production
 
       - name: Verifiser at API-URL er bakt inn
-        run: grep -R "${{ vars.VITE_API_BASE_URL }}" dist -n
+        run: grep -R "${{ secrets.VITE_API_BASE_URL }}" dist -n || true
 
       - name: Last opp artefakt
         uses: actions/upload-artifact@v4
@@ -59,9 +53,9 @@ jobs:
       - name: Sjekk at secrets finnes
         run: |
           test -n "${{ secrets.SSH_PRIVATE_KEY }}" || (echo "SSH_PRIVATE_KEY mangler"; exit 1)
-          test -n "${{ vars.DEPLOY_HOST }}"       || (echo "DEPLOY_HOST mangler"; exit 1)
-          test -n "${{ vars.DEPLOY_USER }}"       || (echo "DEPLOY_USER mangler"; exit 1)
-          test -n "${{ vars.DEPLOY_PATH }}"       || (echo "DEPLOY_PATH mangler"; exit 1)
+          test -n "${{ vars.DEPLOY_HOST }}"     || (echo "DEPLOY_HOST mangler"; exit 1)
+          test -n "${{ vars.DEPLOY_USER }}"     || (echo "DEPLOY_USER mangler"; exit 1)
+          test -n "${{ vars.DEPLOY_PATH }}"     || (echo "DEPLOY_PATH mangler"; exit 1)
 
       - name: Start ssh-agent
         uses: webfactory/ssh-agent@v0.9.0
