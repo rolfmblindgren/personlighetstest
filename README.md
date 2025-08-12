@@ -1,4 +1,4 @@
-# Personlighetstesting, Frontent
+# Personlighetstesting, Frontend
 
 A little project to teach myself
 
