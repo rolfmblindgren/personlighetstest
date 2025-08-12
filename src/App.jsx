@@ -31,8 +31,21 @@ function App() {
 	      </ProtectedRoute>
 	    }
 	  />
-	  
-          <Route path="*" element={<div>Ingen rute matchet</div>} />
+
+          <Route
+            path="/forgot"
+            element={<ForgotPassword />}
+          />
+
+          <Route
+            path="/reset"
+            element={<ResetPassword />}
+          />
+          
+          <Route
+            path="*"
+            element={<div>Ingen rute matchet</div>}
+          />
         </Routes>
       </Router>
     </HelmetProvider>
