@@ -5,7 +5,7 @@ import LandingPage from './LandingPage'
 import Dashboard from './dashboard'
 import Profile from './Profile'
 import ForgotPassword from './ForgotPassword'
-import ResetPassword from '/ResetPassword'
+import ResetPassword from './ResetPassword'
 import ProtectedRoute from './components/ProtectedRoute'  // <-- legg til
 
 
