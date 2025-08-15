@@ -115,6 +115,11 @@ function LandingPage() {
 		  onChange={(e) => setLoginPassword(e.target.value)}
 		  required
 		/>
+                {loginError && (
+                  <div role="alert" style={{ marginTop: 8 }}>
+                    {loginError}
+                  </div>
+                )}
 		<button type="submit">Logg inn</button>
 	      </form>
 
