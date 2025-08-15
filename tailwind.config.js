@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}", // Tilpass til mappestrukturen din
-    "./public/index.html",
+    "./index.html",
   ],
   theme: {
     extend: {
