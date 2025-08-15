@@ -28,71 +28,39 @@ function LandingPage() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
+
   const handleLogin = async (e) => {
-  e.preventDefault();
-  setLoginError(''); // reset
+    e.preventDefault();
+    setLoginError(''); // reset
 
-  try {
-    const response = await fetch(`${API}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-    });
+    try {
+      const response = await fetch(`${API}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
 
-    // Prøv å parse JSON, men ikke kræs hvis backend sender noe annet ved 500
-    let data = null;
-    try { data = await response.json(); } catch (_) {}
+      // Prøv å parse JSON, men ikke kræs hvis backend sender noe annet ved 500
+      let data = null;
+      try { data = await response.json(); } catch (_) {}
 
-    if (response.ok) {
-      localStorage.setItem('token', data?.token);
-      navigate('/dashboard');
-      return;
+      if (response.ok) {
+        localStorage.setItem('token', data?.token);
+        navigate('/dashboard');
+        return;
+      }
+
+      // 401 = feil e-post/passord (fra Flask-koden din)
+      if (response.status === 401) {
+        setLoginError(data?.error || 'Ugyldig e-post eller passord');
+      } else {
+        setLoginError(data?.error || 'Noe gikk galt. Prøv igjen.');
+      }
+    } catch (err) {
+      console.error('Feil ved innlogging:', err);
+      setLoginError('Fikk ikke kontakt med serveren.');
     }
-
-    // 401 = feil e-post/passord (fra Flask-koden din)
-    if (response.status === 401) {
-      setLoginError(data?.error || 'Ugyldig e-post eller passord');
-    } else {
-      setLoginError(data?.error || 'Noe gikk galt. Prøv igjen.');
-    }
-  } catch (err) {
-    console.error('Feil ved innlogging:', err);
-    setLoginError('Fikk ikke kontakt med serveren.');
-  }
-};
-
-const handleLogin = async (e) => {
-  e.preventDefault();
-  setLoginError(''); // reset
-
-  try {
-    const response = await fetch(`${API}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-    });
-
-    // Prøv å parse JSON, men ikke kræs hvis backend sender noe annet ved 500
-    let data = null;
-    try { data = await response.json(); } catch (_) {}
-
-    if (response.ok) {
-      localStorage.setItem('token', data?.token);
-      navigate('/dashboard');
-      return;
-    }
-
-    // 401 = feil e-post/passord (fra Flask-koden din)
-    if (response.status === 401) {
-      setLoginError(data?.error || 'Ugyldig e-post eller passord');
-    } else {
-      setLoginError(data?.error || 'Noe gikk galt. Prøv igjen.');
-    }
-  } catch (err) {
-    console.error('Feil ved innlogging:', err);
-    setLoginError('Fikk ikke kontakt med serveren.');
-  }
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
