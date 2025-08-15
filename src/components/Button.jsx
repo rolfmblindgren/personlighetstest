@@ -2,16 +2,16 @@
 import clsx from "clsx";
 
 const base =
-  "inline-flex items-center justify-center rounded-xl font-semibold transition-colors " +
+  "inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-200 " +
   "focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed";
 
 const variants = {
   primary:
-    "bg-teal-500 text-white hover:bg-teal-600 focus:ring-teal-300",
+    "bg-cyan-500 text-white hover:bg-cyan-600 focus:ring-cyan-300",
   secondary:
-    "bg-white text-teal-700 ring-1 ring-teal-200 hover:bg-teal-50 focus:ring-teal-300",
+    "bg-white text-cyan-700 ring-1 ring-cyan-200 hover:bg-cyan-50 focus:ring-cyan-300",
   ghost:
-    "bg-transparent text-teal-700 hover:bg-teal-50 focus:ring-teal-300",
+    "bg-transparent text-cyan-700 hover:bg-cyan-50 focus:ring-cyan-300",
 };
 
 const sizes = {

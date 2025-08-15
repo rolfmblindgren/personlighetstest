@@ -176,7 +176,7 @@ function LandingPage() {
                   </div>
                 )}
 
-		<Button className="outline outline-4 outline-fuchsia-500 shadow-2xl scale-105" type="submit">Logg inn</Button>
+		<Button  type="submit">Logg inn</Button>
 	      </form>
 
 	      <h3 style={{ marginTop: '2rem' }}>Eller registrer deg</h3>
