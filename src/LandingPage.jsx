@@ -44,7 +44,7 @@ function LandingPage() {
 	navigate('/dashboard');
       } else {
 
-        const data = await res.json();
+        const data = await response.json();
         setError(data.error || 'Innlogging feilet');
         return;
 
