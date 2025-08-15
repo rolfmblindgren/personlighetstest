@@ -8,52 +8,7 @@ import { API } from './lib/apiBase'
 
 function LandingPage() {
   const navigate = useNavigate();  // nødvendig for redirect
-
-  useEffect(() => {
-    if (isTokenValid()) {
-      // gyldig token: gå til dashbord
-      navigate('/dashboard')
-    } else {
-      // tom eller utløpt token: fjern den
-      localStorage.removeItem('token')
-    }
-  }, [navigate])
-
-  
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [message, setMessage] = useState(null)
-  const [showPassword, setShowPassword] = useState(false)
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-
-  
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    console.log('🔥 handleLogin kalles!', { loginEmail, loginPassword })
-    
-    try {
-      const response = await fetch(`${API}/login`, {
-	method: 'POST',
-	headers: { 'Content-Type': 'application/json' },
-	body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-      });
-      if (response.ok) {
-	const data = await response.json();
-	localStorage.setItem('token', data.token);
-	navigate('/dashboard');
-      } else {
-
-        const data = await response.json();
-        setError(data.error || 'Innlogging feilet');
-        return;
-
-      }
-    } catch (error) {
-      console.error('Feil ved innlogging:', error);
-    }
-  };
-  
+  const [loginError, setLoginError] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault()
     setMessage(null)
