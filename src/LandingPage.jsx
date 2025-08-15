@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from './assets/Grendel-G.png'
 import './LandingPage.css'
 import { isTokenValid } from './components/ProtectedRoute';
-import Button from "./components/Buttons";
+import Button from "./components/Button";
 import { API } from './lib/apiBase'
 
 function LandingPage() {
