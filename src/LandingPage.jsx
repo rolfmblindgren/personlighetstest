@@ -43,7 +43,11 @@ function LandingPage() {
 	localStorage.setItem('token', data.token);
 	navigate('/dashboard');
       } else {
-	// vis feilmelding
+
+        const data = await res.json();
+        setError(data.error || 'Innlogging feilet');
+        return;
+
       }
     } catch (error) {
       console.error('Feil ved innlogging:', error);
