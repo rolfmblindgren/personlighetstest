@@ -2,16 +2,16 @@
 import clsx from "clsx";
 
 const base =
-  "inline-flex select-none items-center justify-center " +
+  "inline-flex appearance-none select-none items-center justify-center " +
   "rounded-2xl font-semibold shadow-sm " +
   "transition-all duration-200 " +
   "focus:outline-none focus:ring-2 focus:ring-offset-2 " +
   "disabled:opacity-60 disabled:cursor-not-allowed";
 
 const variants = {
-  primary:  "bg-turkis-500 text-white hover:bg-turkis-600 focus:ring-turkis-300",
-  secondary:"bg-white text-turkis-700 ring-1 ring-turkis-200 hover:bg-turkis-50 focus:ring-turkis-300",
-  ghost:    "bg-transparent text-turkis-700 hover:bg-turkis-50 focus:ring-turkis-300",
+  primary:   "bg-turkis-500 text-white hover:bg-turkis-600 focus:ring-turkis-300",
+  secondary: "bg-white text-turkis-700 ring-1 ring-turkis-200 hover:bg-turkis-50 focus:ring-turkis-300",
+  ghost:     "bg-transparent text-turkis-700 hover:bg-turkis-50 focus:ring-turkis-300",
 };
 
 const sizes = {
@@ -25,7 +25,7 @@ export default function Button({
   type = Tag === "button" ? "button" : undefined,
   variant = "primary",
   size = "md",
-  full = false,           // bare når du vil ha w-full
+  full = false,            // only true when you *want* 100% width
   className,
   children,
   ...props
@@ -37,7 +37,7 @@ export default function Button({
         base,
         variants[variant],
         sizes[size],
-        full && "w-full",  // default er auto-bredde
+        full && "w-full",   // default = auto width
         className
       )}
       {...props}
