@@ -217,7 +217,7 @@ function LandingPage() {
                   Vis passord
                 </label>
 
-                <Button size="md" type="submit" className="btn-turkis" style={{ marginTop: '1rem' }}>Registrer</Button>
+                <Button size="md" variant="primary" type="submit">Registrer</Button>
               </form>
               {message && <div className="message">{message}</div>}
             </div>
