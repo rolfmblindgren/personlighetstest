@@ -176,7 +176,7 @@ function LandingPage() {
                   </div>
                 )}
 
-		<Button size="md" variant="primary" type="submit">Logg inn</Button>
+		<Button  type="submit">Logg inn</Button>
 	      </form>
 
 	      <h3 style={{ marginTop: '2rem' }}>Eller registrer deg</h3>
@@ -217,7 +217,7 @@ function LandingPage() {
                   Vis passord
                 </label>
 
-                <Button size="md" variant="primary" type="submit">Registrer</Button>
+                <Button  type="submit">Registrer</Button>
               </form>
               {message && <div className="message">{message}</div>}
             </div>
