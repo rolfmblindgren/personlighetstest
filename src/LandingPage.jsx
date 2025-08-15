@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from './assets/Grendel-G.png'
 import './LandingPage.css'
 import { isTokenValid } from './components/ProtectedRoute';
+import Button from "./components/Button";
 import { API } from './lib/apiBase'
 
 function LandingPage() {
@@ -175,7 +176,7 @@ function LandingPage() {
                   </div>
                 )}
 
-		<button type="submit">Logg inn</button>
+		<Button className="outline outline-4 outline-fuchsia-500 shadow-2xl scale-105" type="submit">Logg inn</Button>
 	      </form>
 
 	      <h3 style={{ marginTop: '2rem' }}>Eller registrer deg</h3>
@@ -216,7 +217,7 @@ function LandingPage() {
                   Vis passord
                 </label>
 
-                <button type="submit" style={{ marginTop: '1rem' }}>Registrer</button>
+                <Button type="submit" style={{ marginTop: '1rem' }}>Registrer</Button>
               </form>
               {message && <div className="message">{message}</div>}
             </div>
