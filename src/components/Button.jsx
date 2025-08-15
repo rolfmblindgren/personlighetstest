@@ -7,11 +7,11 @@ const base =
 
 const variants = {
   primary:
-    "bg-cyan-500 text-white hover:bg-cyan-600 focus:ring-cyan-300",
+    "bg-turkis-500 text-white hover:bg-turkis-600 focus:ring-turkis-300 rounded-full",
   secondary:
-    "bg-white text-cyan-700 ring-1 ring-cyan-200 hover:bg-cyan-50 focus:ring-cyan-300",
+    "bg-white text-turkis-700 ring-1 ring-turkis-200 hover:bg-turkis-50 focus:ring-turkis-300 rounded-full",
   ghost:
-    "bg-transparent text-cyan-700 hover:bg-cyan-50 focus:ring-cyan-300",
+    "bg-transparent text-turkis-700 hover:bg-turkis-50 focus:ring-turkis-300 rounded-full",
 };
 
 const sizes = {
