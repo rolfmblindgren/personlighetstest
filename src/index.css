@@ -149,3 +149,20 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* src/index.css */
+@import "tailwindcss";
+
+/* Add your custom tokens here */
+@theme {
+  --color-turkis-50:  #ecfeff;
+  --color-turkis-100: #cffafe;
+  --color-turkis-200: #a5f3fc;
+  --color-turkis-300: #67e8f9;
+  --color-turkis-400: #22d3ee;
+  --color-turkis-500: #14b8a6; /* main */
+  --color-turkis-600: #0d9488; /* hover */
+  --color-turkis-700: #0f766e;
+  --color-turkis-800: #115e59;
+  --color-turkis-900: #134e4a;
+}

@@ -2,7 +2,7 @@ name: bygg-frontend
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [main, dev]
   workflow_dispatch:
 
 concurrency:
@@ -19,8 +19,8 @@ jobs:
       - name: Sett opp Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Installer avhengigheter (legacy peer deps)
         env:
@@ -111,4 +111,4 @@ jobs:
         run: ssh "${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}" 'sudo systemctl reload apache2 || true'
 
       - name: Røyk-test
-        run: curl -fsS "https://${{ vars.PROD_DOMAIN }}/" >/dev/null
+        run: curl -fsS "https://${{ vars.PROD_DOMAIN }}/" >/dev/nullw
