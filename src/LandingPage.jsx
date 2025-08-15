@@ -176,7 +176,7 @@ function LandingPage() {
                   </div>
                 )}
 
-		<Button  type="submit">Logg inn</Button>
+		<Button  className="bg-turkis-500 hover:bg-turkis-600 text-white rounded-xl" type="submit">Logg inn</Button>
 	      </form>
 
 	      <h3 style={{ marginTop: '2rem' }}>Eller registrer deg</h3>
@@ -217,7 +217,7 @@ function LandingPage() {
                   Vis passord
                 </label>
 
-                <Button type="submit" style={{ marginTop: '1rem' }}>Registrer</Button>
+                <Button type="submit" className="bg-turkis-500 hover:bg-turkis-600 text-white rounded-xl" style={{ marginTop: '1rem' }}>Registrer</Button>
               </form>
               {message && <div className="message">{message}</div>}
             </div>
