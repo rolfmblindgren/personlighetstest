@@ -176,7 +176,7 @@ function LandingPage() {
                   </div>
                 )}
 
-		<Button  className="btn-turkis" type="submit">Logg inn</Button>
+		<Button variant="primary" type="submit">Logg inn</Button>
 	      </form>
 
 	      <h3 style={{ marginTop: '2rem' }}>Eller registrer deg</h3>

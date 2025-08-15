@@ -7,12 +7,13 @@ const base =
 
 const variants = {
   primary:
-    "bg-turkis-500 text-white hover:bg-turkis-600 focus:ring-turkis-300 rounded-full",
+    "bg-turkis-500 text-white hover:bg-turkis-600 focus:ring-turkis-300",
   secondary:
-    "bg-white text-turkis-700 ring-1 ring-turkis-200 hover:bg-turkis-50 focus:ring-turkis-300 rounded-full",
+    "bg-white text-turkis-700 ring-1 ring-turkis-200 hover:bg-turkis-50 focus:ring-turkis-300",
   ghost:
-    "bg-transparent text-turkis-700 hover:bg-turkis-50 focus:ring-turkis-300 rounded-full",
+    "bg-transparent text-turkis-700 hover:bg-turkis-50 focus:ring-turkis-300",
 };
+
 
 const sizes = {
   sm: "h-9 px-3 text-sm",
