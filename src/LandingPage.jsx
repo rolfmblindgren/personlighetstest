@@ -149,7 +149,7 @@ function LandingPage() {
               </picture>
             </div>
 
-            <div className="register-box">
+            <div className="w-full max-w-sm mx-auto p-6 bg-white rounded-xl shadow-md">
               <h3>Logg inn!</h3>
 
 	      <form onSubmit={handleLogin}>
