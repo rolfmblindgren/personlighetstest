@@ -149,7 +149,10 @@ function LandingPage() {
               </picture>
             </div>
 
-            <div className="w-full max-w-sm mx-auto p-6 bg-white rounded-xl shadow-md" style={{ maxWidth: '24rem' }}>
+            <div
+              className="w-full max-w-sm mx-auto p-6 bg-white rounded-xl shadow-md"
+              style={{ maxWidth: '24rem' }}
+            >
               <h3>Logg inn!</h3>
 
 	      <form onSubmit={handleLogin}>
