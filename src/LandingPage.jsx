@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'  
 import logo from './assets/Grendel-G.png'
-import './LandingPage.css'
+// import './LandingPage.css'
 import { isTokenValid } from './components/ProtectedRoute';
 import Button from "./components/Button";
 import { API } from './lib/apiBase'
@@ -149,7 +149,7 @@ function LandingPage() {
               </picture>
             </div>
 
-            <div className="w-full max-w-sm mx-auto p-6 bg-white rounded-xl shadow-md">
+            <div className="w-full max-w-sm mx-auto p-6 bg-white rounded-xl shadow-md" style={{ maxWidth: '24rem' }}>
               <h3>Logg inn!</h3>
 
 	      <form onSubmit={handleLogin}>
@@ -198,7 +198,7 @@ function LandingPage() {
                 <label>
                   Passord:
                   <input
-                    id="password"
+                    id="password"'
                     name="password"
                     type={showPassword ? "text" : "password"}
                     autoComplete="new-password"
