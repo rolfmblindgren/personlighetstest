@@ -13,7 +13,6 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <Layout>
           <Routes>
             <Route path="/" element={<LandingPage />} />
 
@@ -50,7 +49,6 @@ function App() {
               element={<div>Ingen rute matchet</div>}
             />
           </Routes>
-        </Layout>
       </Router>
     </HelmetProvider>
   )
