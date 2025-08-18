@@ -14,42 +14,43 @@ function App() {
     <HelmetProvider>
       <Router>
         <Routes>
+          <Layout>
+            <Route path="/" element={<LandingPage />} />
 
-          <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
+	    <Route
+	      path="/profile"
+	      element={
+	        <ProtectedRoute>
+		  <Profile />
+	        </ProtectedRoute>
+	      }
+	    />
 
-	  <Route
-	    path="/profile"
-	    element={
-	      <ProtectedRoute>
-		<Profile />
-	      </ProtectedRoute>
-	    }
-	  />
+            <Route
+              path="/forgot"
+              element={<ForgotPassword />}
+            />
 
-          <Route
-            path="/forgot"
-            element={<ForgotPassword />}
-          />
+            <Route
+              path="/reset"
+              element={<ResetPassword />}
+            />
 
-          <Route
-            path="/reset"
-            element={<ResetPassword />}
-          />
-          
-          <Route
-            path="*"
-            element={<div>Ingen rute matchet</div>}
-          />
-        </Routes>
+            <Route
+              path="*"
+              element={<div>Ingen rute matchet</div>}
+            />
+          </Routes>
+        </Layout>
       </Router>
     </HelmetProvider>
   )
