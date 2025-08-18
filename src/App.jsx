@@ -7,7 +7,7 @@ import Profile from './Profile'
 import ForgotPassword from './ForgotPassword'
 import ResetPassword from './ResetPassword'
 import ProtectedRoute from './components/ProtectedRoute'  // <-- legg til
-
+import { H1 } from './components/Heading'
 
 function App() {
   return (
