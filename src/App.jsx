@@ -7,48 +7,52 @@ import Profile from './Profile'
 import ForgotPassword from './ForgotPassword'
 import ResetPassword from './ResetPassword'
 import ProtectedRoute from './components/ProtectedRoute'  // <-- legg til
-import { H1, H2 } from './components/Heading'
-
+import { Layout } from './components/Layout.tsx'
+import { H1, H2 } from './components/Heading.tsx'
+~/
 function App() {
   return (
     <HelmetProvider>
       <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
+        <Layout>
+        <Routes>
 
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
+          <Route path="/" element={<LandingPage />} />
 
-	    <Route
-	      path="/profile"
-	      element={
-	        <ProtectedRoute>
-		  <Profile />
-	        </ProtectedRoute>
-	      }
-	    />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/forgot"
-              element={<ForgotPassword />}
-            />
+	  <Route
+	    path="/profile"
+	    element={
+	      <ProtectedRoute>
+		<Profile />
+	      </ProtectedRoute>
+	    }
+	  />
 
-            <Route
-              path="/reset"
-              element={<ResetPassword />}
-            />
+          <Route
+            path="/forgot"
+            element={<ForgotPassword />}
+          />
 
-            <Route
-              path="*"
-              element={<div>Ingen rute matchet</div>}
-            />
-          </Routes>
+          <Route
+            path="/reset"
+            element={<ResetPassword />}
+          />
+
+          <Route
+            path="*"
+            element={<div>Ingen rute matchet</div>}
+          />
+        </Routes>
+        </Layout>
       </Router>
     </HelmetProvider>
   )
