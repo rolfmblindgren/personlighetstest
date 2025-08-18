@@ -126,7 +126,7 @@ function LandingPage() {
         <main>
           <div className="bg-mint-500">
             <div className="container mx-auto px-4">
-              <h2>Hva er dette?</h2>
+              <h2 className="text-3xl font-bold underline">Hva er dette?</h2>
               <p>
                 Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring. 
               </p>
