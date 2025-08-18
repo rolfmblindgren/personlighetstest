@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'  
 import logo from './assets/Grendel-G.png'
-// import './LandingPage.css'
 import { isTokenValid } from './components/ProtectedRoute';
 import Button from "./components/Button";
 import { API } from './lib/apiBase'
@@ -116,7 +115,7 @@ function LandingPage() {
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
 
-      <div className="page-container">
+      <div className="bg-mint-500">
         <header>
           <div className="header-inner">
             {logo && <img src={logo} alt="Grendel logo" />}
