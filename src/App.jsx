@@ -9,7 +9,7 @@ import ResetPassword from './ResetPassword'
 import ProtectedRoute from './components/ProtectedRoute'  // <-- legg til
 import { Layout } from './components/Layout.tsx'
 import { H1, H2 } from './components/Heading.tsx'
-~/
+
 function App() {
   return (
     <HelmetProvider>
