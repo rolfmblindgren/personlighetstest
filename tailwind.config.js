@@ -7,8 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+
+      fontFamily: {
+        sans: ["Verdana", "sans-serif"],
+      },
+
       colors: {
         turkis: {
+
           50:  '#ebfefc',
           100: '#c6fdf7',
           200: '#92fbf0',
@@ -21,6 +27,7 @@ module.exports = {
           900: '#0e4f4a',
         },
       },
+
       borderRadius: {
         'xl': '1rem', // ekstra myke hjørner
       },
