@@ -115,16 +115,17 @@ function LandingPage() {
         <meta name="description" content="Vitenskapelig testing av personlighet" />
       </Helmet>
 
-      <div>
-        <header className="">
-          <div className="flex items-center space-x-4 bg-teal-200 p-4">
+      <div className="min-h-screen py-8">
+      <div className="mx-auto max-w-5xl bg-white rounded-2xl shadow-lg ring-1 ring-black/5 p-6 md:p-10">>
+        <header className="bg-teal-200 p-4">
+          <div className="flex items-center space-x-4">
             {logo && <img src={logo} className="h-12 w-auto" alt="Grendel logo" />}
-            <h1 className="text-xl font-bold">Grendel Personlighetstest</h1>
+            <h1>Grendel Personlighetstest</h1>
           </div>
         </header>
 
         <main>
-          <div className="bg-teal-200 p-4">
+          <div>
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold underline">Hva er dette?</h2>
               <p>
@@ -225,6 +226,7 @@ function LandingPage() {
             </div>
           </div>
         </main>
+        </div>
       </div>
     </>
   )
