@@ -49,8 +49,8 @@ function App() {
               path="*"
               element={<div>Ingen rute matchet</div>}
             />
-          </Routes>
-        </Layout>
+          </Layout>
+        </Routes>
       </Router>
     </HelmetProvider>
   )
