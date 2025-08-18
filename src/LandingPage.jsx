@@ -118,7 +118,7 @@ function LandingPage() {
       <div>
         <header className="bg-teal-200 p-4">
           <div className="flex items-center space-x-4">
-            {logo && <img src={logo} alt="Grendel logo" />}
+            {logo && <img src={logo} className="h-12 w-auto" alt="Grendel logo" />}
             <h1 className="text-xl font-bold">Grendel Personlighetstest</h1>
           </div>
         </header>
