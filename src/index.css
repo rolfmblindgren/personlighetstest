@@ -1,5 +1,4 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss";
 
 /* Definer eget tema */
 @theme {
@@ -14,5 +13,3 @@
   --color-turkis-800: #115e59;
   --color-turkis-900: #134e4a;
 }
-
-@tailwind utilities;
