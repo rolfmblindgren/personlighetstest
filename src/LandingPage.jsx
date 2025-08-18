@@ -124,7 +124,7 @@ function LandingPage() {
         </header>
 
         <main>
-          <div className="main-content">
+          <div className="bg-mint-500">
             <div className="info-box">
               <h2>Hva er dette?</h2>
               <p>
