@@ -12,6 +12,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      api_url: ${{ steps.choose.outputs.api_url }}
     steps:
       - name: Sjekk ut kode
         uses: actions/checkout@v4
@@ -22,6 +24,15 @@ jobs:
           node-version: "20"
           cache: "npm"
 
+      - name: Velg API-base (branch -> URL)
+        id: choose
+        run: |
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            echo "api_url=${{ vars.PROD_VITE_API_BASE_URL }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "api_url=${{ vars.STAGING_VITE_API_BASE_URL }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Installer avhengigheter (legacy peer deps)
         env:
           npm_config_legacy_peer_deps: true
@@ -29,13 +40,12 @@ jobs:
 
       - name: Bygg (prod-optimaliseringer)
         env:
-          # Velg API-base ut fra branch
-          VITE_API_BASE_URL: ${{ github.ref_name == 'main' && vars.PROD_VITE_API_BASE_URL || vars.STAGING_VITE_API_BASE_URL }}
+          VITE_API_BASE_URL: ${{ steps.choose.outputs.api_url }}
         run: npm run build -- --mode production
 
       - name: Verifiser at API-URL er bakt inn
         env:
-          API_URL: ${{ github.ref_name == 'main' && vars.PROD_VITE_API_BASE_URL || vars.STAGING_VITE_API_BASE_URL }}
+          API_URL: ${{ steps.choose.outputs.api_url }}
         run: grep -R "${API_URL}" dist -n
 
       - name: Last opp artefakt
@@ -62,7 +72,9 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Legg til known_hosts
-        run: ssh-keyscan -H "${{ vars.STAGING_HOST }}" >> ~/.ssh/known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ vars.STAGING_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Opprett målmappe (om mangler)
         run: ssh "${{ vars.STAGING_USER }}@${{ vars.STAGING_HOST }}" 'mkdir -p "${{ vars.STAGING_PATH }}"'
@@ -96,7 +108,9 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Legg til known_hosts
-        run: ssh-keyscan -H "${{ vars.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ vars.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Opprett målmappe (om mangler)
         run: ssh "${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}" 'mkdir -p "${{ vars.DEPLOY_PATH }}"'
@@ -111,4 +125,4 @@ jobs:
         run: ssh "${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}" 'sudo systemctl reload apache2 || true'
 
       - name: Røyk-test
-        run: curl -fsS "https://${{ vars.PROD_DOMAIN }}/" >/dev/nullw
+        run: curl -fsS "https://${{ vars.PROD_DOMAIN }}/" >/dev/null
