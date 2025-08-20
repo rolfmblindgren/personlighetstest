@@ -6,6 +6,7 @@ import Dashboard from './dashboard'
 import Profile from './Profile'
 import ForgotPassword from './ForgotPassword'
 import ResetPassword from './ResetPassword'
+import VerifyEmailPage from './VerifyEmailPage'
 import ProtectedRoute from './components/ProtectedRoute'  // <-- legg til
 import { Layout } from './components/Layout.tsx'
 import { H1, H2 } from './components/Heading.tsx'
@@ -46,6 +47,8 @@ function App() {
             path="/reset"
             element={<ResetPassword />}
           />
+
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
 
           <Route
             path="*"
