@@ -31,6 +31,11 @@ function LandingPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [regPending, setRegPending] = useState(false);
+  const [regMsg, setRegMsg] = useState('');
+  const [regErr, setRegErr] = useState('');
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError('');
@@ -98,50 +103,64 @@ function LandingPage() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setMessage(null)
+    e.preventDefault();
+    if (regPending) return;
 
-    const emailTrimmed = email.trim()
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(emailTrimmed)) {
-      setMessage("E-postadressen er ikke gyldig.")
-      return
-    }
+    setRegPending(true);
+    setRegMsg('');
+    setRegErr('');
 
-    const errors = []
-    if (password.length < 8) errors.push('Passordet må være minst 8 tegn.')
-    if (!/[A-ZÆØÅ]/.test(password)) errors.push('Mangler stor bokstav.')
-    if (!/[a-zæøå]/.test(password)) errors.push('Mangler liten bokstav.')
-    if (!/[0-9]/.test(password)) errors.push('Mangler tall.')
-    if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) errors.push('Mangler spesialtegn.')
+    const emailTrimmed = email.trim().toLowerCase();
 
-    if (errors.length > 0) {
-      setMessage(errors.join(' '))
-      return
-    }
+    // enkel klientvalidering
+    const errors = [];
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) errors.push('E-postadressen er ikke gyldig.');
+    if (password.length < 8) errors.push('Passordet må være minst 8 tegn.');
+    if (!/[A-ZÆØÅ]/.test(password)) errors.push('Mangler stor bokstav.');
+    if (!/[a-zæøå]/.test(password)) errors.push('Mangler liten bokstav.');
+    if (!/[0-9]/.test(password)) errors.push('Mangler tall.');
+    if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) errors.push('Mangler spesialtegn.');
+    if (errors.length) { setRegErr(errors.join(' ')); setRegPending(false); return; }
 
     try {
-      const response = await fetch(`${API}/register`, {
+      const resp = await fetch(`${API}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailTrimmed, password }),
-      })
+      });
 
-      
+      // prøv json, men tåler tom body
+      const raw = await resp.text();
+      let data = {};
+      try { if (raw) data = JSON.parse(raw); } catch {}
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}))
-        setMessage(err.error || `Server svarte ${response.status}`)
-        return
+      if (resp.status === 201) {
+        // ny bruker opprettet
+        setRegMsg(data.message?.trim() || 'Bruker registrert. Sjekk e-posten for bekreftelse.');
+        setRegErr('');
+      } else if (resp.status === 409) {
+        // allerede registrert
+        setRegErr(data.error?.trim() || 'E-posten er allerede registrert. Prøv å logge inn.');
+        setRegMsg('');
+      } else if (resp.status === 400) {
+        setRegErr(data.error?.trim() || 'E-post og passord er påkrevd.');
+        setRegMsg('');
+      } else if (resp.ok) {
+        // andre 2xx – vis nøytral melding
+        setRegMsg(data.message?.trim() || 'Hvis adressen er gyldig, har vi sendt deg en bekreftelses-e-post.');
+        setRegErr('');
+      } else {
+        setRegErr(data.error?.trim() || `Noe gikk galt (status ${resp.status}).`);
+        setRegMsg('');
       }
-
     } catch (err) {
-      console.error(err)
-      setMessage('Feil ved tilkobling til server.')
+      console.error(err);
+      setRegErr('Feil ved tilkobling til server.');
+      setRegMsg('');
+    } finally {
+      setRegPending(false);
     }
-  }
+  };
 
   return (
     <>
@@ -280,7 +299,17 @@ function LandingPage() {
                   </button>
                 </div>
 
-                <Button type="submit" className="w-full">Registrer</Button>
+                <Button type="submit" className="w-full" disabled={regPending}>
+                  {regPending ? 'Sender…' : 'Registrer'}
+                </Button>
+
+                {(regMsg || regErr) && (
+                  <div className="mt-4 text-sm">
+                    {regMsg && <div className="text-green-700">{regMsg}</div>}
+                    {regErr && <div className="text-red-700">{regErr}</div>}
+                  </div>
+                )}
+
               </form>
 
               {message && <div className="mt-4 text-sm text-gray-700">{message}</div>}
