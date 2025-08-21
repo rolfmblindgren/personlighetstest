@@ -18,7 +18,10 @@ function App() {
         <Layout>
         <Routes>
 
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/"
+                 element={<LandingPage />
+                         }
+          />
 
           <Route
             path="/dashboard"
@@ -48,7 +51,9 @@ function App() {
             element={<ResetPassword />}
           />
 
-          <Route path="/verify-email" element={<VerifyEmailPage />} />
+          <Route
+            path="/verify-email"
+            element={<VerifyEmailPage />} />
 
           <Route
             path="*"

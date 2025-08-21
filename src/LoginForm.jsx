@@ -129,7 +129,10 @@ export default function LoginForm() {
             role="alert"
             className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
           >
-            {loginError}
+            {loginError}{" "}<a href="/forgot" className="underline">
+      Klikk her
+    </a>{" "}
+    for å tilbakestille passordet.
           </div>
         )}
 
