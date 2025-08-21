@@ -41,7 +41,9 @@ jobs:
       - name: Bygg (prod-optimaliseringer)
         env:
           VITE_API_BASE_URL: ${{ steps.choose.outputs.api_url }}
-        run: npm run build -- --mode production
+        run: |
+          MODE=$([ "${GITHUB_REF_NAME}" = "main" ] && echo production || echo staging)
+          npm run build -- --mode "$MODE"
 
       - name: Verifiser at API-URL er bakt inn
         env:

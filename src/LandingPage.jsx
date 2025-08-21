@@ -58,7 +58,7 @@ function LandingPage() {
             <div className="md:basis-3/5 bg-slate-100 p-4 rounded-lg">
               <H2>Hva er dette?</H2>
               <p>
-                Dette er en evidensbasert personlighetstest som måler de fem store faktxrene (Big Five). Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
+                Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
               </p>
 
               <picture>
