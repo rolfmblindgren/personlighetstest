@@ -75,7 +75,7 @@ export default function LoginForm() {
 
       // vanlige statuser fra backend
       if (res.status === 401) {
-        setLoginError(data?.error || 'Ugyldig e-post eller passord.');
+        setLoginError(data?.error || 'Ugyldig E-post eller passord.');
       } else if (res.status === 429) {
         setLoginError('For mange forsøk. Vent litt og prøv igjen.');
       } else {

@@ -63,7 +63,11 @@ export default function VerifyEmailPage() {
     setResendMsg("");
     try {
       // Backend må ha /api/resend-verification som tar token eller e-post
-      const res = await fetch(`${API}/resend-verification`, { method: "POST" });
+      const res = await fetch(`${API}/resend-verification`, {
+	method: "POST",
+	headers: { "Content-Type": "application/json" },
+	body: JSON.stringify({ token }),
+      });
       const data = await res.json().catch(() => ({}));
       setResendMsg(data.message || (res.ok ? "Ny e-post er sendt." : "Kunne ikke sende på nytt."));
     } catch {
@@ -88,7 +92,7 @@ export default function VerifyEmailPage() {
             <p className="text-amber-700">{msg}</p>
             <div className="mt-4 flex gap-3">
               <Button onClick={resend} disabled={resendBusy}>
-                {resendBusy ? "Sender…" : "Send ny bekreftelses-e-post"}
+                {resendBusy ? "Sender…" : "Sxnd ny bekreftelses-e-post"}
               </Button>
               <Link to="/"><Button variant="secondary">Til forsiden</Button></Link>
             </div>
