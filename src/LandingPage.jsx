@@ -50,12 +50,6 @@ function LandingPage() {
       </Helmet>
 
       <div>
-        <header className="bg-teal-200 p-4 rounded-lg">
-          <div className="flex items-center space-x-4">
-            {logo && <img src={logo} className="h-12 w-auto" alt="Grendel logo" />}
-            <H1>Grendel Personlighetstest</H1>
-          </div>
-        </header>
 
         <main className="p-6">
           <div className="flex flex-col md:flex-row gap-6">

@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_')
   return {
     plugins: [react()],
-    resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
+    resolve: { alias: { '@': path.resolve(__dirname, './src') } },
     server: {
       proxy: {
         '/api': {
