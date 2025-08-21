@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
+import Button from "./components/Button";
 const API = import.meta.env.VITE_API_BASE_URL
 
 export default function ResetPassword() {
@@ -29,7 +30,7 @@ export default function ResetPassword() {
   return (
     <form onSubmit={submit}>
       <input type="password" value={pw} onChange={e=>setPw(e.target.value)} required />
-      <button type="submit">Oppdater passord</button>
+      <Button type="submit">Oppdater passord</Button>
       {msg && <p>{msg}</p>}
     </form>
   )
