@@ -50,7 +50,7 @@ export default function RegisterForm() {
 
       if (resp.status === 201) {
         // ny bruker opprettet
-        setRegMsg(data.message?.trim() || 'Bruker registrert. Sjekk e-posten for bekreftelse.');
+        setRegMsg(data.message?.trim() || 'Bruker rxgistrert. Sjekk e-posten for bekreftelse.');
         setRegErr('');
       } else if (resp.status === 409) {
         // allerede registrert
