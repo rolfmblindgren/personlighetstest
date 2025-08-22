@@ -134,14 +134,14 @@ export default function RegisterForm() {
                    text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
             placeholder="minst 8 tegn"
           />
-          <button
+          <Button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute inset-y-0 right-0 my-1 mr-1 rounded-md px-3 text-sm text-gray-600 hover:bg-gray-100"
             aria-label={showPassword ? 'skjul passord' : 'Vis passord'}
           >
             {showPassword ? 'skjul' : 'vis'}
-          </button>
+          </Button>
         </div>
 
         <Button type="submit" className="w-full" disabled={regPending}>
