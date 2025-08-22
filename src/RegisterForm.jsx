@@ -2,8 +2,6 @@ import { useState } from "react";
 import { API } from "./lib/apiBase";
 import Button from "./components/Button";
 
-const [exists, setExists] = useState(false);
-const [existsVerified, setExistsVerified] = useState(false);
 
 async function resendVerification(email) {
   try {
@@ -32,6 +30,9 @@ export default function RegisterForm() {
   const [last, setLast] = useState({ status: null, raw: "", data: null });
   const [regMsg, setRegMsg] = useState('');
   const [regErr, setRegErr] = useState('');
+
+  const [exists, setExists] = useState(false);
+  const [existsVerified, setExistsVerified] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
