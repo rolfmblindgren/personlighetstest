@@ -78,8 +78,13 @@ export default function RegisterForm() {
               onClick={async (e) => {
                 e.preventDefault();
                 const r = await resendVerification(emailTrimmed || email);
-                if (r.ok) setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
-                else setRegErr(r.data?.error || 'Klarte ikke å sende verifiserings-epost.');
+                if (r.ok){
+                  setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
+                  setRegErr('');
+                } else {
+                  else setRegErr(r.data?.error ||
+                                 'Klarte ikke å sende verifiserings-epost.');
+                }
               }}
             >
               Klikk her
