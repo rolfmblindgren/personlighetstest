@@ -2,6 +2,9 @@ import { useState } from "react";
 import { API } from "./lib/apiBase";
 import Button from "./components/Button";
 
+const [exists, setExists] = useState(false);
+const [existsVerified, setExistsVerified] = useState(false);
+
 async function resendVerification(email) {
   try {
     const resp = await fetch(`${API}/resend-verification`, {
@@ -69,30 +72,10 @@ export default function RegisterForm() {
         setRegMsg(data.message?.trim() || 'Bruker registrert. Sjekk e-posten for bekreftelse.');
         setRegErr('');
       } else if (resp.status === 409) {
-        // allerede registrert
-        setRegErr(
-          <>
-            E-posten er allerede registrert.{' '}
-            <a
-              href="#"
-              onClick={async (e) => {
-                e.preventDefault();
-                const r = await resendVerification(emailTrimmed || email);
-                if (r.ok){
-                  setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
-                  setRegErr('');
-                } else {
-                  setRegErr(r.data?.error ||
-                            'Klarte ikke å sende verifiserings-epost.');
-                }
-              }}
-            >
-              Klikk her
-            </a>{' '}
-            for å få tilsendt ny bekreftelses-lenke.
-          </>
-        );
+        setExists(true);
+        setExistsVerified(!!data.verified);
         setRegMsg('');
+        setRegErr(''); // ikke rød feilmelding her
       } else if (resp.status === 400) {
         setRegErr(data.error?.trim() || 'E-post og passord er påkrevd.');
         setRegMsg('');
@@ -164,10 +147,44 @@ export default function RegisterForm() {
           {regPending ? 'Sender…' : 'Registrer'}
         </Button>
 
-        {(regMsg || regErr) && (
-          <div className="mt-4 text-sm">
-            {regMsg && <div className="text-green-700">{regMsg}</div>}
-            {regErr && <div className="text-red-700">{regErr}</div>}
+        {exists && (
+          <div className="mt-4 space-y-3">
+            <div className="text-sm">
+              {existsVerified ? (
+                <span className="text-gray-800">
+                  E-posten er allerede registrert. Logg inn for å fortsette.
+                </span>
+              ) : (
+                <span className="text-gray-800">
+                  E-posten er allerede registrert, men ikke bekreftet.
+                </span>
+              )}
+            </div>
+
+            {!existsVerified && (
+              <Button
+                type="button"
+                onClick={async () => {
+                  const r = await resendVerification(email.trim().toLowerCase());
+                  if (r.ok) setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
+                  else setRegErr(r.data?.error || 'Klarte ikke å sende verifiserings-epost.');
+                }}
+              >
+                Send ny bekreftelses-lenke
+              </Button>
+            )}
+
+            <Button
+              type="button"
+              className="text-sm underline text-sky-700"
+              onClick={() => {
+                // bytt til login-visning om du har tabs,
+                // eller naviger til /login i SPA-en
+                window.dispatchEvent(new CustomEvent('switch-to-login'));
+              }}
+            >
+              Gå til innlogging
+            </Button>
           </div>
         )}
 
