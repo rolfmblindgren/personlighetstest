@@ -82,8 +82,8 @@ export default function RegisterForm() {
                   setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
                   setRegErr('');
                 } else {
-                  else setRegErr(r.data?.error ||
-                                 'Klarte ikke å sende verifiserings-epost.');
+                  setRegErr(r.data?.error ||
+                            'Klarte ikke å sende verifiserings-epost.');
                 }
               }}
             >
