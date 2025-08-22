@@ -2,6 +2,20 @@ import { useState } from "react";
 import { API } from "./lib/apiBase";
 import Button from "./components/Button";
 
+async function resendVerification(email) {
+  try {
+    const resp = await fetch(`${API}/resend-verification`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email }),
+    });
+    const data = await resp.json().catch(() => ({}));
+    return { ok: resp.ok, status: resp.status, data };
+  } catch (e) {
+    return { ok: false, status: 0, data: { error: 'Nettverksfeil' } };
+  }
+}
+
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false)
@@ -46,7 +60,9 @@ export default function RegisterForm() {
       // prøv json, men tåler tom body
       const raw = await resp.text();
       let data = {};
-      try { if (raw) data = JSON.parse(raw); } catch {}
+      try {
+        if (raw) data = JSON.parse(raw);
+      } catch {}
 
       if (resp.status === 201) {
         // ny bruker opprettet
@@ -54,7 +70,23 @@ export default function RegisterForm() {
         setRegErr('');
       } else if (resp.status === 409) {
         // allerede registrert
-        setRegErr(data.error?.trim() || 'E-posten er allerede registrert. Prøv å logge inn.');
+        setRegErr(
+          <>
+            E-posten er allerede registrert.{' '}
+            <a
+              href="#"
+              onClick={async (e) => {
+                e.preventDefault();
+                const r = await resendVerification(emailTrimmed || email);
+                if (r.ok) setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
+                else setRegErr(r.data?.error || 'Klarte ikke å sende verifiserings-epost.');
+              }}
+            >
+              Klikk her
+            </a>{' '}
+            for å få tilsendt ny bekreftelses-lenke.
+          </>
+        );
         setRegMsg('');
       } else if (resp.status === 400) {
         setRegErr(data.error?.trim() || 'E-post og passord er påkrevd.');
