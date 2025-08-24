@@ -176,17 +176,6 @@ export default function RegisterForm() {
                 Send ny bekreftelses-lenke
               </Button>
             )}
-            <Button
-              type="button"
-              className="text-sm underline text-sky-700"
-              onClick={() => {
-                // bytt til login-visning om du har tabs,
-                // eller naviger til /login i SPA-en
-                window.dispatchEvent(new CustomEvent('switch-to-login'));
-              }}
-            >
-              Gå til innlogging
-            </Button>
           </div>
         )}
       </form>
