@@ -34,6 +34,8 @@ export default function RegisterForm() {
   const [exists, setExists] = useState(false);
   const [existsVerified, setExistsVerified] = useState(false);
 
+  const [notice, setNotice] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (regPending) return;
@@ -174,7 +176,6 @@ export default function RegisterForm() {
                 Send ny bekreftelses-lenke
               </Button>
             )}
-
             <Button
               type="button"
               className="text-sm underline text-sky-700"
@@ -188,9 +189,7 @@ export default function RegisterForm() {
             </Button>
           </div>
         )}
-
       </form>
-
       {message && <div className="mt-4 text-sm text-gray-700">{message}</div>}
     </>
   );
