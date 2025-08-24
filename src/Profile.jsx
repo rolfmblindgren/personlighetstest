@@ -4,7 +4,6 @@ import { API } from './lib/apiBase'
 
 export default function Profile() {
 
-  
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
   const [message, setMessage] = useState('')
@@ -107,8 +106,6 @@ export default function Profile() {
         >
           Lagre endringer
         </button>
-
-        {message && <p className="mt-2 text-green-700">{message}</p>}
       </form>
     </div>
   )

@@ -2,64 +2,58 @@ import { useState } from "react";
 import { API } from "./lib/apiBase";
 import Button from "./components/Button";
 
-
 async function resendVerification(email) {
   try {
     const resp = await fetch(`${API}/resend-verification`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
     });
     const data = await resp.json().catch(() => ({}));
     return { ok: resp.ok, status: resp.status, data };
-  } catch (e) {
-    return { ok: false, status: 0, data: { error: 'Nettverksfeil' } };
+  } catch {
+    return { ok: false, status: 0, data: { error: "Nettverksfeil" } };
   }
 }
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false)
-
-  const [message, setMessage] = useState(null)
-
+  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [regPending, setRegPending] = useState(false);
-  const [msg, setMsg] = useState("");
-  const [err, setErr] = useState("");
-  const [last, setLast] = useState({ status: null, raw: "", data: null });
-  const [regMsg, setRegMsg] = useState('');
-  const [regErr, setRegErr] = useState('');
 
   const [exists, setExists] = useState(false);
   const [existsVerified, setExistsVerified] = useState(false);
 
   const [notice, setNotice] = useState(null);
+  // { type: 'success' | 'error' | 'info', text: string }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (regPending) return;
 
     setRegPending(true);
-    setRegMsg('');
-    setRegErr('');
 
     const emailTrimmed = email.trim().toLowerCase();
 
     // enkel klientvalidering
     const errors = [];
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) errors.push('E-postadressen er ikke gyldig.');
-    if (password.length < 8) errors.push('Passordet må være minst 8 tegn.');
-    if (!/[A-ZÆØÅ]/.test(password)) errors.push('Mangler stor bokstav.');
-    if (!/[a-zæøå]/.test(password)) errors.push('Mangler liten bokstav.');
-    if (!/[0-9]/.test(password)) errors.push('Mangler tall.');
-    if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) errors.push('Mangler spesialtegn.');
-    if (errors.length) { setRegErr(errors.join(' ')); setRegPending(false); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) errors.push("E-postadressen er ikke gyldig.");
+    if (password.length < 8) errors.push("Passordet må være minst 8 tegn.");
+    if (!/[A-ZÆØÅ]/.test(password)) errors.push("Mangler stor bokstav.");
+    if (!/[a-zæøå]/.test(password)) errors.push("Mangler liten bokstav.");
+    if (!/[0-9]/.test(password)) errors.push("Mangler tall.");
+    if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) errors.push("Mangler spesialtegn.");
+    if (errors.length) {
+      setNotice({ type: "error", text: errors.join(" ") });
+      setRegPending(false);
+      return;
+    }
 
     try {
       const resp = await fetch(`${API}/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: emailTrimmed, password }),
       });
 
@@ -71,29 +65,39 @@ export default function RegisterForm() {
       } catch {}
 
       if (resp.status === 201) {
-        // ny bruker opprettet
-        setRegMsg(data.message?.trim() || 'Bruker registrert. Sjekk e-posten for bekreftelse.');
-        setRegErr('');
+        setNotice({
+          type: "success",
+          text: data.message?.trim() || "Bruker registrert. Sjekk e-posten for bekreftelse.",
+        });
+        setExists(false);
+        setExistsVerified(false);
+        setPassword(""); // rydd opp etter suksess
       } else if (resp.status === 409) {
+        const verified = !!data.verified;
         setExists(true);
-        setExistsVerified(!!data.verified);
-        setRegMsg('');
-        setRegErr(''); // ikke rød feilmelding her
+        setExistsVerified(verified);
+        setNotice({
+          type: "info",
+          text: verified
+            ? "E-posten er allerede registrert. Logg inn for å fortsette."
+            : "E-posten er allerede registrert, men ikke bekreftet.",
+        });
       } else if (resp.status === 400) {
-        setRegErr(data.error?.trim() || 'E-post og passord er påkrevd.');
-        setRegMsg('');
+        setNotice({ type: "error", text: data.error?.trim() || "E-post og passord er påkrevd." });
       } else if (resp.ok) {
-        // andre 2xx – vis nøytral melding
-        setRegMsg(data.message?.trim() || 'Hvis adressen er gyldig, har vi sendt deg en bekreftelses-e-post.');
-        setRegErr('');
+        setNotice({
+          type: "info",
+          text: data.message?.trim() || "Hvis adressen er gyldig, har vi sendt deg en bekreftelses-e-post.",
+        });
       } else {
-        setRegErr(data.error?.trim() || `Noe gikk galt (status ${resp.status}).`);
-        setRegMsg('');
+        setNotice({
+          type: "error",
+          text: data.error?.trim() || `Noe gikk galt (status ${resp.status}).`,
+        });
       }
     } catch (err) {
       console.error(err);
-      setRegErr('Feil ved tilkobling til server.');
-      setRegMsg('');
+      setNotice({ type: "error", text: "Feil ved tilkobling til server." });
     } finally {
       setRegPending(false);
     }
@@ -127,10 +131,14 @@ export default function RegisterForm() {
           <input
             id="password"
             name="password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             autoComplete="new-password"
+            autoCapitalize="Off"
+            spellCheck={false}
+            style={{ textTransform: "none"}}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyUp={(e) => setCapsOn(e.getModifierState("CapsLock"))}
             required
             className="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-20
                    text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
@@ -140,37 +148,53 @@ export default function RegisterForm() {
             type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute inset-y-0 right-0 my-1 mr-1 rounded-md px-3 text-sm text-gray-600 hover:bg-gray-100"
-            aria-label={showPassword ? 'skjul passord' : 'Vis passord'}
+            aria-label={showPassword ? "skjul passord" : "Vis passord"}
           >
-            {showPassword ? 'skjul' : 'vis'}
+            {showPassword ? "skjul" : "vis"}
           </Button>
         </div>
 
+        {capsOn && (
+          <div className="mt-1 text-xs text-yellow-700">
+            Caps Lock er på
+          </div>
+        )}
+
         <Button type="submit" className="w-full" disabled={regPending}>
-          {regPending ? 'Sender…' : 'Registrer'}
+          {regPending ? "Sender…" : "Registrer"}
         </Button>
+
+        {notice && (
+          <div className="mt-4 text-sm" aria-live="polite">
+            <div
+              className={
+                notice.type === "error"
+                  ? "text-red-700"
+                  : notice.type === "success"
+                  ? "text-green-700"
+                  : "text-gray-700"
+              }
+            >
+              {notice.text}
+            </div>
+          </div>
+        )}
 
         {exists && (
           <div className="mt-4 space-y-3">
-            <div className="text-sm">
-              {existsVerified ? (
-                <span className="text-gray-800">
-                  E-posten er allerede registrert. Logg inn for å fortsette.
-                </span>
-              ) : (
-                <span className="text-gray-800">
-                  E-posten er allerede registrert, men ikke bekreftet.
-                </span>
-              )}
-            </div>
-
             {!existsVerified && (
               <Button
                 type="button"
                 onClick={async () => {
                   const r = await resendVerification(email.trim().toLowerCase());
-                  if (r.ok) setRegMsg('Vi har sendt deg en ny bekreftelses-lenke.');
-                  else setRegErr(r.data?.error || 'Klarte ikke å sende verifiserings-epost.');
+                  if (r.ok) {
+                    setNotice({ type: "info", text: "Vi har sendt deg en ny bekreftelses-lenke." });
+                  } else {
+                    setNotice({
+                      type: "error",
+                      text: r.data?.error || "Klarte ikke å sende verifiserings-e-post.",
+                    });
+                  }
                 }}
               >
                 Send ny bekreftelses-lenke
@@ -179,7 +203,6 @@ export default function RegisterForm() {
           </div>
         )}
       </form>
-      {message && <div className="mt-4 text-sm text-gray-700">{message}</div>}
     </>
   );
 }
