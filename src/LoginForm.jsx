@@ -4,31 +4,32 @@ import { API } from "./lib/apiBase";
 import Button from "./components/Button";
 import { isTokenValid } from "./components/ProtectedRoute";
 
+async function parseJsonMaybe(res) {
+  const ct = res.headers.get('content-type') || '';
+  if (ct.includes('application/json')) {
+    try { return await res.json(); } catch { return {}; }
+  }
+  // fall back til tekst (for logging), men vis ikke i UI
+  try { console.debug(await res.text()); } catch {}
+  return {};
+}
+
+async function resendVerification(email) {
+  try {
+    const r = await fetch(`${API}/resend-verification`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await parseJsonMaybe(r);
+    return { ok: r.ok, status: r.status, data };
+  } catch {
+    return { ok: false, status: 0, data: { error: 'Nettverksfeil' } };
+  }
+}
+
+
 export default function LoginForm() {
-
-  async function parseJsonMaybe(res) {
-    const ct = res.headers.get('content-type') || '';
-    if (ct.includes('application/json')) {
-      try { return await res.json(); } catch { return {}; }
-    }
-    // fall back til tekst (for logging), men vis ikke i UI
-    try { console.debug(await res.text()); } catch {}
-    return {};
-  }
-
-  async function resendVerification(email) {
-    try {
-      const r = await fetch(`${API}/resend-verification`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      const data = await parseJsonMaybe(r);
-      return { ok: r.ok, status: r.status, data };
-    } catch {
-      return { ok: false, status: 0, data: { error: 'Nettverksfeil' } };
-    }
-  }
 
   const navigate = useNavigate();  // nødvendig for redirect
 
@@ -78,16 +79,8 @@ export default function LoginForm() {
       });
 
       // 2) prøv JSON, men fall tilbake til tekst
-      const ct = res.headers.get('content-type') || '';
-      let data = null;
-      if (ct.includes('application/json')) {
-        data = await res.json();
-      } else {
-        const text = await res.text();
-        // skjul tracebacks for bruker, men logg i konsollen
-        if (text && text.includes('Traceback')) console.error(text);
-        data = { error: 'Noe gikk galt på serveren.' };
-      }
+
+      const data = await parseJsonMaybe(res);
 
       // 3) håndter status
 

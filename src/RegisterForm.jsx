@@ -42,8 +42,6 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
 
-
-
     e.preventDefault();
     if (regPending) return;
 
