@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { API } from "./lib/apiBase";
 import Button from './components/Button';
-import InputPassword from '@/components/Inputpassword';
+import InputPassword from '@/components/InputPassword';
 import { isTokenValid } from "./components/ProtectedRoute";
 
 async function parseJsonMaybe(res) {

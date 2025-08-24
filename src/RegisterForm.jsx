@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { API } from "@/lib/apiBase";
 import Button from "@/components/Button";
-import InputPassword from '@/components/Inputpassword';
+import InputPassword from '@/components/InputPassword';
 
 async function resendVerification(email) {
   try {
