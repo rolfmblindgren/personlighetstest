@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { API } from "./lib/apiBase";
-import Button from "./components/Button";
+import { API } from "@/lib/apiBase";
+import Button from "@/components/Button";
+import InputPassword from '@/components/Inputpassword';
 
 async function resendVerification(email) {
   try {
@@ -39,6 +40,16 @@ export default function RegisterForm() {
     info: "text-gray-700",
   }[notice?.type] || "text-gray-700";
 
+  const emailTrimmed = email.trim().toLowerCase();
+  const formInvalid =
+        !isEmail(emailTrimmed) ||
+    password.length < 8 ||
+    !/[A-ZÆØÅ]/.test(password) ||
+    !/[a-zæøå]/.test(password) ||
+    !/[0-9]/.test(password) ||
+    !/[^A-Za-z0-9æøåÆØÅ]/.test(password);
+
+
 
   const handleSubmit = async (e) => {
 
@@ -47,15 +58,6 @@ export default function RegisterForm() {
 
     setRegPending(true);
     setNotice(null);
-
-    const emailTrimmed = email.trim().toLowerCase();
-    const formInvalid =
-          !isEmail(emailTrimmed) ||
-      password.length < 8 ||
-      !/[A-ZÆØÅ]/.test(password) ||
-      !/[a-zæøå]/.test(password) ||
-      !/[0-9]/.test(password) ||
-      !/[^A-Za-z0-9æøåÆØÅ]/.test(password);
 
 
     // enkel klientvalidering
@@ -158,25 +160,14 @@ export default function RegisterForm() {
           Passord
         </label>
         <div className="relative">
-          <input
+          <InputPassword
             id="password"
             name="password"
-            minLength={8}
-            type={showPassword ? "text" : "password"}
-            autoComplete="new-password"
-            autoCapitalize="off"
-            spellCheck={false}
-            style={{ textTransform: "none"}}
             value={password}
-            enterKeyHint="done"
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => setCapsOn(e.getModifierState("CapsLock"))}
             onKeyUp={(e) => setCapsOn(e.getModifierState("CapsLock"))}
             onBlur={() => setCapsOn(false)}
-            required
-            className="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-20
-                   text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
-            placeholder="minst 8 tegn"
           />
           <Button
             type="button"
@@ -206,7 +197,6 @@ export default function RegisterForm() {
             </div>
           </div>
         )}
-
 
         {exists && (
           <div className="mt-4 space-y-3">

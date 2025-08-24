@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import Button from "./components/Button";
+import Button from '@/components/Button';
+import InputPassword from './components/InputPassword';
+import { H3 } from '@/components/Heading';
+
 const API = import.meta.env.VITE_API_BASE_URL
 
 export default function ResetPassword() {
@@ -28,10 +31,18 @@ export default function ResetPassword() {
   }
 
   return (
-    <form onSubmit={submit}>
-      <input type="password" value={pw} onChange={e=>setPw(e.target.value)} required />
-      <Button type="submit">Oppdater passord</Button>
-      {msg && <p>{msg}</p>}
+    <form onSubmit={submit} className="max-w-sm mx-auto p-6 bg-white rounded-xl shadow">
+      <H3>Nytt passord</H3>
+
+      <InputPassword
+        value={pw}
+        onChange={(e) => setPw(e.target.value)}
+        placeholder="Skriv nytt passord"
+      />
+
+      <Button type="submit" className="mt-4 w-full">Lagre</Button>
+
+      {msg && <p className="mt-3 text-sm text-gray-700 text-center">{msg}</p>}
     </form>
   )
 }

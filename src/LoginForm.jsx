@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { API } from "./lib/apiBase";
-import Button from "./components/Button";
+import Button from './components/Button';
+import InputPassword from '@/components/Inputpassword';
 import { isTokenValid } from "./components/ProtectedRoute";
 
 async function parseJsonMaybe(res) {
@@ -158,22 +159,12 @@ export default function LoginForm() {
         <label htmlFor="loginPassword" className="block text-sm font-medium text-gray-700">
           Passord
         </label>
-        <input
-          type="password"
+        <InputPassword
           id="loginPassword"
           value={loginPassword}
-          spellCheck={false}
-          minLength={8}
-          style={{textTransform: "none"}}
-          autoCapitalize="off"
           onChange={(e) => setLoginPassword(e.target.value)}
-          required
           onKeyDown={(e) => setCapsOn(e.getModifierState("CapsLock"))}
           onKeyUp={(e) => setCapsOn(e.getModifierState("CapsLock"))}
-          className="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2
-                 text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
-          autoComplete="current-password"
-          placeholder="minst 8 tegn"
         />
 
         {loginError && (

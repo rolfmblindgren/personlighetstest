@@ -1,10 +1,11 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { useNavigate } from "react-router-dom"
-import { useEffect } from 'react'
-import { isTokenValid } from './auth'
-import { API } from './lib/apiBase'
-
-
+import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { isTokenValid } from '@/auth'
+import { API } from '@/lib/apiBase'
+import Button from '@/components/Button'
+import UsersWidget from '@/components/UsersWidget'
+import { H1, H2, H3 } from '@/components/Heading.tsx'
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -39,7 +40,7 @@ export default function Dashboard() {
             <CardTitle>Antall brukere</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">1</p>
+	    <UsersWidget />
           </CardContent>
         </Card>
 
