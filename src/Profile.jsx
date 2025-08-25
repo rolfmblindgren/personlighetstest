@@ -1,112 +1,148 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { API } from './lib/apiBase'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API } from './lib/apiBase';
 
 export default function Profile() {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-  const [loading, setLoading] = useState(true)
-  const [message, setMessage] = useState('')
-  // feltene fra backend
-  const [email,    setEmail]    = useState('')
-  const [navn,     setNavn]     = useState('')
-  const [adresse,  setAdresse]  = useState('')
-  const [telefon,  setTelefon]  = useState('')
-  const [katt,     setKatt]     = useState('')
+  const [loading, setLoading]   = useState(true);
+  const [message, setMessage]   = useState('');
+  const [email, setEmail]       = useState('');
+  const [navn, setNavn]         = useState('');
+  const [adresse, setAdresse]   = useState('');
+  const [telefon, setTelefon]   = useState('');
+  const [katt, setKatt]         = useState('');
 
-  // på mount: hent profil
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    fetch(`${API}/profile`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-      .then(res => {
-        if (!res.ok) throw new Error('Kunne ikke hente profil')
-        return res.json()
-      })
-      .then(data => {
-        setEmail(data.email)
-        setNavn(data.navn    || '')
-        setAdresse(data.adresse || '')
-        setTelefon(data.telefon || '')
-        setKatt(data.katt    || '')
-      })
-      .catch(err => {
-        console.error(err)
-        setMessage('Feil ved lasting av profil.')
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    const token = localStorage.getItem('token');
+    if (!token) { navigate('/'); return; }
+
+    (async () => {
+      try {
+        const res = await fetch(`${API}/profile`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (res.status === 401 || res.status === 403) {
+          // ikke innlogget / ikke gyldig token
+          localStorage.removeItem('token');
+          navigate('/');
+          return;
+        }
+        if (!res.ok) throw new Error('Kunne ikke hente profil');
+
+        const data = await res.json();
+        setEmail(data.email || '');
+        setNavn(data.navn || '');
+        setAdresse(data.adresse || '');
+        setTelefon(data.telefon || '');
+        setKatt(data.katt || '');
+      } catch (err) {
+        console.error(err);
+        setMessage('Feil ved lasting av profil.');
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [navigate]);
 
   const handleSave = async (e) => {
-    e.preventDefault()
-    setMessage('')
-    const token = localStorage.getItem('token')
+    e.preventDefault();
+    setMessage('');
+    const token = localStorage.getItem('token');
+    if (!token) { navigate('/'); return; }
+
     try {
       const res = await fetch(`${API}/profile`, {
-        method: 'POST',
+        method: 'PUT',                            // <— viktig
         headers: {
-          'Content-Type': application/json,
-          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',     // <— med anførselstegn
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ navn, adresse, telefon, katt })
-      })
-      if (!res.ok) throw new Error('Oppdatering feilet')
-      setMessage('Profilen er oppdatert!')
-    } catch (err) {
-      console.error(err)
-      setMessage('Feil under oppdatering.')
-    }
-  }
+        body: JSON.stringify({ navn, adresse, telefon, katt }),
+      });
 
-  if (loading) return <p>Laster profil…</p>
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('token');
+        navigate('/');
+        return;
+      }
+      if (!res.ok) throw new Error('Oppdatering feilet');
+      setMessage('Profilen er oppdatert!');
+    } catch (err) {
+      console.error(err);
+      setMessage('Feil under oppdatering.');
+    }
+  };
+
+  if (loading) return <p>Laster profil…</p>;
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h2 className="text-2xl mb-4">Min profil</h2>
+    <div className="max-w-xl mx-auto p-6">
+      <h2 className="text-2xl font-semibold mb-4">Min profil</h2>
+
+      {message && (
+        <div className="mb-4 text-sm text-gray-800">{message}</div>
+      )}
+
       <form onSubmit={handleSave} className="space-y-4">
-        {/* E-post er gjerne readonly */}
         <div>
-          <label>E-post</label>
-          <input type="email" value={email} readOnly
-            className="w-full border px-2 py-1 bg-gray-100" />
+          <label className="block text-sm font-medium mb-1">E-post</label>
+          <input
+            type="email"
+            value={email}
+            readOnly
+            className="w-full rounded border px-3 py-2 bg-gray-100"
+          />
         </div>
 
         <div>
-          <label>Navn</label>
-          <input type="text" value={navn}
+          <label className="block text-sm font-medium mb-1">Navn</label>
+          <input
+            type="text"
+            value={navn}
             onChange={e => setNavn(e.target.value)}
-            className="w-full border px-2 py-1" />
+            className="w-full rounded border px-3 py-2"
+          />
         </div>
 
         <div>
-          <label>Adresse</label>
-          <input type="text" value={adresse}
+          <label className="block text-sm font-medium mb-1">Adresse</label>
+          <input
+            type="text"
+            value={adresse}
             onChange={e => setAdresse(e.target.value)}
-            className="w-full border px-2 py-1" />
+            className="w-full rounded border px-3 py-2"
+          />
         </div>
 
         <div>
-          <label>Telefon</label>
-          <input type="tel" value={telefon}
+          <label className="block text-sm font-medium mb-1">Telefon</label>
+          <input
+            type="tel"
+            value={telefon}
             onChange={e => setTelefon(e.target.value)}
-            className="w-full border px-2 py-1" />
+            className="w-full rounded border px-3 py-2"
+          />
         </div>
 
         <div>
-          <label>Navn på katt</label>
-          <input type="text" value={katt}
+          <label className="block text-sm font-medium mb-1">Navn på katt</label>
+          <input
+            type="text"
+            value={katt}
             onChange={e => setKatt(e.target.value)}
-            className="w-full border px-2 py-1" />
+            className="w-full rounded border px-3 py-2"
+          />
         </div>
 
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded"
+          className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700"
         >
           Lagre endringer
         </button>
       </form>
     </div>
-  )
+  );
 }
