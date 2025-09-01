@@ -12,6 +12,7 @@ import { Layout } from './components/Layout.tsx';
 import { H1, H2 } from './components/Heading.tsx';
 import TestRunner from './TestRunner';
 import TestPicker from './TestPicker';
+import ScoresPage from '@/pages/ScorePage';
 
 import IpipNeo from './ipip_neo';
 
@@ -47,21 +48,39 @@ function App() {
 
           <Route
             path="/forgot"
-            element={<ForgotPassword />}
+            element={
+              <ProtectedRoute>
+                <ForgotPassword />
+              </ProtectedRoute>}
           />
 
           <Route
             path="/reset"
-            element={<ResetPassword />}
+            element={
+              <ProtectedRoute>
+                <ResetPassword />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/verify-email"
-            element={<VerifyEmailPage />} />
+            element={
+              <ProtectedRoute>
+                <VerifyEmailPage />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/ipip-neo"
-            element={<IpipNeo />} />
+            element={
+              <ProtectedRoute>
+                <IpipNeo />
+              </ProtectedRoute>
+            }
+
+          />
 
           <Route
             path="/testrunner/:testId"
@@ -78,6 +97,18 @@ function App() {
               <ProtectedRoute>
                 <TestPicker />
               </ProtectedRoute>
+            }
+          />
+
+
+
+          <Route
+            path="/tests/:testId/scores"
+            element={
+              <ProtectedRoute>
+                <ScoresPage />
+              </ProtectedRoute>
+
             }
           />
 
