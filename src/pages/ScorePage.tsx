@@ -5,12 +5,16 @@ import { API } from "../lib/apiBase";
 import { apiFetch } from "../lib/apiFetch";
 
 type DomainRow = {
-  domain: string; mean_score: number | string | null;
-  n_items: number };
-type FacetRow  = {
-  domain: string; facet: number; mean_score: number | string | null;
-  n_items: number };
-
+  domain: string;
+  mean_score: number | string | null;
+  n_items: number;
+};
+type FacetRow = {
+  domain: string;
+  facet: number;
+  mean_score: number | string | null;
+  n_items: number;
+};
 
 export default function ScoresPage() {
   const { testId } = useParams<{ testId: string }>();
@@ -23,8 +27,6 @@ export default function ScoresPage() {
 
   const fmt = (v: unknown) =>
     v == null ? "–" : Number(v).toFixed(2);
-  const num = (v: unknown) => (v == null ? null : Number(v));
-
 
   useEffect(() => {
     let abort = false;
@@ -39,7 +41,9 @@ export default function ScoresPage() {
         if (!abort) setErr(e.message || "Feil");
       }
     })();
-    return () => { abort = true; };
+    return () => {
+      abort = true;
+    };
   }, [testId]);
 
   return (
@@ -49,17 +53,19 @@ export default function ScoresPage() {
 
       {data.total && (
         <div className="mb-6 text-sm text-gray-600">
-          Totalt besvart: {data.total.n_items} · Gjennomsnitt:{" "}
-          {data.total.mean_score?.toFixed(2)}
+          Totalt besvart: {data.total.n_items} · Gjennomsnitt T-skår:{" "}
+          {fmt(data.total.mean_score)}
         </div>
       )}
 
-      <h2 className="text-xl font-medium mt-4 mb-2">Domener (N, E, O, A, C)</h2>
+      <h2 className="text-xl font-medium mt-4 mb-2">
+        Domener (N, E, O, A, C)
+      </h2>
       <table className="w-full border text-sm mb-8">
         <thead>
           <tr className="bg-gray-50">
             <th className="p-2 text-left">Domene</th>
-            <th className="p-2 text-right">Gj.snitt</th>
+            <th className="p-2 text-right">Gj.snitt T-skår</th>
             <th className="p-2 text-right">Antall</th>
           </tr>
         </thead>
@@ -67,20 +73,22 @@ export default function ScoresPage() {
           {(data.domains || []).map((d) => (
             <tr key={d.domain} className="border-t">
               <td className="p-2">{d.domain}</td>
-              <td className="p-2 text-right">{num(d.mean_score)?.toFixed(2) && "-"}</td>
+              <td className="p-2 text-right">{fmt(d.mean_score)}</td>
               <td className="p-2 text-right">{d.n_items}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <h2 className="text-xl font-medium mt-4 mb-2">Fasetter (1–6 pr domene)</h2>
+      <h2 className="text-xl font-medium mt-4 mb-2">
+        Fasetter (1–6 pr domene)
+      </h2>
       <table className="w-full border text-sm">
         <thead>
           <tr className="bg-gray-50">
             <th className="p-2 text-left">Domene</th>
             <th className="p-2 text-right">Fasett</th>
-            <th className="p-2 text-right">Gj.snitt</th>
+            <th className="p-2 text-right">Gj.snitt T-skår</th>
             <th className="p-2 text-right">Antall</th>
           </tr>
         </thead>
@@ -89,7 +97,7 @@ export default function ScoresPage() {
             <tr key={`${f.domain}-${f.facet}`} className="border-t">
               <td className="p-2">{f.domain}</td>
               <td className="p-2 text-right">{f.facet}</td>
-              <td className="p-2 text-right">{num(f.mean_score)?.toFixed(2) && "-"}</td>
+              <td className="p-2 text-right">{fmt(f.mean_score)}</td>
               <td className="p-2 text-right">{f.n_items}</td>
             </tr>
           ))}
