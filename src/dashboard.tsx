@@ -5,7 +5,8 @@ import { isTokenValid } from '@/auth'
 import { API } from '@/lib/apiBase'
 import Button from '@/components/Button'
 import UsersWidget from '@/components/UsersWidget'
-import { H1, H2, H3 } from '@/components/Heading.tsx'
+import TestWidget from '@/components/TestWidget'
+import { H1, H2, H3 } from '@/components/Heading'
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -44,6 +45,13 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
+	<Card>
+          <CardHeader><CardTitle>Siste tester</CardTitle></CardHeader>
+          <CardContent>
+            <TestWidget countOnly />
+          </CardContent>
+	</Card>
+
         <Card>
           <CardHeader>
             <CardTitle>Aktive tester</CardTitle>
@@ -62,6 +70,15 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Siste tester */}
+      <Card>
+        <CardHeader><CardTitle>Siste tester</CardTitle></CardHeader>
+        <CardContent>
+          <TestWidget limit={8} />
+        </CardContent>
+      </Card>
+
     </div>
   )
 }
