@@ -8,8 +8,8 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import VerifyEmailPage from './VerifyEmailPage';
 import ProtectedRoute from './components/ProtectedRoute';  // <-- legg til
-import { Layout } from './components/Layout.tsx';
-import { H1, H2 } from './components/Heading.tsx';
+import { Layout } from './components/Layout';
+import { H1, H2 } from './components/Heading';
 import TestRunner from './TestRunner';
 import TestPicker from './TestPicker';
 import ScoresPage from '@/pages/ScorePage';
@@ -49,17 +49,15 @@ function App() {
           <Route
             path="/forgot"
             element={
-              <ProtectedRoute>
-                <ForgotPassword />
-              </ProtectedRoute>}
+              <ForgotPassword />
+            }
           />
 
           <Route
             path="/reset"
             element={
-              <ProtectedRoute>
                 <ResetPassword />
-              </ProtectedRoute>
+
             }
           />
 
