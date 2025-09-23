@@ -55,6 +55,6 @@ export default {
   isRegistering: "Registrerer …",
   warnCapsLock: "Caps Lock er på",
   sendNewConfirmationLink: "Send ny stadfestingslenkje",
-  siteExplanation: "Dette er ein evidensbasert personlegdomstest som måler dei fem store faktorane (Big Five). Det tek under eitt minutt å registrere seg, og du får ei detaljert tilbakemelding med det same du er ferdig."
+  siteExplanation: "Dette er ein evidensbasert personlegdomstest som måler dei fem store faktorane (Big Five). Det tek under eit minutt å registrere seg, og du får ei detaljert tilbakemelding med det same du er ferdig."
 
 };

@@ -55,5 +55,5 @@ export default {
   isRegistering: "Registrerer",
   warnCapsLock: "Caps Lock er på",
   sendNewConfirmationLink: "Send ny bekreftelses-lenke",
-  siteExplanation: "Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring."
+  siteExplanation: "Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under et minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring."
 };

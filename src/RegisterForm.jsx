@@ -154,7 +154,7 @@ export default function RegisterForm() {
           required
           className="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2
                  text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
-          placeholder="navn@domene.no"
+          placeholder={t('name_at_domain_no')}
         />
 
         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -187,7 +187,7 @@ export default function RegisterForm() {
         )}
 
         <Button type="submit" aria-describedby={notice ? 'reg-notice' : undefined}  className="w-full" disabled={regPending || formInvalid}>
-          {regPending ? t('isSending') : t('isRegistering')}
+          {regPending ? t('isSending') : t('signup')}
         </Button>
 
         {notice && (
