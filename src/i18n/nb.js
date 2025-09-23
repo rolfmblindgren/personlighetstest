@@ -55,5 +55,54 @@ export default {
   isRegistering: "Registrerer",
   warnCapsLock: "Caps Lock er på",
   sendNewConfirmationLink: "Send ny bekreftelses-lenke",
-  siteExplanation: "Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under et minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring."
+  siteExplanation: "Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under et minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.",
+
+  B5A: "Omgjengelighet",
+  B5E: "Ekstraversion",
+  B5C: "Planmessighet",
+  B5N: "Nevrotisisme",
+  B5O: "Åpenhet for erfaring",
+
+  N1: "Engstelse",
+  N2: "Fiendtlighet",
+  N3: "Depresjon",
+  N4: "Selvbevissthet",
+  N5: "Impulsivitet",
+  N6: "Sårbarhet",
+
+  E1: "Varme",
+  E2: "Sosiablitet",
+  E3: "Selvmarkering",
+  E4: "Aktivitet",
+  E5: "Spenningssøking",
+  E6: "Positive følelser",
+
+  O1: "Fantasi",
+  O2: "Estetikk",
+  O3: "Følelser",
+  O4: "Handlinger",
+  O5: "Ideer",
+  O6: "Verdier",
+
+  A1: "Tillit",
+  A2: "Rettfremhet",
+  A3: "Altruisme",
+  A4: "Føyelighet",
+  A5: "Beskjedenhet",
+  A6: "Følsomhet",
+
+  C1: "Kompetanse",
+  C2: "Orden",
+  C3: "Plikttroskap",
+  C4: "Prestasjonsstreben",
+  C5: "Selvdisiplin",
+  C6: "Betenksomhet",
+
+  scoresTitle: "Restultater",
+  domainsHeading: "Faktorer",
+  facetsHeading: "Fasetter",
+  domain: "Faktor",
+  facet: "Fasett"
+
+
 };

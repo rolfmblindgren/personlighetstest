@@ -58,4 +58,99 @@ export default {
   warnCapsLock: "Caps Lock lea olggobealde",
   sendNewConfirmationLink: "Sádde ođđa nannenlinnka",
   siteExplanation: "Dát lea evidensii čađahuvvon persoonalašisvuođadieđutgeahččaleapmi mii mearrida vihtta stuorra faktorii (Big Five). Registrerejuvvot sáhttá vajáldas minuhki, ja don oaččut detaljálaš máhcahusa viidne go leat geargan",
+
+  B5A: "Omgjengelegheit",
+  B5E: "Ekstraversjon",
+  B5C: "Planmessigheit",
+  B5N: "Nevrotisisme",
+  B5O: "Openheit for erfaring",
+
+  N1: "Engstelse",
+  N2: "Fiendskap",
+  N3: "Depresjon",
+  N4: "Sjølvmedvit",
+  N5: "Impulsivitet",
+  N6: "Sårbarheit",
+
+  E1: "Varme",
+  E2: "Sosialitet",
+  E3: "Sjølvmarkering",
+  E4: "Aktivitet",
+  E5: "Spenningssøk",
+  E6: "Positive kjensler",
+
+  O1: "Fantasi",
+  O2: "Estetikk",
+  O3: "Kjensler",
+  O4: "Handlingar",
+  O5: "Idear",
+  O6: "Verdiar",
+
+  A1: "Tillitsfullheit",
+  A2: "Rettframheit",
+  A3: "Altruisme",
+  A4: "Føyelegheit",
+  A5: "Blygsle",
+  A6: "Kjenslevarheit",
+
+  C1: "Kompetanse",
+  C2: "Orden",
+  C3: "Plikttruskap",
+  C4: "Prestasjonstrevan",
+  C5: "Sjølvdisiplin",
+  C6: "Ettertenksamheit",
+
+  scoresTitle: "Resultat",
+  domainsHeading: "Faktorar",
+  facetsHeading: "Fasettar",
+  domain: "Faktor",
+  facet: "Fasett",
+
+    B5A: "Sávzzadallan" ,           // Omgjengelegheit
+  B5E: "Ekstraversuvdna",         // Ekstraversjon
+  B5C: "Plánemihtun",             // Planmessigheit
+  B5N: "Nevrotisisma",            // Nevrotisisme
+  B5O: "Ovdáneapmi" ,             // Openheit for erfaring
+
+  N1: "Áhkkuheapmi",              // Engstelse
+  N2: "Ellogaheapmi",             // Fiendskap
+  N3: "Depresuvdna",              // Depresjon
+  N4: "Iešdovdduheapmi",          // Sjølvmedvit
+  N5: "Impulsivitehta",           // Impulsivitet
+  N6: "Várásheapmi",              // Sårbarheit
+
+  E1: "Biehtárášvuohta",          // Varme
+  E2: "Sosiálašvuohta",           // Sosialitet
+  E3: "Ieščájeheapmi",            // Sjølvmarkering
+  E4: "Aktivitehta",              // Aktivitet
+  E5: "Ráhkisduvvon hástalusat",  // Spenningssøk
+  E6: "Positiivvat dovddut",      // Positive kjensler
+
+  O1: "Fántasiija",               // Fantasi
+  O2: "Estetiihkka",              // Estetikk
+  O3: "Dovddut",                  // Kjensler
+  O4: "Doaimmat",                 // Handlingar
+  O5: "Ideat",                    // Idear
+  O6: "Árvvut",                   // Verdiar
+
+  A1: "Luohtavuohta",             // Tillit
+  A2: "Rettframvuohta",           // Rettframheit
+  A3: "Altruisma",                // Altruisme
+  A4: "Gohččuhuvvuvuohta",        // Føyelegheit
+  A5: "Dárbbašlaš blygsle",       // Blygsle
+  A6: "Dovdduvuohta",             // Kjenslevarheit
+
+  C1: "Kompetánsa",               // Kompetanse
+  C2: "Ruovttoluodda",            // Orden
+  C3: "Pliktavuohta",             // Plikttruskap
+  C4: "Árvvosmahttin",            // Prestasjonstrevan
+  C5: "Iešdisipliinnas",          // Sjølvdisiplin
+  C6: "Árvvusmeahttun",           // Ettertenksamheit
+
+  scoresTitle: "Resultahtat",
+  domainsHeading: "Fáttát",
+  facetsHeading: "Ovttadatfitnat",
+  domain: "Fátta",
+  facet: "Ovttadat",
+
 };
