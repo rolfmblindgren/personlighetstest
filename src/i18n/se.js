@@ -153,4 +153,5 @@ export default {
   domain: "Fátta",
   facet: "Ovttadat",
 
+  tScore: "T-skoar",
 };

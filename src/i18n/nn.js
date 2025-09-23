@@ -103,4 +103,6 @@ export default {
   facetsHeading: "Fasettar",
   domain: "Faktor",
   facet: "Fasett",
+
+  tScore: "T-skår",
 };

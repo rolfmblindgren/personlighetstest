@@ -19,26 +19,27 @@ export default function ScoresPage() {
 
   const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(2));
 
-  // Oversettelser hentes ved render (respekterer gjeldende locale)
-  const getDomainName = (code: string) => {
-    switch (code) {
-      case "A": return t("B5A");
-      case "E": return t("B5E");
-      case "C": return t("B5C");
-      case "N": return t("B5N");
-      case "O": return t("B5O");
-      default:  return code;
-    }
-  };
-  const getFacetName = (domain: string, n: number) => {
-    const key = `${domain}${n}`;           // f.eks. "N1"
-    const label = t(key as any);
-    return (typeof label === "string" && label !== key) ? label : key; // fallback
+  // rekkefølge E A C N O
+  const factorOrder: Array<'E'|'A'|'C'|'N'|'O'> = ['E','A','C','N','O'];
+  const orderIdx = (d: string) => {
+    const i = factorOrder.indexOf(d as any);
+    return i === -1 ? 999 : i;
   };
 
-  // Din foretrukne rekkefølge: E, A, C, N, O
-  const order = ["E", "A", "C", "N", "O"];
-  const idx   = (d: string) => { const i = order.indexOf(d); return i === -1 ? 999 : i; };
+  // navn pr. render (respekterer locale)
+  const domainNames: Record<string,string> = {
+    A: t('B5A'),
+    E: t('B5E'),
+    C: t('B5C'),
+    N: t('B5N'),
+    O: t('B5O'),
+  };
+
+  const facetLabel = (domain: string, facetNo: number) => {
+    const key = `${domain}${facetNo}` as any; // f.eks. "N4"
+    const label = t(key);
+    return typeof label === 'string' && label !== key ? label : key;
+  };
 
   useEffect(() => {
     let abort = false;
@@ -57,41 +58,48 @@ export default function ScoresPage() {
   }, [testId]);
 
   const domainsSorted = useMemo(
-    () => (data.domains ?? []).slice().sort((a,b) => idx(a.domain) - idx(b.domain)),
+    () => (data.domains ?? []).slice().sort((a,b) => orderIdx(a.domain) - orderIdx(b.domain)),
     [data.domains]
   );
   const facetsSorted = useMemo(
     () => (data.facets ?? []).slice().sort((a,b) =>
-      idx(a.domain) - idx(b.domain) || a.facet - b.facet
+      orderIdx(a.domain) - orderIdx(b.domain) || a.facet - b.facet
     ),
     [data.facets]
   );
 
+  const groupedFacets = factorOrder
+    .map(dom => ({ domain: dom, items: facetsSorted.filter(f => f.domain === dom) }))
+    .filter(g => g.items.length > 0);
+
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">{t("scoresTitle") ?? "Skårer"}</h1>
+      <h1 className="text-2xl font-semibold mb-4">
+        {t('scoresTitle') || t('scores')}
+      </h1>
+
       {err && <div className="text-red-600 mb-4">{err}</div>}
 
       {data.total && (
         <div className="mb-6 text-sm text-gray-600">
-          {(t("totalAnswered") ?? "Totalt besvart")}: {data.total.n_items} · T-skår: {fmt(data.total.mean_score)}
+          {(t('totalAnswered') || 'Totalt besvart')}: {data.total.n_items} · {t('tScore') || 'T-skår'} {fmt(data.total.mean_score)}
         </div>
       )}
 
       <h2 className="text-xl font-medium mt-4 mb-2">
-        {t("domainsHeading") ?? "Domener (N, E, O, A, C)"}
+        {t('domainsHeading') || 'Domener'}
       </h2>
-      <table className="w-full border text-sm mb-8">
+      <table className="w-full text-sm mb-8 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
         <thead>
           <tr className="bg-gray-50">
-            <th className="p-2 text-left">{t("domain") ?? "Domene"}</th>
-            <th className="p-2 text-right">{t("tscore") ?? "T-skår"}</th>
+            <th className="p-2 text-left">{t('domain') || 'Faktor'}</th>
+            <th className="p-2 text-right">{t('tScore') || 'T-skår'}</th>
           </tr>
         </thead>
         <tbody>
-          {domainsSorted.map((d) => (
+          {domainsSorted.map(d => (
             <tr key={d.domain} className="border-t">
-              <td className="p-2">{getDomainName(d.domain)}</td>
+              <td className="p-2">{domainNames[d.domain] ?? d.domain}</td>
               <td className="p-2 text-right">{fmt(d.mean_score)}</td>
             </tr>
           ))}
@@ -99,26 +107,33 @@ export default function ScoresPage() {
       </table>
 
       <h2 className="text-xl font-medium mt-4 mb-2">
-        {t("facetsHeading") ?? "Fasetter (1–6 pr domene)"}
+        {t('facetsHeading') || 'Fasetter'}
       </h2>
-      <table className="w-full border text-sm">
-        <thead>
-          <tr className="bg-gray-50">
-            <th className="p-2 text-left">{t("domain") ?? "Domene"}</th>
-            <th className="p-2 text-left">{t("facet") ?? "Fasett"}</th>
-            <th className="p-2 text-right">{t("meanTscore") ?? "Gj.snitt T-skår"}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {facetsSorted.map((f) => (
-            <tr key={`${f.domain}-${f.facet}`} className="border-t">
-              <td className="p-2">{getDomainName(f.domain)}</td>
-              <td className="p-2">{getFacetName(f.domain, f.facet)}</td>
-              <td className="p-2 text-right">{fmt(f.mean_score)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      {groupedFacets.map(({ domain, items }) => (
+        <div key={domain} className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">
+            {domainNames[domain] ?? domain}
+          </h3>
+
+          <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="p-2 text-left">{t('facet') || 'Fasett'}</th>
+                <th className="p-2 text-right">{t('tScore') || 'T-skår'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map(f => (
+                <tr key={`${f.domain}-${f.facet}`} className="border-t">
+                  <td className="p-2">{facetLabel(f.domain, f.facet)}</td>
+                  <td className="p-2 text-right">{fmt(f.mean_score)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
     </div>
   );
 }
