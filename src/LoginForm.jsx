@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { API } from "./lib/apiBase";
 import Button from './components/Button';
 import InputPassword from '@/components/InputPassword';
 import { isTokenValid } from "./components/ProtectedRoute";
+import { t } from '@/i18n';
 
 async function parseJsonMaybe(res) {
   const ct = res.headers.get('content-type') || '';
@@ -37,12 +38,12 @@ export default function LoginForm() {
   useEffect(() => {
     if (isTokenValid()) {
       // gyldig token: gå til dashbord
-      navigate('/dashboard', {replace: true })
+      navigate('/dashboard', {replace: true });
     } else {
       // tom eller utløpt token: fjern den
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
     }
-  }, [navigate])
+  }, [navigate]);
 
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -101,7 +102,7 @@ export default function LoginForm() {
         // Tilby å sende på nytt
         setLoginError(
           <>
-            E-posten er registrert, men ikke bekreftet.{' '}
+            t('registeredButNotConfirmedEmail').{' '}
             <button
               type="button"
               className="underline"
@@ -109,22 +110,22 @@ export default function LoginForm() {
                 const r = await resendVerification((loginEmail || '').trim().toLowerCase());
                 setLoginError(
                   r.ok
-                    ? 'Vi har sendt deg en ny bekreftelses-lenke.'
-                    : (r.data?.error || 'Klarte ikke å sende verifiserings-epost.')
+                    ? t('newRegistratinLinkIsSent')
+                    : (r.data?.error || t('couldNotSendRegistrationEail'))
                 );
               }}
             >
-              Klikk her
+              t('clickHere')
             </button>{' '}
-            for å få tilsendt ny bekreftelses-lenke.
+            t('toReceiveNewConfirmationLink')
           </>
         );
       } else if (res.status === 401) {
-        setLoginError(data?.error || 'Ugyldig e-post eller passord.');
+        setLoginError(data?.error || t('invalidEmailOrPassword'));
       } else if (res.status === 429) {
-        setLoginError('For mange forsøk. Vent litt og prøv igjen.');
+        setLoginError('tooManyFailedLoginAttempts');
       } else {
-        setLoginError(data?.error || 'Noe gikk galt. Prøv igjen.');
+        setLoginError(data?.error || t('somethingWentWrongTryAgain'));
       }
 
     } catch (err) {
@@ -137,11 +138,11 @@ export default function LoginForm() {
 
   return (
     <>
-      <h3 className="text-2xl font-semibold mb-3">Logg inn</h3>
+      <h3 className="text-2xl font-semibold mb-3">{t('login')}</h3>
 
       <form onSubmit={handleLogin} className="space-y-4">
         <label htmlFor="loginEmail" className="block text-sm font-medium text-gray-700">
-          E-post
+          {t('epost')}
         </label>
         <input
           type="email"
@@ -153,11 +154,11 @@ export default function LoginForm() {
           className="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2
                  text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
           autoComplete="email"
-          placeholder="navn@domene.no"
+          placeholder={t('name_at_domain_no')}
         />
 
         <label htmlFor="loginPassword" className="block text-sm font-medium text-gray-700">
-          Passord
+          {t('password')}
         </label>
         <InputPassword
           id="loginPassword"
@@ -173,21 +174,21 @@ export default function LoginForm() {
             className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
           >
             {loginError}{" "}<a href="/forgot" className="underline">
-                               Klikk her
+                               {t('clickHere')}
                              </a>{" "}
-            for å tilbakestille passordet.
+            {t('toResetPassword')}
           </div>
         )}
 
         <Button type="submit"
                 className="w-full"
                 disabled={isSubmitting}>
-          {isSubmitting ? 'Logger inn…' : 'Logg inn'}
+          {isSubmitting ? t('logsIn') : t('login')}
         </Button>
 
         {capsOn && (
           <div className="mt-1 text-xs text-yellow-700">
-            Caps Lock er på
+            {t()}
           </div>
         )}
 

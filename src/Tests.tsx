@@ -62,7 +62,7 @@ export default function TestPicker() {
               <div key={t.id} className="rounded-xl border p-4">
                 <div className="font-medium">{t.template_title}</div>
                 <div className="text-sm text-gray-600">
-                  Startet {new Date(t.started_at).toLocaleString()} · {t.progress}% fullført
+							 Startet {new Date(t.started_at).toLocaleString()} · {t.progress}% {(t('answered'))}
                 </div>
                 <Button className="mt-3" onClick={() => nav(`/testrunner/${t.id}`)}>Fortsett</Button>
               </div>

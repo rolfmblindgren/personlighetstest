@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { API } from "@/lib/apiBase";
+import { t } from "@/i18n";
 
 export default function TestPicker() {
   const nav = useNavigate();
@@ -62,7 +63,7 @@ export default function TestPicker() {
               <div key={t.id} className="rounded-xl border p-4">
                 <div className="font-medium">{t.template_title}</div>
                 <div className="text-sm text-gray-600">
-                  Startet {new Date(t.started_at).toLocaleString()} · {t.progress}% fullført
+							 Startet {new Date(t.started_at).toLocaleString()} · {t.progress}% {t('answered')}
                 </div>
                 <Button className="mt-3" onClick={() => nav(`/testrunner/${t.id}`)}>Fortsett</Button>
               </div>
@@ -72,7 +73,7 @@ export default function TestPicker() {
       )}
 
       <section>
-        <h2 className="text-xl font-medium mb-3">Start ny test</h2>
+        <h2 className="text-xl font-medium mb-3">{t('startNewTest')}</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           {templates.map(tpl => (
             <div key={tpl.id} className="rounded-xl border p-4">

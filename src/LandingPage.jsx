@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { useNavigate } from 'react-router-dom'  
-import logo from './assets/Grendel-G.png'
+import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import logo from './assets/Grendel-G.png';
 import { isTokenValid } from './components/ProtectedRoute';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import Button from "./components/Button";
-import { API } from './lib/apiBase'
-import { H1, H2 } from './components/Heading.tsx'
+import { API } from './lib/apiBase';
+import { H1, H2 } from './components/Heading.tsx';
+import { t } from '@/i18n';
 
 function LandingPage() {
 
@@ -16,19 +17,19 @@ function LandingPage() {
   useEffect(() => {
     if (isTokenValid()) {
       // gyldig token: gå til dashbord
-      navigate('/dashboard')
+      navigate('/dashboard');
     } else {
       // tom eller utløpt token: fjern den
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
     }
-  }, [navigate])
+  }, [navigate]);
 
   const [loginError, setLoginError] = useState('');
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [message, setMessage] = useState(null)
-  const [showPassword, setShowPassword] = useState(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
@@ -52,9 +53,9 @@ function LandingPage() {
 
 
             <div className="md:basis-3/5 bg-slate-100 p-4 rounded-lg">
-              <H2>Hva er dette?</H2>
+              <H2>{t('whatIsThis')}</H2>
               <p>
-                Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under ett minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.
+                {t('siteExplanation')}
               </p>
 
               <picture>
