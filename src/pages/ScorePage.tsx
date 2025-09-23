@@ -4,16 +4,24 @@ import { useParams } from "react-router-dom";
 import { API } from "../lib/apiBase";
 import { apiFetch } from "../lib/apiFetch";
 import { t } from "@/i18n";
+import Spinner from "@/components/Spinner";
+import createDOMPurify from 'dompurify'
+import { JSDOM } from 'jsdom'
+
 
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
 type FacetRow  = { domain: string; facet: number; mean_score: number | string | null; n_items: number };
+type DescriptionRow = { text: string; };
 
 export default function ScoresPage() {
+  const [loading, setLoading] = useState(true);
+
   const { testId } = useParams<{ testId: string }>();
   const [data, setData] = useState<{
     total?: { mean_score: number; n_items: number };
     domains?: DomainRow[];
     facets?: FacetRow[];
+    description?: DescriptionRow[];
   }>({});
   const [err, setErr] = useState("");
 
@@ -57,6 +65,8 @@ export default function ScoresPage() {
     return () => { abort = true; };
   }, [testId]);
 
+
+
   const domainsSorted = useMemo(
     () => (data.domains ?? []).slice().sort((a,b) => orderIdx(a.domain) - orderIdx(b.domain)),
     [data.domains]
@@ -72,6 +82,31 @@ export default function ScoresPage() {
     .map(dom => ({ domain: dom, items: facetsSorted.filter(f => f.domain === dom) }))
     .filter(g => g.items.length > 0);
 
+  useEffect(() => {
+    let abort = false;
+    (async () => {
+      setLoading(true);
+      try {
+        const r = await apiFetch(`${API}/tests/${testId}/scores`);
+        const j = await r.json();
+        if (!abort) setData(j);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (!abort) setLoading(false);
+      }
+    })();
+    return () => { abort = true };
+  }, [testId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-[50vh] grid place-items-center">
+        <Spinner text="Laster skårer …" />
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-3xl mx-auto p-4">
       <h1 className="text-2xl font-semibold mb-4">
@@ -80,7 +115,8 @@ export default function ScoresPage() {
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
 
-      {data.total && (
+
+      {data.total && false && (
         <div className="mb-6 text-sm text-gray-600">
           {(t('totalAnswered') || 'Totalt besvart')}: {data.total.n_items} · {t('tScore') || 'T-skår'} {fmt(data.total.mean_score)}
         </div>
@@ -132,8 +168,25 @@ export default function ScoresPage() {
               ))}
             </tbody>
           </table>
+	  <div>
+	  </div>
+
         </div>
       ))}
+      <div>
+
+{data.description && data.description.length > 0 && (
+  <div className="mb-6 text-base text-gray-800">
+    {data.description.map((d, i) => (
+      <div
+        key={i}
+        className="mb-2"
+        dangerouslySetInnerHTML={{ __html: d.text }}
+      />
+    ))}
+  </div>
+)}
+      </div>
     </div>
   );
 }
