@@ -186,7 +186,7 @@ export default function RegisterForm() {
           </div>
         )}
 
-        <Button type="submit" aria-describedby={notice ? 'reg-notice' : undefined}  className="w-full" disabled={regPending || formInvalid}>
+        <Button type="submit" aria-describedby={notice ? 'reg-notice' : undefined}  className="w-full" disabled={regPending}>
           {regPending ? t('isSending') : t('signup')}
         </Button>
 

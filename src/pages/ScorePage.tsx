@@ -7,6 +7,7 @@ import { t } from "@/i18n";
 import Spinner from "@/components/Spinner";
 import createDOMPurify from 'dompurify'
 import { JSDOM } from 'jsdom'
+import { H1, H2, H3 } from '@/components/Heading.tsx';
 
 
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
@@ -109,9 +110,9 @@ export default function ScoresPage() {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">
+      <H1 className="text-2xl font-semibold mb-4">
         {t('scoresTitle') || t('scores')}
-      </h1>
+      </H1>
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
 
@@ -122,9 +123,9 @@ export default function ScoresPage() {
         </div>
       )}
 
-      <h2 className="text-xl font-medium mt-4 mb-2">
+      <H2 className="text-xl font-medium mt-4 mb-2">
         {t('domainsHeading') || 'Domener'}
-      </h2>
+      </H2>
       <table className="w-full text-sm mb-8 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
         <thead>
           <tr className="bg-gray-50">
@@ -142,15 +143,15 @@ export default function ScoresPage() {
         </tbody>
       </table>
 
-      <h2 className="text-xl font-medium mt-4 mb-2">
+      <H2 className="text-xl font-medium mt-4 mb-2">
         {t('facetsHeading') || 'Fasetter'}
-      </h2>
+      </H2>
 
       {groupedFacets.map(({ domain, items }) => (
         <div key={domain} className="mb-6">
-          <h3 className="text-lg font-semibold mb-2">
+          <H3 className="text-lg font-semibold mb-2">
             {domainNames[domain] ?? domain}
-          </h3>
+          </H3>
 
           <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden shadow-sm">
             <thead>
