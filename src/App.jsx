@@ -1,20 +1,20 @@
 // App.jsx
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './LandingPage';
-import Dashboard from './dashboard';
-import Profile from './Profile';
-import ForgotPassword from './ForgotPassword';
-import ResetPassword from './ResetPassword';
-import VerifyEmailPage from './VerifyEmailPage';
-import ProtectedRoute from './components/ProtectedRoute';  // <-- legg til
-import { Layout } from './components/Layout';
-import { H1, H2 } from './components/Heading';
-import TestRunner from './TestRunner';
-import TestPicker from './TestPicker';
+import LandingPage from '@/LandingPage';
+import Dashboard from '@/dashboard';
+import Profile from '@/Profile';
+import ForgotPassword from '@/ForgotPassword';
+import ResetPassword from '@/ResetPassword';
+import VerifyEmailPage from '@/VerifyEmailPage';
+import ProtectedRoute from '@/components/ProtectedRoute';  // <-- legg til
+import { Layout } from '@/components/Layout';
+import { H1, H2 } from '@/components/Heading';
+import TestRunner from '@/TestRunner';
+import TestPicker from '@/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
 
-import IpipNeo from './ipip_neo';
+import IpipNeo from '@/ipip_neo';
 
 function App() {
   return (
