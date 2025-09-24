@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 
-const languages = { nb: "Bokmål", nn: "Nynorsk", se: "Davvisámegiella" }
+const languages = { nb: "Bokmål", nn: "Nynorsk", se: "Davvisámegiella", fkv: "Kainun kieli" }
 
 export default function LanguagePicker() {
   const [lang, setLang] = useState(localStorage.getItem("locale") || "nb")

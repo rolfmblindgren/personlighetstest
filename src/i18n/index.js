@@ -2,10 +2,11 @@
 import nb from "./nb";
 import nn from "./nn";
 import se from "./se";
+import fkv from "./fkv";
 // ev. import fkv from "./fkv" (kvensk) senere
 
 // Registrer bare grunnkoder her
-const strings = { nb, nn, se };
+const strings = { nb, nn, se, fkv };
 
 const DEFAULT_LOCALE = "nb";
 
