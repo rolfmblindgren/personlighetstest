@@ -11,4 +11,4 @@ and stuff
 
 
 
-[![bygg-frontend](https://github.com/rolfmblindgren/personlighetstest/actions/workflows/build.yml/badge.svg)](https://github.com/rolfmblindgren/personlighetstest/actions/workflows/build.yml)
+[![bygg-frontend-dev](https://github.com/rolfmblindgren/personlighetstest/actions/workflows/build-dev.yml/badge.svg)](https://github.com/rolfmblindgren/personlighetstest/actions/workflows/build-dev.yml)
