@@ -7,8 +7,9 @@ import { t } from "@/i18n";
 import Spinner from "@/components/Spinner";
 import createDOMPurify from 'dompurify'
 import { JSDOM } from 'jsdom'
-import { H1, H2, H3 } from '@/components/Heading.tsx';
-
+import { H1, H2, H3 } from '@/components/Heading';
+import Narrative  from '@/components/Narrative';
+import Markdown  from "react-markdown";
 
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
 type FacetRow  = { domain: string; facet: number; mean_score: number | string | null; n_items: number };
@@ -171,22 +172,29 @@ export default function ScoresPage() {
           </table>
 	  <div>
 	  </div>
-
         </div>
       ))}
+
+      {data.narrative?.[0]?.text_md && (
+	<div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-turkis-100">
+	  <Narrative className="prose prose-sm prose-h1:text-turkis-600 dark:prose-invert max-w-none"
+	    text={data.narrative[0].text_md} />
+	</div>
+      )}
+
       <div>
 
-{data.description && data.description.length > 0 && (
-  <div className="mb-6 text-base text-gray-800">
-    {data.description.map((d, i) => (
-      <div
-        key={i}
-        className="mb-2"
-        dangerouslySetInnerHTML={{ __html: d.text }}
-      />
-    ))}
-  </div>
-)}
+	{data.description && data.description.length > 0 && (
+	  <div className="mb-6 text-base text-gray-800">
+	    {data.description.map((d, i) => (
+	      <div
+		key={i}
+		className="mb-2"
+		dangerouslySetInnerHTML={{ __html: d.text }}
+	      />
+	    ))}
+	  </div>
+	)}
       </div>
     </div>
   );
