@@ -27,7 +27,7 @@ export default function ScoresPage() {
   }>({});
   const [err, setErr] = useState("");
 
-  const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(2));
+  const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(0));
 
   // rekkefølge E A C N O
   const factorOrder: Array<'E'|'A'|'C'|'N'|'O'> = ['E','A','C','N','O'];
