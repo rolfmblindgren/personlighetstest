@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { API } from "@/lib/apiBase";
 import { t as tr } from "@/i18n";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 export default function TestPicker() {
   const nav = useNavigate();
@@ -80,7 +81,9 @@ export default function TestPicker() {
               <div className="font-medium">{tpl.title}</div>
               {tpl.desc && <div className="text-sm text-gray-600">{tpl.desc}</div>}
               <Button className="mt-3" onClick={() => startTest(tpl)}>Start</Button>
-            </div>
+	      <LanguageSelector />
+
+	    </div>
           ))}
         </div>
       </section>
