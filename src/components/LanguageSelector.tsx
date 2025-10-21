@@ -1,39 +1,76 @@
+import { useEffect, useState } from "react"
 import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select"
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
+import { t as tr } from "@/i18n"
 
-import { useState, useEffect } from "react"
+const languages = {
+  nb: "bokmål",
+  nn: "nynorsk",
+  se: "nordsamisk",
+  fkv: "kvensk"
+}
 
 export function LanguageSelector() {
-  const [language, setLanguage] = useState("nb")
+  const [open, setOpen] = useState(false)
+  const [lang, setLang] = useState<string>()
+  const [testLanguage, setTestLanguage] = useState<string>()
+
+  // når komponenten lastes, bruk lagret test-språk eller default til grensesnitt-språket
 
   useEffect(() => {
-    const stored = localStorage.getItem("language")
-    if (stored) setLanguage(stored)
+    const update = () => {
+      const uiLang = localStorage.getItem("locale") || "nb"
+      const stored = localStorage.getItem("testLanguage")
+      setLang(uiLang)
+      setTestLanguage(stored || uiLang)
+    }
+
+    update() // første gang
+    window.addEventListener("storage", update)
+    return () => window.removeEventListener("storage", update)
   }, [])
 
-  const handleChange = (value: string) => {
-    setLanguage(value)
-    localStorage.setItem("language", value)
-    // Du kan her trigge i18n eller oppdatere context
-    console.log("Språk endret til:", value)
+  const choose = (value: string) => {
+    setTestLanguage(value)
+    setOpen(false)
+    localStorage.setItem("testLanguage", value)
+    console.log("Testspråk endret til:", value)
   }
 
   return (
-    <Select value={language} onValueChange={handleChange}>
-      <SelectTrigger className="w-[120px] bg-white/60 hover:bg-white">
-        <SelectValue placeholder="Språk" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="nb">🇳🇴 Bokmål</SelectItem>
-        <SelectItem value="nn">🧭 Nynorsk</SelectItem>
-        <SelectItem value="fkv">🪶 Kvensk</SelectItem>
-        <SelectItem value="rme">🎻 Tater(ish)</SelectItem>
-      </SelectContent>
-    </Select>
+    <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm">
+          {tr(languages[testLanguage]) || tr("Velg språk")}
+        </Button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent
+        align="end"
+        sideOffset={8}
+        className="bg-cyan-50 border border-cyan-200 shadow-lg"
+        onCloseAutoFocus={(e) => {
+          e.preventDefault()
+          e.target.closest("button")?.focus()
+        }}
+      >
+        {Object.entries(languages).map(([code, label]) => (
+          <DropdownMenuItem
+            key={code}
+            onSelect={(e) => {
+              e.preventDefault()
+              choose(code)
+            }}
+          >
+            {tr(label)}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

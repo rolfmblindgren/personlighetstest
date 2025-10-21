@@ -11,7 +11,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';  // <-- legg til
 import { Layout } from '@/components/Layout';
 import { H1, H2 } from '@/components/Heading';
 import TestRunner from '@/TestRunner';
-import TestPicker from '@/TestPicker';
+import TestPicker from '@/pages/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
 
 import IpipNeo from '@/ipip_neo';

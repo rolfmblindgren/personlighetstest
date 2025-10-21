@@ -153,5 +153,10 @@ export default {
   domain: "Fátta",
   facet: "Ovttadat",
 
-  tScore: "T-skoar",
+  bokmål: "Ruoŧagiella",     // norsk (bokmål)
+  nynorsk: "Vuodnagiella",   // norsk (nynorsk)
+  kvensk: "Kveenin giella",  // kvensk
+  nordsamisk: "Davvisámegiella",
+
+  tScore: "T-skoar"
 };

@@ -1,0 +1,38 @@
+export const testLabels = {
+  nb: {
+    heltenig: "Helt enig",
+    noksåenig: "Nokså enig",
+    littenig: "Litt enig",
+    usikker: "Usikker",
+    littuenig: "Litt uenig",
+    noksåuenig: "Nokså uenig",
+    heltuenig: "Helt uenig",
+  },
+  nn: {
+    heltenig: "Heilt einig",
+    noksåenig: "Nokså einig",
+    littenig: "Litt einig",
+    usikker: "Usikker",
+    littuenig: "Litt ueinig",
+    noksåuenig: "Nokså ueinig",
+    heltuenig: "Heilt ueinig",
+  },
+  se: {
+    heltenig: "Dušše ovttas mii loga",
+    noksåenig: "Suorpmas ovttas",
+    littenig: "Unna ovttas",
+    usikker: "Ii dieđe",
+    littuenig: "Unna ii leat ovttas",
+    noksåuenig: "Suorpmas ii leat ovttas",
+    heltuenig: "Ii leat ovttas olles",
+  },
+  fkv: {
+    heltenig: "Täysin samaa mieltä",
+    noksåenig: "Aika samaa mieltä",
+    littenig: "Vähän samaa mieltä",
+    usikker: "Epävvarma",
+    littuenig: "Vähän eri mieltä",
+    noksåuenig: "Aika eri mieltä",
+    heltuenig: "Täysin eri mieltä",
+  },
+}

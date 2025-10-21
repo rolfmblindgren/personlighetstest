@@ -104,6 +104,12 @@ export default {
   domain: "Faktor",
   facet: "Fasett",
 
+
+  bokmål: "Bokmål",
+  nynorsk: "Nynorsk",
+  kvensk: "Kvensk",
+  nordsamisk: "Nordsamisk",
+
   tScore: "T-skår"
 
 };

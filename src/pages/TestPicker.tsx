@@ -32,7 +32,7 @@ export default function TestPicker() {
     })();
   }, []);
 
-  async function startTest(template) {
+  async function startTest(template,lang) {
     try {
       const r = await fetch(`${API}/tests`, {
         method: "POST",
@@ -40,7 +40,10 @@ export default function TestPicker() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify({ template_id: template.id }),
+        body: JSON.stringify({
+	  template_id: template.id,
+	  language: lang,
+	}),
       });
       if (!r.ok) throw new Error("Kunne ikke starte test");
       const { test_id } = await r.json();
@@ -48,6 +51,11 @@ export default function TestPicker() {
     } catch (e) {
       setErr(e.message || "Klarte ikke å starte test");
     }
+  }
+
+  const handleStart = (tpl) => {
+    const lang = localStorage.getItem("testlanguage") || "nb"
+    startTest(tpl, lang)
   }
 
   if (loading) return <p>Laster…</p>;
@@ -79,10 +87,15 @@ export default function TestPicker() {
           {templates.map(tpl => (
             <div key={tpl.id} className="rounded-xl border p-4">
               <div className="font-medium">{tpl.title}</div>
-              {tpl.desc && <div className="text-sm text-gray-600">{tpl.desc}</div>}
-              <Button className="mt-3" onClick={() => startTest(tpl)}>Start</Button>
-	      <LanguageSelector />
+              {tpl.desc &&
+		<div className="text-sm text-gray-600">{tpl.desc}</div>}
 
+	      <div className="flex flex-col items-start">
+		<div className="flex items-center gap-3 mt-3">
+		  <Button className="grid grid-cols-[auto_auto] items-center gap-3 mt-3" onClick={() => handleStart(tpl)}>Start</Button>
+		  <LanguageSelector />
+		</div>
+	      </div>
 	    </div>
           ))}
         </div>

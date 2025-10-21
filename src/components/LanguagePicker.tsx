@@ -37,7 +37,10 @@ export default function LanguagePicker() {
         sideOffset={8}
 	className="bg-cyan-50 border border-cyan-200 shadow-lg"
         // hindrer at fokus «snapper» tilbake og lukker umiddelbart
-        onCloseAutoFocus={(e) => e.preventDefault()}
+        onCloseAutoFocus={(e) => {
+	  e.preventDefault();
+	  e.target.closest("button")?.focus();
+	}}
       >
         {Object.entries(languages).map(([code, label]) => (
           <DropdownMenuItem key={code} onSelect={(e) => { e.preventDefault(); choose(code) }}>
