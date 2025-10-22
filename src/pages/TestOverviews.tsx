@@ -15,7 +15,7 @@ export default function TestsOverview() {
     let abort = false;
     const loadTests = async () => {
       try {
-        const res = await apiFetch(`${API}/tests`);
+        const res = await apiFetch(`${API}/tests?status=all`);
         if (!res.ok) throw new Error(`Feil fra API: ${res.status}`);
         const data = await res.json();
         console.log("Fetched data:", data);
