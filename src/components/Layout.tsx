@@ -26,9 +26,6 @@ export function Layout({ children }) {
                   <Link to="/dashboard" className="text-sm font-medium text-teal-900 hover:text-teal-700">
                     {t("dashboard")}
                   </Link>
-                  <Link to="/tests" className="text-sm font-medium text-teal-900 hover:text-teal-700">
-                    {t("myTests")}
-                  </Link>
                 </nav>
               )}
               <LanguagePicker />
