@@ -4,14 +4,13 @@ import logo from '@/assets/Grendel-G.png'
 import { H1 } from '@/components/Heading.tsx'
 import { t } from "@/i18n"
 import LanguagePicker from "@/components/LanguagePicker"
-import { AuthProvider } from "@/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
 
-const { loggedIn } = useAuth();
-console.log("Layout render → loggedIn =", loggedIn);
 
 export function Layout({ children }) {
-  const loggedIn = isTokenValid()
+  const { loggedIn } = useAuth();
+  console.log("Layout render → loggedIn =", loggedIn);
 
   return (
     <div className="min-h-screen bg-slate-100 py-8">
