@@ -107,7 +107,7 @@ export default function TestsOverview() {
           </button>
         ) : (
           <button
-            onClick={() => navigate(`/tests/${tst.id}`)}
+            onClick={() => navigate(`/testrunner/${tst.id}`)}
             className="bg-teal-100 hover:bg-teal-200 text-teal-800 px-3 py-1 rounded-md text-sm"
           >
             Fortsett test
