@@ -13,6 +13,7 @@ import { H1, H2 } from '@/components/Heading';
 import TestRunner from '@/pages/TestRunner';
 import TestPicker from '@/pages/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
+import TestsOverview from '@/pages/TestOverviews';
 
 import IpipNeo from '@/ipip_neo';
 
@@ -35,6 +36,14 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             }
+          />
+
+          <Route path="/testsOverview"
+                 element={
+                   <ProtectedRoute>
+                     <TestsOverview /><
+                   /ProtectedRoute>
+                 }
           />
 
 	  <Route
