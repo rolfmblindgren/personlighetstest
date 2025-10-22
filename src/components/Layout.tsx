@@ -6,8 +6,6 @@ import { t } from "@/i18n"
 import LanguagePicker from "@/components/LanguagePicker"
 import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
-
-
 export function Layout({ children }) {
   const { loggedIn } = useAuth();
   console.log("Layout render → loggedIn =", loggedIn);
