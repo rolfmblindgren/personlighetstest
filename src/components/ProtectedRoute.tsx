@@ -1,24 +1,13 @@
 // src/components/ProtectedRoute.tsx
 import { Navigate } from "react-router-dom"
-import { jwtDecode } from "jwt-decode"
+import { useAuth } from "@/context/AuthContext"
 
-export function isTokenValid(): boolean {
-  const token = localStorage.getItem("token")
-  if (!token) return false
+export default function ProtectedRoute({ children }) {
+  const { loggedIn } = useAuth()
 
-  try {
-    const decoded: any = jwtDecode(token)
-    const exp = decoded?.exp
-    const now = Date.now() / 1000
-    return typeof exp === "number" && exp > now
-  } catch (e) {
-    console.warn("Feil ved dekoding av token:", e)
-    return false
+  if (!loggedIn) {
+    return <Navigate to="/" replace />
   }
-}
 
-export default function ProtectedRoute({ children }: { children: JSX.Element })
-{
-
- return isTokenValid() ? children : <Navigate to="/" replace />
+  return children
 }

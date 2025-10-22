@@ -103,5 +103,18 @@ export default {
   domain: "Faktori",
   facet: "Ominaisuus",
 
+  bokmål: "Bokmål",
+  nynorsk: "Nynorsk",
+  kvensk: "Kainun kieli",
+  nordsamisk: "Davvisámegiella",
+
+  heltenig: "Täysin samaa mieltä",
+  noksåenig: "Aika samaa mieltä",
+  littenig: "Vähän samaa mieltä",
+  usikker: "Epävvarma",
+  littuenig: "Vähän eri mieltä",
+  noksåuenig: "Aika eri mieltä",
+  heltuenig: "Täysin eri mieltä",
+
   tScore: "T-pisteet"
 };

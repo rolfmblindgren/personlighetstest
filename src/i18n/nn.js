@@ -109,6 +109,15 @@ export default {
   kvensk: "Kvensk",
   nordsamisk: "Nordsamisk",
 
-  tScore: "T-skår",
+
+  heltenig: "Heilt einig",
+noksåenig: "Nokså einig",
+littenig: "Litt einig",
+usikker: "Usikker",
+littuenig: "Litt ueinig",
+noksåuenig: "Nokså ueinig",
+heltuenig: "Heilt ueinig",
+
+  tScore: "T-skår"
 
 };

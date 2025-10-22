@@ -1,15 +1,11 @@
 // components/LikertRowText.tsx
 import React from "react";
+import { useEffect, useState } from "react"
+import {t as tr } from "@/i18n";
+import { testLabels } from "@/i18n/testlabels";
 
-const NO_LABELS_7 = [
-  "Helt uenig",
-  "Nokså uenig",
-  "Litt uenig",
-  "Usikker",
-  "Litt enig",
-  "Nokså enig",
-  "Helt enig",
-];
+const testLang = localStorage.getItem("testLanguage") || "nb";
+
 
 type Props = {
   question?: string;
@@ -18,6 +14,18 @@ type Props = {
   labels?: string[];
   framed?: boolean;
 };
+
+
+const NO_LABELS_7 = [
+  "heltenig",
+  "noksåenig",
+  "littenig",
+  "usikker",
+  "littuenig",
+  "noksåuenig",
+  "heltuenig"
+];
+
 
 export default function LikertRowText({
   question,
@@ -35,6 +43,21 @@ export default function LikertRowText({
     "border-green-400",
     "border-green-700",
   ];
+
+  useEffect(() => {
+    const handler = (e: CustomEvent) => {
+      setTestLang(e.detail) // oppdater språk
+    }
+    document.addEventListener("testlanguageChanged", handler as EventListener)
+    return () => document.removeEventListener("testlanguageChanged", handler as EventListener)
+  }, [])
+
+
+  const getLabel = (key: keyof typeof testLabels["nb"]) => {
+    const langSet = testLabels[testLang as keyof typeof testLabels] || testLabels.nb
+    return langSet[key] || testLabels.nb[key]
+  }
+
 
   const container = framed
     ? "rounded-xl p-4 bg-white border shadow-inner shadow-gray-300/70"
@@ -60,12 +83,12 @@ export default function LikertRowText({
               }}
               onClick={() => onChange(idx)}
               className={[
-                "flex-none px-4 py-2 rounded-full border-2 transition text-black whitespace-nowrap",
+                " px-4 py-2 whitespace-normal  rounded-full border-2 transition text-black",
                 COLOR_CLASSES[idx],
                 isSelected ? "bg-green-600 text-white font-semibold" : "hover:bg-gray-200",
               ].join(" ")}
             >
-              {label}
+              {getLabel(label)}
             </button>
           );
         })}

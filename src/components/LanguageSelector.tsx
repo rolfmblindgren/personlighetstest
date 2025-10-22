@@ -39,6 +39,11 @@ export function LanguageSelector() {
     setTestLanguage(value)
     setOpen(false)
     localStorage.setItem("testLanguage", value)
+
+    // 🔔 Send event slik at andre komponenter kan reagere uten reload
+    document.dispatchEvent(new CustomEvent("testlanguageChanged", {
+      detail: value
+    }))
     console.log("Testspråk endret til:", value)
   }
 

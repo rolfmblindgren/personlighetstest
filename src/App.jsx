@@ -10,7 +10,7 @@ import VerifyEmailPage from '@/VerifyEmailPage';
 import ProtectedRoute from '@/components/ProtectedRoute';  // <-- legg til
 import { Layout } from '@/components/Layout';
 import { H1, H2 } from '@/components/Heading';
-import TestRunner from '@/TestRunner';
+import TestRunner from '@/pages/TestRunner';
 import TestPicker from '@/pages/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
 

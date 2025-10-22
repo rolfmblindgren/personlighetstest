@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { API } from "./lib/apiBase";
 import Button from './components/Button';
 import InputPassword from '@/components/InputPassword';
-import { isTokenValid } from "./components/ProtectedRoute";
 import { t } from '@/i18n';
+import { useAuth } from "@/context/AuthContext";  // 👈 ny
+
 
 async function parseJsonMaybe(res) {
   const ct = res.headers.get('content-type') || '';
@@ -34,16 +35,17 @@ async function resendVerification(email) {
 export default function LoginForm() {
 
   const navigate = useNavigate();  // nødvendig for redirect
+  const { loggedIn } = useAuth();  // 👈 reaktiv status
+  const { login } = useAuth(); // legg til her, sammen med loggedIn
+
 
   useEffect(() => {
-    if (isTokenValid()) {
+    if (loggedIn) {
       // gyldig token: gå til dashbord
       navigate('/dashboard', {replace: true });
-    } else {
-      // tom eller utløpt token: fjern den
-      localStorage.removeItem('token');
     }
-  }, [navigate]);
+  }, [loggedIn, navigate]);  // 👈 oppdateres automatisk
+
 
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -92,7 +94,7 @@ export default function LoginForm() {
         if (!data?.token) {
           setLoginError('Innlogging mislyktes: mangler token.');
         } else {
-          localStorage.setItem('token', data.token);
+          login(data.token);
           navigate('/dashboard', { replace: true });
         }
         return;

@@ -54,7 +54,7 @@ export default function TestPicker() {
   }
 
   const handleStart = (tpl) => {
-    const lang = localStorage.getItem("testlanguage") || "nb"
+    const lang = localStorage.getItem("testLanguage") || "nb"
     startTest(tpl, lang)
   }
 

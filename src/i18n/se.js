@@ -158,5 +158,14 @@ export default {
   kvensk: "Kveenin giella",  // kvensk
   nordsamisk: "Davvisámegiella",
 
+  heltenig: "Dušše ovttas mii loga",
+noksåenig: "Suorpmas ovttas",
+littenig: "Unna ovttas",
+usikker: "Ii dieđe",
+littuenig: "Unna ii leat ovttas",
+noksåuenig: "Suorpmas ii leat ovttas",
+heltuenig: "Ii leat ovttas olles",
+
+
   tScore: "T-skoar"
 };

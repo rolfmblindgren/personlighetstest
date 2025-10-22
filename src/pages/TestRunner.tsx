@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import Button from "./components/Button";
-import { API } from "./lib/apiBase";
 import { useParams } from "react-router-dom";
-import LikertRowText from "./components/LikertRow";
+
+import Button from "@/components/Button";
+import { API } from "@/lib/apiBase";
+import LikertRowText from "@/components/LikertRow";
 import { authFetch } from "@/lib/apiFetch";
 
 // Hook: velg side-størrelse etter bredde

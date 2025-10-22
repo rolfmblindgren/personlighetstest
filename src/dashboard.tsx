@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useAuth } from "@/context/AuthContext"
 import { isTokenValid } from '@/auth'
 import { API } from '@/lib/apiBase'
 import Button from '@/components/Button'
@@ -11,10 +12,11 @@ import { H1, H2, H3 } from '@/components/Heading'
 import { t } from '@/i18n'
 
 export default function Dashboard() {
+  const { logout } = useAuth()
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem("token")
+    logout()
     navigate("/")
   }
 

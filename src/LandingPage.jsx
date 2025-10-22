@@ -2,27 +2,25 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import logo from './assets/Grendel-G.png';
-import { isTokenValid } from './components/ProtectedRoute';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import Button from "./components/Button";
 import { API } from './lib/apiBase';
 import { H1, H2 } from './components/Heading.tsx';
 import { t } from '@/i18n';
+import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
 function LandingPage() {
 
   const navigate = useNavigate();  // nødvendig for redirect
+  const { loggedIn } = useAuth();  // 👈 reaktiv status
 
   useEffect(() => {
-    if (isTokenValid()) {
+    if (loggedIn) {
       // gyldig token: gå til dashbord
       navigate('/dashboard');
-    } else {
-      // tom eller utløpt token: fjern den
-      localStorage.removeItem('token');
     }
-  }, [navigate]);
+  }, [loggedIn, navigate]);  // 👈 oppdateres automatisk
 
   const [loginError, setLoginError] = useState('');
 
