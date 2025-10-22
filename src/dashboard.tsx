@@ -50,8 +50,14 @@ export default function Dashboard() {
 
 	<Card>
 	  <CardHeader><CardTitle>{t("myTests")}</CardTitle></CardHeader>
-  <CardContent><MyTestsWidget /></CardContent>
-</Card>
+	  <CardContent>
+            <Button
+              onClick={() => navigate("/testsOverview")}
+              className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
+            >              {t('testsOverview')}
+            </Button>
+	  </CardContent>
+	</Card>
 
         <Card>
           <CardHeader><CardTitle>{t('settings')}</CardTitle></CardHeader>
