@@ -2,9 +2,13 @@
 import { Link } from 'react-router-dom'
 import logo from '@/assets/Grendel-G.png'
 import { H1 } from '@/components/Heading.tsx'
-import { isTokenValid } from '@/auth'
 import { t } from "@/i18n"
 import LanguagePicker from "@/components/LanguagePicker"
+import { AuthProvider } from "@/context/AuthContext";
+
+
+const { loggedIn } = useAuth();
+console.log("Layout render → loggedIn =", loggedIn);
 
 export function Layout({ children }) {
   const loggedIn = isTokenValid()
