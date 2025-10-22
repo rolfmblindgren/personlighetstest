@@ -14,28 +14,24 @@ export const authContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [loggedIn, setLoggedIn] = useState(isTokenValid());
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const handleStorageChange = () => setLoggedIn(isTokenValid());
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    setLoggedIn(isTokenValid());
+    const check = () => setLoggedIn(isTokenValid());
+    window.addEventListener("storage", check);
+    return () => window.removeEventListener("storage", check);
   }, []);
 
-  const login = (token: string) => {
-    localStorage.setItem("token", token);
-    setLoggedIn(true);
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    setLoggedIn(false);
-  };
+  if (loggedIn === null) {
+    // kort loader før auth-status er kjent
+    return <div className="p-8 text-center text-gray-500">Laster …</div>;
+  }
 
   return (
-    <authContext.Provider value={{ loggedIn, login, logout }}>
+    <AuthContext.Provider value={{ loggedIn, login, logout }}>
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
