@@ -100,14 +100,14 @@ export default function TestsOverview() {
       <td className="border p-2 text-center">
         {tst.completed_at ? (
           <button
-            onClick={() => navigate(`/results/${tst.id}`)}
+            onClick={() => navigate(`/tests/${tst.id}/scores`)}
             className="bg-sky-100 hover:bg-sky-200 text-sky-800 px-3 py-1 rounded-md text-sm"
           >
             Se resultat
           </button>
         ) : (
           <button
-            onClick={() => navigate(`/test/${tst.id}`)}
+            onClick={() => navigate(`/tests/${tst.id}`)}
             className="bg-teal-100 hover:bg-teal-200 text-teal-800 px-3 py-1 rounded-md text-sm"
           >
             Fortsett test
