@@ -16,7 +16,7 @@ export function Layout({ children }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               {logo && <img src={logo} className="h-12 w-auto" alt="Grendel logo" />}
-              <H1>{t("title")}z</H1>
+              <H1>{t("title")}</H1>
             </div>
 
             <div className="flex items-center space-x-4">
