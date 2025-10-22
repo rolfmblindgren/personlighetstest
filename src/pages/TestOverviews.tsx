@@ -11,6 +11,8 @@ export default function TestsOverview() {
   const [sortBy, setSortBy] = useState<keyof any>("id");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
+  const navigate = useNavigate();
+
   // 🔹 Hent data når komponenten lastes
   useEffect(() => {
     let abort = false;
