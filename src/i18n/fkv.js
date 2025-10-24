@@ -116,5 +116,11 @@ export default {
   noksåuenig: "Aika eri mieltä",
   heltuenig: "Täysin eri mieltä",
 
+  testsOverview: "Testiitten yleiskatsaus",
+  ID: "Testi nr.",
+  Startet: "Alkanu",
+  status: "Tila",
+  handling: "Toiminta",
+
   tScore: "T-pisteet"
 };

@@ -111,12 +111,19 @@ export default {
 
 
   heltenig: "Heilt einig",
-noksåenig: "Nokså einig",
-littenig: "Litt einig",
-usikker: "Usikker",
-littuenig: "Litt ueinig",
-noksåuenig: "Nokså ueinig",
-heltuenig: "Heilt ueinig",
+  noksåenig: "Nokså einig",
+  littenig: "Litt einig",
+  usikker: "Usikker",
+  littuenig: "Litt ueinig",
+  noksåuenig: "Nokså ueinig",
+  heltuenig: "Heilt ueinig",
+
+  testsOverview: "Oversyn over testane mine",
+  ID: "Test nr.",
+  Startet: "Starta",
+  status: "Status",
+  handling: "Handling",
+
 
   tScore: "T-skår"
 

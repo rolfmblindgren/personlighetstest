@@ -118,6 +118,13 @@ export default {
   noksåuenig: "Nokså uenig",
   heltuenig: "Helt uenig",
 
+  testsOverview: "Oversikt over mine tester",
+  ID: "Test nr.",
+  Startet: "Startet",
+  status: "Status",
+  handling: "Handling",
+
+
 
   tScore: "T-skår"
 

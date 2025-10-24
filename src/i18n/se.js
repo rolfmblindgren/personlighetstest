@@ -106,7 +106,7 @@ export default {
   domain: "Faktor",
   facet: "Fasett",
 
-    B5A: "Sávzzadallan" ,           // Omgjengelegheit
+  B5A: "Sávzzadallan" ,           // Omgjengelegheit
   B5E: "Ekstraversuvdna",         // Ekstraversjon
   B5C: "Plánemihtun",             // Planmessigheit
   B5N: "Nevrotisisma",            // Nevrotisisme
@@ -159,13 +159,18 @@ export default {
   nordsamisk: "Davvisámegiella",
 
   heltenig: "Dušše ovttas mii loga",
-noksåenig: "Suorpmas ovttas",
-littenig: "Unna ovttas",
-usikker: "Ii dieđe",
-littuenig: "Unna ii leat ovttas",
-noksåuenig: "Suorpmas ii leat ovttas",
-heltuenig: "Ii leat ovttas olles",
+  noksåenig: "Suorpmas ovttas",
+  littenig: "Unna ovttas",
+  usikker: "Ii dieđe",
+  littuenig: "Unna ii leat ovttas",
+  noksåuenig: "Suorpmas ii leat ovttas",
+  heltuenig: "Ii leat ovttas olles",
 
+  testsOverview: "Čuovvovašgeahččalusaid oanehaččat",
+  ID: "Geahččalusnr.",
+  Startet: "Álgán",
+  status: "Stáhtus",
+  handling: "Doaibma",
 
   tScore: "T-skoar"
 };
