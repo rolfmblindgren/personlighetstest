@@ -1,7 +1,7 @@
 // src/components/MyTestsWidget.tsx
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { apiFetch } from "@/lib/apiFetch"
+import { authFetch } from "@/lib/apiFetch"
 import { API } from "@/lib/apiBase"
 import { t } from "@/i18n";
 type Row = {
@@ -19,7 +19,7 @@ export default function MyTestsWidget(){
   useEffect(() => { (async ()=>{
     try{
       setErr("");
-      const r = await apiFetch(`${API}/my/tests`);
+      const r = await authFetch(`${API}/my/tests`);
       if(!r.ok) throw new Error("Kunne ikke hente testene dine");
       const j = await r.json(); setRows(j.tests||[]);
     }catch(e:any){ setErr(e.message||"Feil"); }

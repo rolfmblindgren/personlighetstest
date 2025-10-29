@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { API } from "@/lib/apiBase";
-import { apiFetch } from "@/lib/apiFetch";
+import { authFetch } from "@/lib/apiFetch";
 
 type TestRow = {
   id: number;
@@ -31,7 +31,7 @@ export default function TestsWidget({ countOnly = false, limit = 5 }: Props) {
       try {
         setErr("");
         setLoading(true);
-        const r = await apiFetch(`${API}/tests`);
+        const r = await authFetch(`${API}/tests`);
         if (!r.ok) throw new Error("Kunne ikke hente tester");
 	const j = await r.json();
 	if (alive) {

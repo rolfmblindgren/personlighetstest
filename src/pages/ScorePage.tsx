@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../lib/apiBase";
-import { apiFetch } from "../lib/apiFetch";
+import { authFetch } from "../lib/apiFetch";
 import { t } from "@/i18n";
 import Spinner from "@/components/Spinner";
 import createDOMPurify from 'dompurify'
@@ -56,7 +56,7 @@ export default function ScoresPage() {
     (async () => {
       try {
         setErr("");
-        const r = await apiFetch(`${API}/tests/${testId}/scores`);
+        const r = await authFetch(`${API}/tests/${testId}/scores`);
         if (!r.ok) throw new Error("Kunne ikke hente skårer");
         const j = await r.json();
         if (!abort) setData(j);
@@ -89,7 +89,7 @@ export default function ScoresPage() {
     (async () => {
       setLoading(true);
       try {
-        const r = await apiFetch(`${API}/tests/${testId}/scores`);
+        const r = await authFetch(`${API}/tests/${testId}/scores`);
         const j = await r.json();
         if (!abort) setData(j);
       } catch (e) {

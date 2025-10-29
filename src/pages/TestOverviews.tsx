@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { apiFetch } from "@/lib/apiFetch";
+import { authFetch } from "@/lib/apiFetch";
 import { API } from "@/lib/apiBase";
 import { useNavigate } from 'react-router-dom'
 import { t as tr} from "@/i18n";
@@ -18,7 +18,7 @@ export default function TestsOverview() {
     let abort = false;
     const loadTests = async () => {
       try {
-        const res = await apiFetch(`${API}/tests?status=all`);
+        const res = await authFetch(`${API}/tests?status=all`);
         if (!res.ok) throw new Error(`Feil fra API: ${res.status}`);
         const data = await res.json();
         console.log("Fetched data:", data);
