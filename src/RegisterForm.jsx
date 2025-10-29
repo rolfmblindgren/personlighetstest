@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { API } from "@/lib/apiBase";
 import Button from "@/components/Button";
+import { Eye, EyeOff } from "lucide-react";
 import InputPassword from '@/components/InputPassword';
 import { t } from '@/i18n';
 
@@ -19,6 +20,9 @@ async function resendVerification(email) {
 }
 
 export default function RegisterForm() {
+ const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
   const [email, setEmail] = useState("");
   const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
@@ -157,29 +161,31 @@ export default function RegisterForm() {
           placeholder={t('name_at_domain_no')}
         />
 
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-          Passord
-        </label>
-        <div className="relative">
-          <InputPassword
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => setCapsOn(e.getModifierState("CapsLock"))}
-            onKeyUp={(e) => setCapsOn(e.getModifierState("CapsLock"))}
-            onBlur={() => setCapsOn(false)}
-          />
-          <Button
-            type="button"
-            onClick={() => {setShowPassword(!showPassword); setCapsOn(false)}}
-            className="absolute inset-y-0 right-0 my-1 mr-1 rounded-md px-3 text-sm text-gray-600 hover:bg-gray-100"
-            aria-label={showPassword ? t('hidePassword') : t('showPassword')}
-          >
-            {showPassword ? t('hide') : t('show')}
-          </Button>
-        </div>
 
+      {/* Passord + øye-knapp */}
+      <label className="block text-sm font-medium text-gray-700">
+        {t("password")}
+      </label>
+      <div className="relative">
+        <input
+          id="registerPassword"
+          name="password"
+          placeholder={t('writePassword')}
+          type={showPassword ? "text" : "password"}
+          required
+          value={registerPassword}
+          onChange={(e) => setRegisterPassword(e.target.value)}
+          className="w-full rounded border p-2 pr-10"
+        />
+        <button
+          type="button"
+          onClick={() => setShowPassword((s) => !s)}
+          className="absolute inset-y-0 right-2 flex items-center text-gray-500 hover:text-gray-700"
+          aria-label={showPassword ? t("hidePassword") : t("showPassword")}
+        >
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      </div>
         {capsOn && (
           <div className="mt-1 text-xs text-yellow-700">
             Caps Lock er på
