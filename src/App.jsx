@@ -105,8 +105,6 @@ function App() {
             }
           />
 
-
-
           <Route
             path="/tests/:testId/scores"
             element={
