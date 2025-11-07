@@ -6,6 +6,7 @@ export default {
   login: "Logg inn",
   startNewTest: "Start ny test",
   continue: "Fortsett",
+  delete: "Slett",
   inProgress: "Er i gang",
   complete: "Fullført",
   answered: "Besvart",
