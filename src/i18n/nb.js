@@ -125,8 +125,20 @@ export default {
   status: "Status",
   handling: "Handling",
 
+  privacyTitle: "Personvern og databehandling (GDPR)",
 
+  privacyP1: "Vi lagrer bare de opplysningene som er nødvendige for å gjennomføre testen og vise deg resultatet. Når du sletter brukerkontoen din, fjerner vi alle personopplysninger og anonymiserer testdata slik at de ikke kan knyttes til deg.",
+
+  privacyP2: "Anonymiserte data kan brukes til statistikk og kvalitetsutvikling. Disse inneholder bare testskårer, språk, kjønn og avrundet alder, uten mulighet til å identifisere enkeltpersoner.",
+
+  privacyP3: "Du kan når som helst be om innsyn eller sletting. Ta kontakt dersom du har spørsmål om personvern eller databehandling.",
+
+  privacyP4: "Denne tjenesten følger EUs personvernforordning (GDPR) og Datatilsynets retningslinjer.",
+
+
+  GDPR: "GDPR",
 
   tScore: "T-skår"
+
 
 };

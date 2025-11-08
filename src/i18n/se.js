@@ -172,5 +172,18 @@ export default {
   status: "Stáhtus",
   handling: "Doaibma",
 
+
+  privacyTitle: "Persovdnasuodjalus ja dáhtadáhtten (GDPR)",
+
+  privacyP1: "Mii gávdná dan dieđuid geat leat dárbbašlažžan go galgat dahkat geahččalusa ja čájehit du bohtosiid. Go don sihkkarastat geavaheaddjin iežat kontu, siiđat mii buot persovdnasuodjalusdieđuid ja anonymiseret geahččalusdieđuid nugo ii sáhte oktage čohkket daid duinna.",
+
+  privacyP2: "Anonymiseret dieđut sáhttet geavahit statistihkkii ja kvalitetaovddideapmái. Dat sisdoallet dušše geahččalusbohtosiid, giela, sohkabeaivvi ja joavkkus alddái, ii geavahuvvo oktage čohkket persovdnaid.",
+
+  privacyP3: "Don sáhtát juohkeáiggi jearrat geahččalusa dahje sihkkarastit kontu. Váldde oktavuođa jus leat jearaldagat persovdnasuodjalusas dahje dáhtadáhttenas.",
+
+  privacyP4: "Dán bargu čuovvu EU-personvernforordninga (GDPR) ja Norgga Datatilsynet joatkkasániid.",
+
+  GDPR: "GDPR",
+
   tScore: "T-skoar"
 };

@@ -16,13 +16,23 @@ export function Layout({ children }) {
         <header className="bg-teal-200 p-4 rounded-lg mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              {logo && <img src={logo} className="h-12 w-auto" alt="Grendel logo" />}
+              {logo && <Link to="/"><img src={logo} className="h-12 w-auto" alt="Grendel logo" /></Link>}
               <H1>{t("title")}</H1>
             </div>
 
             <div className="flex items-center space-x-4">
+
+
+<Link
+  to="/GDPR"
+  className="text-sm font-medium text-teal-900 hover:text-teal-700 hover:underline underline-offset-2"
+>
+  🛡️ {t("GDPR")}
+</Link>
+
               {loggedIn && (
                 <nav className="flex space-x-4">
+
                   <Link to="/dashboard" className="text-sm font-medium text-teal-900 hover:text-teal-700">
                     {t("dashboard")}
                   </Link>

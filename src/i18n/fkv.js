@@ -122,5 +122,19 @@ export default {
   status: "Tila",
   handling: "Toiminta",
 
+
+  privacyTitle: "Henkilösuojelu ja tietokäsittely (GDPR)",
+
+  privacyP1: "Met talletamma vain ne tiedot mitä tarvitaan testin suorittamiseen ja tulosten näyttämiseen. Kun sie poistat käyttäjäkonttisi, met poistamma kaikki henkilötiedot ja anonymiseeramma testitiedot, ette niitä ei voi liittää sinnuun.",
+
+  privacyP2: "Anonymisoidut tiedot voidaan käyttää tilastointiin ja laadun kehittämiseen. Niissä on vain testipisteet, kieli, sukupuoli ja pyöristetty ikä, ilman mahollisuutta tunnistaa yksilöitä.",
+
+  privacyP3: "Sie voit koska tahansa pyytää tietojesi näkemistä tai poistamista. Ota yhteyttä, jos sie haluat tietä lisää henkilösuojelusta tai tietojen käsittelystä.",
+
+  privacyP4: "Tämä palvelus noudattaa EU:n henkilösuojeluasetusta (GDPR) ja Norjan tietosuojaviranomaisen ohjeita.",
+
+
+  GDPR: "GDPR",
+
   tScore: "T-pisteet"
 };
