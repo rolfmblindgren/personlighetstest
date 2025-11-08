@@ -247,11 +247,11 @@ export default function TestsOverview() {
 	)}
       </Button>
 
-{toast && (
-  <div className="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in">
-    {toast}
-  </div>
-)}
+      {toast && (
+	<div className="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in">
+	  {toast}
+	</div>
+      )}
 
       <ConfirmDialog
 	open={showConfirm}

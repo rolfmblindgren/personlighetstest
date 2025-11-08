@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
 import Button from "@/components/Button";
 import { API } from "@/lib/apiBase";
 import LikertRowText from "@/components/LikertRow";
 import { authFetch } from "@/lib/apiFetch";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Hook: velg side-størrelse etter bredde
 function usePageSize() {
@@ -46,6 +46,9 @@ export default function TestRunner({  }) {
   const [error, setError]     = useState("");
 
   const { testId: testIdParam } = useParams();
+
+  const navigate = useNavigate();
+
   const testId = Number(testIdParam); // -> 2 i /testrunner/2
 
   if (!Number.isFinite(testId)) {
@@ -146,18 +149,29 @@ export default function TestRunner({  }) {
 
   async function next()   { await savePage(); setOffset(offset + pageSize); }
   async function prev()   { await savePage(); setOffset(Math.max(0, offset - pageSize)); }
+
   async function finish() {
     await savePage();
-    const r = await fetch(`${API}/tests/${testId}/complete`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    });
-    if (!r.ok) {
-      const d = await r.json().catch(()=>({}));
-      setError(d.error || "Kunne ikke fullføre testen");
-      return;
+    setSending(true);
+    setError("");
+
+    try {
+      const r = await authFetch (`${API}/tests/${testId}/complete`, {
+	method: "POST",
+      });
+
+      if (!r.ok) {
+	const d = await r.json().catch(() => ({}));
+	throw new Error(d.error || "Kunne ikke fullføre testen");
+      }
+
+      // test fullført OK → gå videre til donasjonsside
+      navigate(`/test/${testId}/donate`);
+    } catch (e: any) {
+      setError(e.message || "Feil ved fullføring");
+    } finally {
+      setSending(false);
     }
-    window.location.assign("/dashboard");
   }
 
   return (

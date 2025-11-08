@@ -14,6 +14,7 @@ import TestRunner from '@/pages/TestRunner';
 import TestPicker from '@/pages/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
 import TestsOverview from '@/pages/TestOverviews';
+import DonationPage from "@/pages/DonationPage";
 
 import IpipNeo from '@/ipip_neo';
 
@@ -28,6 +29,10 @@ function App() {
                  element={<LandingPage />
                          }
           />
+
+          <Route path="/testrunner/:testId" element={<TestRunner />} />
+          <Route path="/test/:testId/donate" element={<DonationPage />} />
+          <Route path="/test/:testId/results" element={<ScoresPage />} />
 
           <Route
             path="/dashboard"
