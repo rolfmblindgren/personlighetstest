@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { API } from "@/lib/apiBase";
 import Button from "@/components/Button";
+import { Eye, EyeOff } from "lucide-react";
 import InputPassword from '@/components/InputPassword';
+import { t } from '@/i18n';
 
 async function resendVerification(email) {
   try {
@@ -13,11 +15,14 @@ async function resendVerification(email) {
     const data = await resp.json().catch(() => ({}));
     return { ok: resp.ok, status: resp.status, data };
   } catch {
-    return { ok: false, status: 0, data: { error: "Nettverksfeil" } };
+    return { ok: false, status: 0, data: { error: t('nettVerksFeil') } };
   }
 }
 
 export default function RegisterForm() {
+ const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
   const [email, setEmail] = useState("");
   const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
@@ -62,12 +67,12 @@ export default function RegisterForm() {
 
     // enkel klientvalidering
     const errors = [];
-    if (!isEmail(emailTrimmed)) errors.push("E-postadressen er ikke gyldig.");
-    if (password.length < 8) errors.push("Passordet må være minst 8 tegn.");
-    if (!/[A-ZÆØÅ]/.test(password)) errors.push("Mangler stor bokstav.");
-    if (!/[a-zæøå]/.test(password)) errors.push("Mangler liten bokstav.");
-    if (!/[0-9]/.test(password)) errors.push("Mangler tall.");
-    if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) errors.push("Mangler spesialtegn.");
+    if (!isEmail(emailTrimmed)) errors.push(t('invalidEmail'));
+    if (password.length < 8) errors.push(t('shortPassword'));
+    if (!/[A-ZÆØÅ]/.test(password)) errors.push(t('noUpperCase'));
+    if (!/[a-zæøå]/.test(password)) errors.push(t('noLowerCase'));
+    if (!/[0-9]/.test(password)) errors.push(t('noNumbers'));
+    if (!/[^A-Za-z0-9æøåÆØÅ]/.test(password)) errors.push(t('noSpecials'));
     if (errors.length) {
       setNotice({ type: "error", text: errors.join(" ") });
       setRegPending(false);
@@ -91,7 +96,7 @@ export default function RegisterForm() {
       if (resp.status === 201) {
         setNotice({
           type: "success",
-          text: data.message?.trim() || "Bruker registrert. Sjekk e-posten for bekreftelse.",
+          text: data.message?.trim() || t('userIsRegisteredCheckEmail'),
         });
         setExists(false);
         setExistsVerified(false);
@@ -103,25 +108,25 @@ export default function RegisterForm() {
         setNotice({
           type: "info",
           text: verified
-            ? "E-posten er allerede registrert. Logg inn for å fortsette."
-            : "E-posten er allerede registrert, men ikke bekreftet.",
+            ? t('emailIsAlreadyRegisteredLogin')
+            : t('emailIsRegisteredButNotConfirmed'),
         });
       } else if (resp.status === 400) {
-        setNotice({ type: "error", text: data.error?.trim() || "E-post og passord er påkrevd." });
+        setNotice({ type: "error", text: data.error?.trim() || t('emailAndPasswordRequired') });
       } else if (resp.ok) {
         setNotice({
           type: "info",
-          text: data.message?.trim() || "Hvis adressen er gyldig, har vi sendt deg en bekreftelses-e-post.",
+          text: data.message?.trim() || t('confirmationEmailSent'),
         });
       } else {
         setNotice({
           type: "error",
-          text: data.error?.trim() || `Noe gikk galt (status ${resp.status}).`,
+          text: data.error?.trim() || `${t("somethingWentwrong")} (status ${resp.status}).`,
         });
       }
     } catch (err) {
       console.error(err);
-      setNotice({ type: "error", text: "Feil ved tilkobling til server." });
+      setNotice({ type: "error", text: t('errorWhenConnectingToServer') });
     } finally {
       setRegPending(false);
     }
@@ -129,7 +134,7 @@ export default function RegisterForm() {
 
   return (
     <>
-      <h3 className="text-2xl font-semibold mb-3">Registrér deg</h3>
+      <h3 className="text-2xl font-semibold mb-3">{t('signup')}</h3>
 
       <form onSubmit={handleSubmit} autoComplete="on" className="space-y-4">
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -153,40 +158,42 @@ export default function RegisterForm() {
           required
           className="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2
                  text-base outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
-          placeholder="navn@domene.no"
+          placeholder={t('name_at_domain_no')}
         />
 
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-          Passord
-        </label>
-        <div className="relative">
-          <InputPassword
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => setCapsOn(e.getModifierState("CapsLock"))}
-            onKeyUp={(e) => setCapsOn(e.getModifierState("CapsLock"))}
-            onBlur={() => setCapsOn(false)}
-          />
-          <Button
-            type="button"
-            onClick={() => {setShowPassword(!showPassword); setCapsOn(false)}}
-            className="absolute inset-y-0 right-0 my-1 mr-1 rounded-md px-3 text-sm text-gray-600 hover:bg-gray-100"
-            aria-label={showPassword ? "Skjul passord" : "Vis passord"}
-          >
-            {showPassword ? "Skjul" : "Vis"}
-          </Button>
-        </div>
 
+      {/* Passord + øye-knapp */}
+      <label className="block text-sm font-medium text-gray-700">
+        {t("password")}
+      </label>
+      <div className="relative">
+        <input
+          id="registerPassword"
+          name="password"
+          placeholder={t('writePassword')}
+          type={showPassword ? "text" : "password"}
+          required
+          value={registerPassword}
+          onChange={(e) => setRegisterPassword(e.target.value)}
+          className="w-full rounded border p-2 pr-10"
+        />
+        <button
+          type="button"
+          onClick={() => setShowPassword((s) => !s)}
+          className="absolute inset-y-0 right-2 flex items-center text-gray-500 hover:text-gray-700"
+          aria-label={showPassword ? t("hidePassword") : t("showPassword")}
+        >
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      </div>
         {capsOn && (
           <div className="mt-1 text-xs text-yellow-700">
             Caps Lock er på
           </div>
         )}
 
-        <Button type="submit" aria-describedby={notice ? 'reg-notice' : undefined}  className="w-full" disabled={regPending || formInvalid}>
-          {regPending ? "Sender…" : "Registrer"}
+        <Button type="submit" aria-describedby={notice ? 'reg-notice' : undefined}  className="w-full" disabled={regPending}>
+          {regPending ? t('isSending') : t('signup')}
         </Button>
 
         {notice && (
@@ -210,16 +217,16 @@ export default function RegisterForm() {
                     setResendPending(true);
                     const r = await resendVerification(email.trim().toLowerCase());
                     if (r.ok) {
-                      setNotice({ type: "info", text: "Vi har sendt deg en ny bekreftelses-lenke." });
+                      setNotice({ type: "info", text: t('newRegistratinLinkIsSent') });
                     } else {
-                      setNotice({ type: "error", text: r.data?.error || "Klarte ikke å sende verifiserings-e-post." });
+                      setNotice({ type: "error", text: r.data?.error || t('couldNotSendRegistrationEmail')});
                     }
                   } finally {
                     setResendPending(false);
                   }
                 }}
               >
-                {resendPending ? "Sender…" : "Send ny bekreftelses-lenke"}
+                {resendPending ? t('isSending') : t('sendNewConfirmationLink') }
               </Button>
             )}
           </div>

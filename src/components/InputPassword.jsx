@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from '@/components/Button';
+import { t } from "@/i18n";
 
 export default function InputPassword({
   value,
   onChange,
-  placeholder = "Skriv passord",
+  placeholder = t('writePassword'),
   minLength = 8,
   required = true,
   ...props
@@ -37,9 +38,9 @@ export default function InputPassword({
         onClick={() => setShow(!show)}
         className="absolute inset-y-0 right-0 my-1 mr-1 rounded-md px-3 text-sm text-gray-600 hover:bg-gray-100"
         aria-pressed={show}
-        aria-label={show ? "Skjul passord" : "Vis passord"}
+        aria-label={show ? t('hidePassword') : t('showPassword')}
       >
-        {show ? "Skjul" : "Vis"}
+        {show ? t('hide') : t('show')}
       </Button>
       <AnimatePresence>
         {capsOn && (
@@ -53,7 +54,7 @@ export default function InputPassword({
             transition={{ duration: 0.18 }}
             className="absolute -bottom-5 left-0 text-xs text-yellow-700"
           >
-            Caps Lock er på
+            t('warnCapsLock')
           </motion.div>
         )}
       </AnimatePresence>

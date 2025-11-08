@@ -24,8 +24,8 @@ export default function UsersWidget() {
   }, []);
 
   return (
-    <div className="rounded-xl border p-4">
-      <div className="text-sm text-gray-500">Antall brukere</div>
+    <div className="rounded-xl border-0 p-0">
+
       <div className="text-3xl font-semibold">
         {count === null ? "…" : count}
       </div>

@@ -1,25 +1,22 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useAuth } from "@/context/AuthContext"
 import { isTokenValid } from '@/auth'
 import { API } from '@/lib/apiBase'
 import Button from '@/components/Button'
 import UsersWidget from '@/components/UsersWidget'
-import { H1, H2, H3 } from '@/components/Heading.tsx'
+import TestWidget from '@/components/TestWidget'
+import MyTestsWidget from "@/components/MyTestsWidget"
+import { H1, H2, H3 } from '@/components/Heading'
+import { t } from '@/i18n'
 
 export default function Dashboard() {
+  const { logout } = useAuth()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!isTokenValid()) {
-      localStorage.removeItem('token')
-      navigate('/')
-    }
-  }, [])
-  
-  
   const handleLogout = () => {
-    localStorage.removeItem("token")
+    logout()
     navigate("/")
   }
 
@@ -30,35 +27,42 @@ export default function Dashboard() {
           onClick={handleLogout}
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
         >
-          Logg ut
+          {t('logout')}
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
-          <CardHeader>
-            <CardTitle>Antall brukere</CardTitle>
-          </CardHeader>
-          <CardContent>
-	    <UsersWidget />
-          </CardContent>
+          <CardHeader><CardTitle>{t('numberOfUsers')}</CardTitle></CardHeader>
+          <CardContent><UsersWidget /></CardContent>
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Aktive tester</CardTitle>
-          </CardHeader>
+          <CardHeader><CardTitle>{t('startNewTest')}</CardTitle></CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">23</p>
+            <Button
+              onClick={() => navigate("/tests")}
+              className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
+            >              {t('chooseTests')}
+            </Button>
           </CardContent>
         </Card>
 
+	<Card>
+	  <CardHeader><CardTitle>{t("myTests")}</CardTitle></CardHeader>
+	  <CardContent>
+            <Button
+              onClick={() => navigate("/testsOverview")}
+              className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
+            >              {t('testsOverview')}
+            </Button>
+	  </CardContent>
+	</Card>
+
         <Card>
-          <CardHeader>
-            <CardTitle>Innstillinger</CardTitle>
-          </CardHeader>
+          <CardHeader><CardTitle>{t('settings')}</CardTitle></CardHeader>
           <CardContent>
-            <p>Administrer systemoppsett og tillatelser.</p>
+            <p>{t("goToAdminMenu")}</p>
           </CardContent>
         </Card>
       </div>

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@plugin "@tailwindcss/typography";
+
 
 /* Definer eget tema */
 @theme {
@@ -12,4 +15,38 @@
   --color-turkis-700: #0f766e;
   --color-turkis-800: #115e59;
   --color-turkis-900: #134e4a;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.fade-out.removing {
+  opacity: 0.2;
+}
+
+.fade-out.removing .preserve-opacity {
+  opacity: 1 !important;
+}
+
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.15s ease-out;
+}
+
+@font-face {
+  font-family: "bootstrap-icons";
+  src: url("/fonts/bootstrap-icons.woff2") format("woff2"),
+       url("/fonts/bootstrap-icons.woff") format("woff");
+  font-display: block;
 }
