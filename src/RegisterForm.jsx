@@ -173,8 +173,8 @@ export default function RegisterForm() {
           placeholder={t('writePassword')}
           type={showPassword ? "text" : "password"}
           required
-          value={registerPassword}
-          onChange={(e) => setRegisterPassword(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="w-full rounded border p-2 pr-10"
         />
         <button
