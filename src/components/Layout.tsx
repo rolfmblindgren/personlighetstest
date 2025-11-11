@@ -13,35 +13,34 @@ export function Layout({ children }) {
   return (
     <div className="min-h-screen bg-slate-100 py-8">
       <div className="mx-auto max-w-5xl bg-white rounded-2xl shadow-lg ring-1 ring-black/5 p-6 md:p-10">
-        <header className="bg-teal-200 p-4 rounded-lg mb-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              {logo && <Link to="/"><img src={logo} className="h-12 w-auto" alt="Grendel logo" /></Link>}
-              <H1>{t("title")}</H1>
-            </div>
-
-            <div className="flex items-center space-x-4">
 
 
-<Link
-  to="/GDPR"
-  className="text-sm font-medium text-teal-900 hover:text-teal-700 hover:underline underline-offset-2"
->
-  🛡️ {t("GDPR")}
-</Link>
+	<header className="bg-teal-200 p-4 rounded-lg mb-6">
+  <div className="flex flex-wrap items-center justify-between gap-4">
+    <div className="flex items-center space-x-4">
+      {logo && <Link to="/"><img src={logo} className="h-12 w-auto" alt="Grendel logo" /></Link>}
+      <H1>{t("title")}</H1>
+    </div>
 
-              {loggedIn && (
-                <nav className="flex space-x-4">
+    <div className="flex items-center space-x-4 ml-auto">
+      <Link
+        to="/GDPR"
+        className="text-sm font-medium text-teal-900 hover:text-teal-700 hover:underline underline-offset-2"
+      >
+        🛡️ {t("GDPR")}
+      </Link>
 
-                  <Link to="/dashboard" className="text-sm font-medium text-teal-900 hover:text-teal-700">
-                    {t("dashboard")}
-                  </Link>
-                </nav>
-              )}
-              <LanguagePicker />
-            </div>
-          </div>
-        </header>
+      {loggedIn && (
+        <nav className="flex space-x-4">
+          <Link to="/dashboard" className="text-sm font-medium text-teal-900 hover:text-teal-700">
+            {t("dashboard")}
+          </Link>
+        </nav>
+      )}
+      <LanguagePicker />
+    </div>
+  </div>
+	</header>
 
         <main>{children}</main>
       </div>
