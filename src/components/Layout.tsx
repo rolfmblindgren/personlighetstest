@@ -23,6 +23,15 @@ export function Layout({ children }) {
     </div>
 
     <div className="flex items-center space-x-4 ml-auto">
+
+      <Link
+        to="/CHANGELOG"
+        className="text-sm font-medium text-teal-900 hover:text-teal-700 hover:underline underline-offset-2"
+      >
+        {t("changelogTitle")}
+      </Link>
+
+
       <Link
         to="/GDPR"
         className="text-sm font-medium text-teal-900 hover:text-teal-700 hover:underline underline-offset-2"

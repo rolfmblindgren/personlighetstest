@@ -185,5 +185,9 @@ export default {
 
   GDPR: "GDPR",
 
+
+    changelogTitle: "Rievdadusat",
+
+
   tScore: "T-skoar"
 };

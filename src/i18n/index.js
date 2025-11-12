@@ -4,6 +4,9 @@ import nn from "./nn";
 import se from "./se";
 import fkv from "./fkv";
 
+import { I18nContext } from "./I18nContext";
+
+
 // ev. import fkv from "./fkv" (kvensk) senere
 
 // Registrer bare grunnkoder her
@@ -42,4 +45,16 @@ export function t(key, { lower = false, upper = false } = {}) {
   }
 
   return text;
+}
+
+export function useT() {
+  const lang = localStorage.getItem("locale") || "nb";
+
+  return (key, { lower = false, upper = false } = {}) => {
+    const text = strings[lang]?.[key] ?? `⚠️ ${key}`;
+    let result = text;
+    if (lower) result = result.charAt(0).toLowerCase() + result.slice(1);
+    if (upper) result = result.toUpperCase();
+    return result;
+  };
 }

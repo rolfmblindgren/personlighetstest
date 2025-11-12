@@ -135,6 +135,15 @@ export default {
 
   privacyP4: "Denne tjenesten følger EUs personvernforordning (GDPR) og Datatilsynets retningslinjer.",
 
+  changelogTitle: "Oppdateringer",
+
+  changelog:  {
+    "2025-11-11": [
+
+      "2025-11-11 Fikset at tittellinja ikke går ut over kanten på mobiler"
+
+    ]
+  },
 
   GDPR: "GDPR",
 
