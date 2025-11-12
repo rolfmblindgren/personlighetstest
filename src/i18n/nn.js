@@ -126,6 +126,8 @@ export default {
 
   GDPR: "GDPR",
 
+  changelogTitle: "Endringar",
+
   privacyTitle: "Personvern og databehandling (GDPR)",
 
   privacyP1: "Me lagrar berre dei opplysningane som er nødvendige for å gjennomføre testen og vise deg resultatet. Når du slettar brukarkontoen din, fjernar me alle personopplysningar og anonymiserer testdata slik at dei ikkje kan knytast til deg.",

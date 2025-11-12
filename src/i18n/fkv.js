@@ -136,5 +136,7 @@ export default {
 
   GDPR: "GDPR",
 
+    changelogTitle: "Muuttat",
+
   tScore: "T-pisteet"
 };

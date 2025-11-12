@@ -16,8 +16,9 @@ import ScoresPage from '@/pages/ScorePage';
 import TestsOverview from '@/pages/TestOverviews';
 import DonationPage from "@/pages/DonationPage";
 import GDPR from "@/pages/GDPR";
-
+import CHANGELOG from "@/pages/ChangeLog";
 import IpipNeo from '@/ipip_neo';
+
 
 function App() {
   return (
@@ -124,6 +125,13 @@ function App() {
           <Route
             path="/GDPR"
             element={<GDPR
+                     />
+                    }
+          />
+
+          <Route
+            path="/CHANGELOG"
+            element={<CHANGELOG
                      />
                     }
           />
