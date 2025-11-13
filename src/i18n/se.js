@@ -188,6 +188,11 @@ export default {
 
     changelogTitle: "Rievdadusat",
 
+"importLegacyTests": "Boarrásat gihppusat",
+  "importError": "Meattáhus boarrásaid gihpposiid viežžamis",
+  "foundLegacyTests": "Mannat boarrásat gihppusat:",
+  "importMyLegacyTests": "Váldde boarrásat gihppusat sisa",
+
 
   tScore: "T-skoar"
 };

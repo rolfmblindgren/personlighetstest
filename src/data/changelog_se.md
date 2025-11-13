@@ -1,3 +1,6 @@
+## 2025-11-13
+- Lasihuvvon vejolašvuođa váldit sisa ovddasat gihppusiid Jotform-rávvagiin.
+
 ## 2025-11-11
 - Čoahkkáigeassuheami meattáhus rievdadii, go čuoggaduvvonlinja manai olggobealde olgešmearra mobiilaide.
 

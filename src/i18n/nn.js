@@ -139,6 +139,11 @@ export default {
   privacyP4: "Denne tenesta følgjer EU si personvernforordning (GDPR) og Datatilsynet sine retningsliner.",
 
 
+"importLegacyTests": "Gamle testar",
+  "importError": "Feil ved innhenting av gamle testar",
+  "foundLegacyTests": "Tal på gamle testar:",
+  "importMyLegacyTests": "Hent inn gamle testar",
+
   tScore: "T-skår"
 
 };

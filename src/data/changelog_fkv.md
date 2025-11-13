@@ -1,3 +1,6 @@
+## 2025-11-13
+- Lissattu mahdolliisuus hakkeet sisään aikhaisemmat testit Jotform-ratkaiusta.
+
 ## 2025-11-11
 - Korjasin vuan i tittellinja, mikä sai linjan menemhaan oikheen marginaalin yli mobiililaiteissa.
 
