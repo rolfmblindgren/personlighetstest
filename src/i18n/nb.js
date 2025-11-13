@@ -137,13 +137,11 @@ export default {
 
   changelogTitle: "Oppdateringer",
 
-  changelog:  {
-    "2025-11-11": [
 
-      "2025-11-11 Fikset at tittellinja ikke går ut over kanten på mobiler"
-
-    ]
-  },
+  importLegacyTests: "Gamle tester",
+  importError: "Feil ved innhenting av gamle tester",
+  foundLegacyTests: "Antall gamle tester:",
+  importMyLegacyTests: "Hent inn gamle tester",
 
   GDPR: "GDPR",
 

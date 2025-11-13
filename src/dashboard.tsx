@@ -8,7 +8,8 @@ import Button from '@/components/Button'
 import UsersWidget from '@/components/UsersWidget'
 import TestWidget from '@/components/TestWidget'
 import MyTestsWidget from "@/components/MyTestsWidget"
-import { H1, H2, H3 } from '@/components/Heading'
+import { H1, H2, H3 } from '@/components/Heading';
+import ImportLegacyWidget from '@/components/ImportLegacyWidget';
 import { t } from '@/i18n'
 
 export default function Dashboard() {
@@ -56,6 +57,13 @@ export default function Dashboard() {
               className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
             >              {t('testsOverview')}
             </Button>
+	  </CardContent>
+	</Card>
+
+	<Card>
+	  <CardHeader><CardTitle>{t("importLegacyTests")}</CardTitle></CardHeader>
+	  <CardContent>
+	    <ImportLegacyWidget />
 	  </CardContent>
 	</Card>
 

@@ -136,7 +136,13 @@ export default {
 
   GDPR: "GDPR",
 
-    changelogTitle: "Muuttat",
+  changelogTitle: "Muuttat",
+
+  "importLegacyTests": "Vanhat testit",
+  "importError": "Virhe vanhoitten testitten hakemisessa",
+  "foundLegacyTests": "Vanhoitten testitten määrä:",
+  "importMyLegacyTests": "Hae vanhat testit sisään",
+
 
   tScore: "T-pisteet"
 };

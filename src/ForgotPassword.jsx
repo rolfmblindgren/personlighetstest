@@ -21,7 +21,7 @@ export default function ForgotPassword() {
 
     setBusy(true);
     try {
-      const res = await fetch(`${API}/password/forgot`, {
+      const res = await authFetch (`${API}/password/forgot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: epost }),
