@@ -149,6 +149,11 @@ export default {
   neste: "Neste",
   forrige: "Forrige",
 
+  delete: "Slett",
+  isDeleting: "Sletter …",
+  deleteSelected: "Slett valgte ({markedCount})",
+
+
   tScore: "T-skår"
 
 

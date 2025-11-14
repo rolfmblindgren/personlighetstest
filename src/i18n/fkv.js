@@ -147,7 +147,9 @@ export default {
   neste: "Seuraava",
   forrige: "Aikaisempi",
 
-
+  delete: "Poista",
+  isDeleting: "Poistetaan…",
+  deleteSelected: "Poista valitut",
 
   tScore: "T-pisteet"
 };

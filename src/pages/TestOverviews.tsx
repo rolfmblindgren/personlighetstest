@@ -254,12 +254,12 @@ export default function TestsOverview() {
 	{deleting ? (
 	  <>
 	    <i className="bi bi-arrow-repeat me-2 spin"></i>
-							      Sletter...
+	    {tr('isDeleting')}
 	  </>
 	) : (
 	  <>
 	    <i className="bi bi-trash me-2"></i>
-						  Slett valgte ({markedCount})
+	    {tr('deleteSelected')} ({markedCount})
 	  </>
 	)}
       </Button>

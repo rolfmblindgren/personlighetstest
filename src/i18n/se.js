@@ -197,6 +197,10 @@ export default {
   neste: "Boahtte",
   forrige: "Ovddit",
 
+  delete: "Sihko",
+  isDeleting: "Sihkkojuvvo …",
+  deleteSelected: "Sihko merkkojuvvon",
+
 
   tScore: "T-skoar"
 };

@@ -145,9 +145,12 @@ export default {
   importMyLegacyTests: "Hent inn gamle testar",
   nothingToImport: "Du har ingen gamle testar som du ikkje har importert",
 
-    neste: "Neste",
+  neste: "Neste",
   forrige: "Førre",
 
+  delete: "Slett",
+  isDeleting: "Slettar …",
+  deleteSelected: "Slett valde",
 
   tScore: "T-skår"
 
