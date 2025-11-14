@@ -142,8 +142,12 @@ export default {
   importError: "Feil ved innhenting av gamle tester",
   foundLegacyTests: "Antall gamle tester:",
   importMyLegacyTests: "Hent inn gamle tester",
+  nothingToImport: "Du har ingen gamle tester som du ikke har importert",
 
   GDPR: "GDPR",
+
+  neste: "Neste",
+  forrige: "Forrige",
 
   tScore: "T-skår"
 
