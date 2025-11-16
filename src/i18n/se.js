@@ -188,10 +188,18 @@ export default {
 
     changelogTitle: "Rievdadusat",
 
-"importLegacyTests": "Boarrásat gihppusat",
-  "importError": "Meattáhus boarrásaid gihpposiid viežžamis",
-  "foundLegacyTests": "Mannat boarrásat gihppusat:",
-  "importMyLegacyTests": "Váldde boarrásat gihppusat sisa",
+  importLegacyTests: "Boarrásat gihppusat",
+  importError: "Meattáhus boarrásaid gihpposiid viežžamis",
+  foundLegacyTests: "Mannat boarrásat gihppusat:",
+  importMyLegacyTests: "Váldde boarrásat gihppusat sisa",
+  nothingToImport: "Don leat eará boares geahččaladdasaid maid it leat viežžan sisa",
+
+  neste: "Boahtte",
+  forrige: "Ovddit",
+
+  delete: "Sihko",
+  isDeleting: "Sihkkojuvvo …",
+  deleteSelected: "Sihko merkkojuvvon",
 
 
   tScore: "T-skoar"

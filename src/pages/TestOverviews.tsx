@@ -13,7 +13,6 @@ export default function TestsOverview() {
   const [sortBy, setSortBy] = useState<keyof any>("id");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
-  const [markedForDelete, setMarkedForDelete] = useState(new Set());
   const [deleting, setDeleting] = useState(false);
 
 
@@ -25,6 +24,9 @@ export default function TestsOverview() {
   const [pendingDeleteIds, setPendingDeleteIds] = useState([]);
 
   const [toast, setToast] = useState<string | null>(null);
+
+  const [page, setPage] = useState(1);
+  const [limit] = useState(50);   // eller 100
 
   function handleBatchDelete() {
     const ids = Object.entries(testStates)
@@ -72,9 +74,6 @@ export default function TestsOverview() {
   }
 
 
-
-
-
   function toggleMark(id) {
     setTestStates(prev => {
       const current = prev[id] || "idle";
@@ -100,7 +99,7 @@ export default function TestsOverview() {
     let abort = false;
     const loadTests = async () => {
       try {
-        const res = await authFetch(`${API}/tests?status=all`);
+        const res = await authFetch(`${API}/tests?status=all&page=${page}&limit=${limit}`);
         if (!res.ok) throw new Error(`Feil fra API: ${res.status}`);
         const data = await res.json();
         console.log("Fetched data:", data);
@@ -143,6 +142,9 @@ export default function TestsOverview() {
   if (!tests.items?.length) return <div className="p-8 text-center text-gray-500">Ingen tester funnet.</div>;
 
   const markedCount = Object.values(testStates).filter(state => state === "marked").length;
+
+  const totalPages = Math.ceil((tests.total || 0) / limit);
+  const showPagination = totalPages > 1;
 
   return (
     <div className="p-4">
@@ -227,25 +229,41 @@ export default function TestsOverview() {
 
       </table>
 
+      {showPagination && (
+	<div className="flex gap-2 mt-4">
+	  {page > 1 && (
+	    <Button onClick={() => setPage(p => p - 1)}>
+              {tr('forrige')}
+	    </Button>
+	  )}
 
+	  {(page * limit) < tests.total && (
+	    <Button onClick={() => setPage(p => p + 1)}>
+              {tr('neste')}
+	    </Button>
+	  )}
+	</div>
+      )}
 
+      { markedCount > 0 && (
       <Button
 	className="btn btn-danger mt-3"
-	disabled={markedCount === 0 || deleting}
+	disabled={deleting}
 	onClick={handleBatchDelete}
       >
 	{deleting ? (
 	  <>
 	    <i className="bi bi-arrow-repeat me-2 spin"></i>
-							      Sletter...
+	    {tr('isDeleting')}
 	  </>
 	) : (
 	  <>
 	    <i className="bi bi-trash me-2"></i>
-						  Slett valgte ({markedCount})
+	    {tr('deleteSelected')} ({markedCount})
 	  </>
 	)}
       </Button>
+      )}
 
       {toast && (
 	<div className="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in">

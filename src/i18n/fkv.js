@@ -138,11 +138,18 @@ export default {
 
   changelogTitle: "Muuttat",
 
-  "importLegacyTests": "Vanhat testit",
-  "importError": "Virhe vanhoitten testitten hakemisessa",
-  "foundLegacyTests": "Vanhoitten testitten määrä:",
-  "importMyLegacyTests": "Hae vanhat testit sisään",
+  importLegacyTests: "Vanhat testit",
+  importError: "Virhe vanhoitten testitten hakemisessa",
+  foundLegacyTests: "Vanhoitten testitten määrä:",
+  importMyLegacyTests: "Hae vanhat testit sisään",
+  nothingToImport: "Sielä ei ole vanhoja testejä, joita ette ole tuonu sisään",
 
+  neste: "Seuraava",
+  forrige: "Aikaisempi",
+
+  delete: "Poista",
+  isDeleting: "Poistetaan…",
+  deleteSelected: "Poista valitut",
 
   tScore: "T-pisteet"
 };
