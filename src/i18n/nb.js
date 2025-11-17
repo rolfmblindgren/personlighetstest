@@ -151,7 +151,7 @@ export default {
 
   delete: "Slett",
   isDeleting: "Sletter …",
-  deleteSelected: "Slett valgte ({markedCount})",
+  deleteSelected: "Slett valgte",
 
 
   tScore: "T-skår"
