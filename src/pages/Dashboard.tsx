@@ -66,13 +66,20 @@ export default function Dashboard() {
 	    <ImportLegacyWidget />
 	  </CardContent>
 	</Card>
+	<Card>
+	  <CardHeader>
+	    <CardTitle>{t("profile")}</CardTitle>
+	  </CardHeader>
+	  <CardContent>
+	    <Button
+	      onClick={() => navigate("/profile")}
+	      className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
+	    >
+	      {t("editProfile")}
+	    </Button>
+	  </CardContent>
+	</Card>
 
-        <Card>
-          <CardHeader><CardTitle>{t('settings')}</CardTitle></CardHeader>
-          <CardContent>
-            <p>{t("goToAdminMenu")}</p>
-          </CardContent>
-        </Card>
       </div>
     </div>
   )

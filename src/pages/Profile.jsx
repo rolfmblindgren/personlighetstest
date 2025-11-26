@@ -1,28 +1,37 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { authFetch } from "@/lib/apiFetch";
-import { API } from "@/lib/apiBase";
+import { API, ENDPOINT } from "@/lib/apiBase";
 import Button from "@/components/Button";
 import { t } from "@/i18n";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
-
   const { register, handleSubmit, reset } = useForm();
 
-  // Hent eksisterende profil
+  // Henter profil ved mount
+
   useEffect(() => {
-    authFetch(API.userProfile)
-      .then(res => res.json())
-      .then(data => {
+    async function hentProfil() {
+      try {
+        const res = await authFetch(ENDPOINT.userProfile);
+        if (!res.ok) throw new Error("Kunne ikke hente profil");
+        const data = await res.json();
         setProfile(data);
         reset(data);
-      });
+      } catch (err) {
+        console.error("Feil ved henting av profil:", err);
+      }
+    }
+    hentProfil();
   }, [reset]);
 
   const onSubmit = async (data) => {
-    await authFetch(API.userProfile, {
+    await authFetch(ENDPOINT.userProfile, {
       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     });
     alert("Profil oppdatert");
@@ -30,53 +39,78 @@ export default function ProfilePage() {
 
   if (!profile) return <p>Laster …</p>;
 
-  return (
-    <div className="max-w-xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6">{t("profile.title", "Min profil")}</h1>
+ return (
+    <div className="max-w-xl mx-auto mt-10">
+      <div className="bg-white shadow-md rounded-xl p-8 space-y-6">
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <H2>Min profil</H2>
 
-        <div>
-          <label className="block mb-1">Navn</label>
-          <input className="input" {...register("navn")} />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
-        <div>
-          <label className="block mb-1">Kjønn</label>
-          <select className="input" {...register("kjonn")}>
-            <option value="">—</option>
-            <option value="mann">Mann</option>
-            <option value="kvinne">Kvinne</option>
-            <option value="annet">Annet</option>
-          </select>
-        </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Navn</label>
+            <input
+              {...register("full_name")}
+              className="w-full border rounded-lg p-2"
+              type="text"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-1">Fødselsdato</label>
-          <input
-            type="date"
-            className="input"
-            {...register("foedselsdato")}
-          />
-        </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Kjønn</label>
+            <select
+              {...register("gender")}
+              className="w-full border rounded-lg p-2"
+            >
+              <option value="M">Mann</option>
+              <option value="F">Kvinne</option>
+              <option value="O">Annet</option>
+            </select>
+          </div>
 
-        <div>
-          <label className="block mb-1">Telefon</label>
-          <input className="input" {...register("telefon")} />
-        </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Fødselsdato</label>
+            <input
+              {...register("birthdate")}
+              className="w-full border rounded-lg p-2"
+              type="date"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-1">Adresse</label>
-          <input className="input" {...register("adresse")} />
-        </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Telefon</label>
+            <input
+              {...register("phone")}
+              className="w-full border rounded-lg p-2"
+              type="text"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-1">Navn på katt</label>
-          <input className="input" {...register("navn_paa_katt")} />
-        </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Adresse</label>
+            <input
+              {...register("address")}
+              className="w-full border rounded-lg p-2"
+              type="text"
+            />
+          </div>
 
-        <Button type="submit">Lagre</Button>
-      </form>
+          <div>
+            <label className="block text-sm font-medium mb-1">Navn på katt</label>
+            <input
+              {...register("cat_name")}
+              className="w-full border rounded-lg p-2"
+              type="text"
+            />
+          </div>
+
+          <Button type="submit" variant="primary" className="w-full mt-4">
+            Lagre profil
+          </Button>
+
+        </form>
+
+      </div>
     </div>
   );
 }
