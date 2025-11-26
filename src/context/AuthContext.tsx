@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { isTokenValid } from "@/auth";
 
@@ -10,20 +9,11 @@ type AuthContextType = {
   setToken: (token: string) => void;
 };
 
-// NB: behold navnet "authContext" hvis apiFetch importerer det navnet
-export const authContext = createContext<AuthContextType>({
-  loggedIn: false,
-  login: () => {},
-  logout: () => {},
-  getToken: () => null,
-  setToken: () => {},
-});
+export const authContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  // Gate første render til vi har bestemt status
-  const [loggedIn, setLoggedIn] = useState<boolean | null>(() => isTokenValid());
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
 
-  // --- impl av funksjoner som brukes både av UI og apiFetch ---
   const getToken = () => localStorage.getItem("token");
 
   const setToken = (token: string) => {
@@ -31,32 +21,43 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoggedIn(true);
   };
 
-  const login = (token: string) => {
-    setToken(token); // samme som over
-  };
+  const login = (token: string) => setToken(token);
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refresh_token");
     setLoggedIn(false);
   };
-  // -------------------------------------------------------------
 
   useEffect(() => {
-    const check = () => setLoggedIn(isTokenValid());
-    check(); // viktig på initial mount
+    const check = () => {
+
+      const t = getToken();
+      console.log("Stored token:", t);
+
+
+      if (t) {
+	try {
+	  const [, payload] = t.split(".");
+	  console.log("Decoded JWT payload:", JSON.parse(atob(payload)));
+	} catch (e) {
+	  console.error("JWT decode error", e);
+	}
+      }
+
+      const ok = isTokenValid();
+      setLoggedIn(ok);
+    };
+
+    check();
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
   }, []);
 
-  console.log("AuthProvider render → loggedIn =", loggedIn);
-
   if (loggedIn === null) {
-    // vis en kort loader til auth-status er kjent
-    return <div className="p-8 text-center text-gray-500">Laster …</div>;
+    return <div>Laster …</div>;
   }
 
-  // Her er loggedIn garantert boolean (narrowet av returnen over)
   return (
     <authContext.Provider value={{ loggedIn, login, logout, getToken, setToken }}>
       {children}
@@ -65,5 +66,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useAuth() {
-  return useContext(authContext);
+  const ctx = useContext(authContext);
+  if (!ctx) {
+    throw new Error("useAuth must be used inside AuthProvider");
+  }
+  return ctx;
 }

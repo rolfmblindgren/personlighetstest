@@ -1,14 +1,18 @@
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
 
 export function isTokenValid(): boolean {
-  const token = localStorage.getItem('token')
-  if (!token) return false
+  let token = localStorage.getItem('token');
+  if (!token) return false;
+
+  token = token.trim();
 
   try {
     const decoded: any = jwtDecode(token)
-    const now = Date.now() / 1000  // sekunder
-    return decoded.exp && decoded.exp > now
+    const now = Date.now() / 1000;
+
+    if (!decoded.exp) return false;
+    return decoded.exp > now;
   } catch {
-    return false
+    return false;
   }
 }

@@ -41,7 +41,7 @@ export function Layout({ children }) {
 
       {loggedIn && (
         <nav className="flex space-x-4">
-          <Link to="/dashboard" className="text-sm font-medium text-teal-900 hover:text-teal-700">
+          <Link to="@/pages/dashboard" className="text-sm font-medium text-teal-900 hover:text-teal-700">
             {t("dashboard")}
           </Link>
         </nav>

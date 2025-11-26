@@ -2,7 +2,7 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from '@/LandingPage';
-import Dashboard from '@/dashboard';
+import Dashboard from '@/pages/Dashboard';
 import ForgotPassword from '@/ForgotPassword';
 import ResetPassword from '@/ResetPassword';
 import VerifyEmailPage from '@/VerifyEmailPage';
@@ -19,12 +19,21 @@ import GDPR from "@/pages/GDPR";
 import CHANGELOG from "@/pages/ChangeLog";
 import IpipNeo from '@/ipip_neo';
 
+import { useAuth } from "@/context/AuthContext";
+
+function DebugAuth() {
+  const { loggedIn } = useAuth();
+  console.log("loggedIn =", loggedIn);
+  return null;
+}
+
 
 function App() {
   return (
     <HelmetProvider>
       <Router>
         <Layout>
+          <DebugAuth />
         <Routes>
 
           <Route path="/"
@@ -32,7 +41,6 @@ function App() {
                          }
           />
 
-          <Route path="/testrunner/:testId" element={<TestRunner />} />
           <Route path="/test/:testId/donate" element={<DonationPage />} />
           <Route path="/test/:testId/results" element={<ScoresPage />} />
 
@@ -48,8 +56,8 @@ function App() {
           <Route path="/testsOverview"
                  element={
                    <ProtectedRoute>
-                     <TestsOverview /><
-                   /ProtectedRoute>
+                     <TestsOverview />
+                   </ProtectedRoute>
                  }
           />
 
