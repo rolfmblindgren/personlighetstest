@@ -62,6 +62,8 @@ export async function authFetch(url: string, init: RequestInit = {}) {
   if (token) headers.set("Authorization", `Bearer ${token}`);
 
   const res = await fetch(url, { ...init, headers });
+  console.log(url)
+  console.log(headers)
 
   // 2) plukk opp rullende token fra responsheader
   const fresh = res.headers.get("X-Access-Token");
