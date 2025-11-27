@@ -15,10 +15,10 @@ export default function TestPicker() {
   useEffect(() => {
     (async () => {
       try {
-        const hdrs = { Authorization: `Bearer ${localStorage.getItem("token")}` };
+
         const [tplRes, myRes] = await Promise.all([
-          fetch(`${API}/test-templates`, { headers: hdrs }),
-          fetch(`${API}/tests?status=open`, { headers: hdrs }),
+          authFetch (`${API}/test-templates`),
+          authFetch (`${API}/tests?status=open`),
         ]);
         if (!tplRes.ok || !myRes.ok) throw new Error("Kunne ikke hente lister");
         setTemplates(await tplRes.json());

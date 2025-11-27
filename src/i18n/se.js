@@ -202,5 +202,6 @@ export default {
   deleteSelected: "Sihko merkkojuvvon",
 
 
+
   tScore: "T-skoar"
 };

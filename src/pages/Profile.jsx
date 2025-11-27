@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { authFetch } from "@/lib/apiFetch";
 import { API, ENDPOINT } from "@/lib/apiBase";
 import Button from "@/components/Button";
+import { H1, H2, H3} from "@/components/Heading";
 import { t } from "@/i18n";
 
 export default function ProfilePage() {
@@ -18,6 +19,17 @@ export default function ProfilePage() {
         if (!res.ok) throw new Error("Kunne ikke hente profil");
         const data = await res.json();
         setProfile(data);
+
+        if (data.foedselsdato) {
+          const d = new Date(data.foedselsdato);
+          if (!isNaN(d)) {
+            data.foedselsdato = d.toISOString().slice(0, 10);
+          } else {
+            data.foedselsdato = ""; // fallback hvis noe helt uventet skjer
+          }
+        }
+        reset(data);
+
         reset(data);
       } catch (err) {
         console.error("Feil ved henting av profil:", err);
@@ -50,7 +62,7 @@ export default function ProfilePage() {
           <div>
             <label className="block text-sm font-medium mb-1">Navn</label>
             <input
-              {...register("full_name")}
+              {...register("navn")}
               className="w-full border rounded-lg p-2"
               type="text"
             />
@@ -59,19 +71,19 @@ export default function ProfilePage() {
           <div>
             <label className="block text-sm font-medium mb-1">Kjønn</label>
             <select
-              {...register("gender")}
+              {...register("kjonn")}
               className="w-full border rounded-lg p-2"
             >
-              <option value="M">Mann</option>
-              <option value="F">Kvinne</option>
-              <option value="O">Annet</option>
+              <option value="mann">Mann</option>
+              <option value="kvinne">Kvinne</option>
+              <option value="annet">Annet</option>
             </select>
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-1">Fødselsdato</label>
             <input
-              {...register("birthdate")}
+              {...register("foedselsdato")}
               className="w-full border rounded-lg p-2"
               type="date"
             />
@@ -80,7 +92,7 @@ export default function ProfilePage() {
           <div>
             <label className="block text-sm font-medium mb-1">Telefon</label>
             <input
-              {...register("phone")}
+              {...register("telefon")}
               className="w-full border rounded-lg p-2"
               type="text"
             />
@@ -89,7 +101,7 @@ export default function ProfilePage() {
           <div>
             <label className="block text-sm font-medium mb-1">Adresse</label>
             <input
-              {...register("address")}
+              {...register("adresse")}
               className="w-full border rounded-lg p-2"
               type="text"
             />
@@ -98,7 +110,7 @@ export default function ProfilePage() {
           <div>
             <label className="block text-sm font-medium mb-1">Navn på katt</label>
             <input
-              {...register("cat_name")}
+              {...register("navn_paa_katt")}
               className="w-full border rounded-lg p-2"
               type="text"
             />

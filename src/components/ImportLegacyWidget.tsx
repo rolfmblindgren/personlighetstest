@@ -17,17 +17,24 @@ export default function ImportMyLegacyWidget() {
   useEffect(() => {
     async function check() {
       try {
-        const data = await authFetch(`${API}/check-legacy-tests`, {
+	console.log("🔍 using API:", API)
+
+        const res = await authFetch(`${API}/check-legacy-tests`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
+	const data = await res.json();
+
+	console.log(data.hasLegacy)
 
         setHasLegacy(data.hasLegacy);
         setCount(data.count);
+
+
+
       } catch (err) {
         console.error("⚠️ Feil i check-legacy-tests:", err);
       } finally {
@@ -52,6 +59,8 @@ export default function ImportMyLegacyWidget() {
       });
 
       const data = await resp.json();
+      console.log(data.imported)
+
       setResult(`${data.imported} tester importert`);
 
       // etter import, backend vil rapportere heilt nytt tal

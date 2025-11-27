@@ -154,6 +154,8 @@ export default {
   deleteSelected: "Slett valgte",
 
 
+
+
   tScore: "T-skår"
 
 
