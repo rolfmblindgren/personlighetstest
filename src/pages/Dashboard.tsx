@@ -11,7 +11,7 @@ import MyTestsWidget from '@/components/MyTestsWidget';
 import { H1, H2, H3 } from '@/components/Heading';
 import ImportLegacyWidget from '@/components/ImportLegacyWidget';
 import { t } from '@/i18n';
-import { useHasLegacy } from '@/hooks/useHaslegacy';
+import { useHasLegacy } from '@/hooks/useHasLegacy';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 
 export default function Dashboard() {
