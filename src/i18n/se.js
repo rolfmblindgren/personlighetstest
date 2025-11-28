@@ -201,7 +201,21 @@ export default {
   isDeleting: "Sihkkojuvvo …",
   deleteSelected: "Sihko merkkojuvvon",
 
+ "fetchProfilerror": "Ii sáhttán ođasmahttit profila",
+  "profile": "Profil",
+  "editProfile": "Rievdat profila",
+  "myProfile": "Mu profil",
+  "saveProfile": "Vurket profila",
+"name": "Namma",
+  "gender": "Sohkabealli / Čalka",
+  "dob": "Riegádanbeaivi",
+  "phone": "Telefuvdna",
+  "address": "Čujuhus",
+  "catsName": "Gádda nama",
 
+  "man": "Olmmoš almmái",
+  "woman": "Olmmoš nieida/nissun*",
+  "other": "Eará",
 
   tScore: "T-skoar"
 };

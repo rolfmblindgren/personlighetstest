@@ -151,6 +151,22 @@ export default {
   isDeleting: "Poistetaan…",
   deleteSelected: "Poista valitut",
 
+"fetchProfilerror": "Ei saanu henttaat profilii",
+  "profile": "Profili",
+  "editProfile": "Muokata profilii",
+  "myProfile": "Mii profili",
+  "saveProfile": "Tallentaat profilii",
+
+  "name": "Nimi",
+  "gender": "Suku",
+  "dob": "Syntymäaika",
+  "phone": "Telefon",
+  "address": "Aadressi",
+  "catsName": "Kissan nimi",
+
+   "man": "Mies",
+  "woman": "Nainen",
+  "other": "Toine",
 
 
   tScore: "T-pisteet"

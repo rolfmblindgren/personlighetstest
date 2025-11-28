@@ -153,7 +153,18 @@ export default {
   isDeleting: "Sletter …",
   deleteSelected: "Slett valgte",
 
+  fetchProfilerror: "Kunne ikke hente profil",
+  profile: "Profil",
+  editProfile: "Rediger profil",
+  myProfile: "Min profil",
 
+  name: "Navn",
+  gender: "Kjønn",
+  dob: "Fødselsdato",
+
+  phone: "Telefon",
+  address: "Adresse",
+  catsName: "Navn på katt",
 
 
   tScore: "T-skår"
