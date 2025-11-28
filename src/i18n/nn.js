@@ -152,6 +152,8 @@ export default {
   isDeleting: "Slettar …",
   deleteSelected: "Slett valde",
 
+
+
   tScore: "T-skår"
 
 };

@@ -56,11 +56,10 @@ export default function TestRunner({  }) {
   }
 
   async function saveOne(position: number, itemId: number, score: number) {
-    await fetch(`${API}/tests/${testId}/responses`, {
+    await authFetch(`${API}/tests/${testId}/responses`, {
       method: "POST",
       headers: {
 	"Content-Type": "application/json",
-	Authorization: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify([{ position, item_id: itemId, score }]) // server kan upserte batchet
     });
@@ -73,8 +72,7 @@ export default function TestRunner({  }) {
       setLoading(true); setError("");
       try {
         const params = new URLSearchParams({ offset: String(offset), limit: String(pageSize) });
-        const r = await fetch(`${API}/tests/${testId}/items?` + params.toString(), {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        const r = await authFetch(`${API}/tests/${testId}/items?` + params.toString(), {
         });
         if (!r.ok) throw new Error("Kunne ikke hente spørsmål");
         const data = await r.json();

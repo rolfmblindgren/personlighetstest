@@ -151,5 +151,7 @@ export default {
   isDeleting: "Poistetaan…",
   deleteSelected: "Poista valitut",
 
+
+
   tScore: "T-pisteet"
 };

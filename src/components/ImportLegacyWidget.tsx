@@ -17,17 +17,24 @@ export default function ImportMyLegacyWidget() {
   useEffect(() => {
     async function check() {
       try {
-        const data = await authFetch(`${API}/check-legacy-tests`, {
+
+
+        const res = await authFetch(`${API}/check-legacy-tests`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
+	const data = await res.json();
+
+	console.log(data.hasLegacy)
 
         setHasLegacy(data.hasLegacy);
         setCount(data.count);
+
+
+
       } catch (err) {
         console.error("⚠️ Feil i check-legacy-tests:", err);
       } finally {
@@ -46,15 +53,26 @@ export default function ImportMyLegacyWidget() {
     try {
       const resp = await authFetch(`${API}/import-legacy-tests`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+	headers: {
+	  "Content-Type": "application/json",
         },
       });
 
-      const data = await resp.json();
-      setResult(`${data.imported} tester importert`);
+      console.log("HTTP-status:", resp.status);
 
-      // etter import, backend vil rapportere heilt nytt tal
+      const raw = await resp.text();
+      console.log("Raw body:", raw);
+
+      let data = {};
+      try {
+	data = JSON.parse(raw);
+      } catch {
+	console.warn("Klarte ikke parse JSON");
+      }
+
+      console.log("PARSED:", data);
+
+      setResult(`${data.imported} tester importert`);
       setHasLegacy(false);
     } catch (err) {
       console.error("⚠️ Feil under import:", err);
@@ -64,16 +82,8 @@ export default function ImportMyLegacyWidget() {
     }
   }
 
-
-
-
-
   // 3) Visningslogikk
   if (loading) return null;
-
-
-
-
 
   if (!hasLegacy && !isImporting) return (
     <p>Du har ingen gamle tester som du ikke har importert</p>

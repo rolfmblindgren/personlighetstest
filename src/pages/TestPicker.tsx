@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { API } from "@/lib/apiBase";
+import { authFetch } from "@/lib/apiFetch";
 import { t as tr } from "@/i18n";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
 export default function TestPicker() {
   const nav = useNavigate();
@@ -15,10 +17,10 @@ export default function TestPicker() {
   useEffect(() => {
     (async () => {
       try {
-        const hdrs = { Authorization: `Bearer ${localStorage.getItem("token")}` };
+
         const [tplRes, myRes] = await Promise.all([
-          fetch(`${API}/test-templates`, { headers: hdrs }),
-          fetch(`${API}/tests?status=open`, { headers: hdrs }),
+          authFetch (`${API}/test-templates`),
+          authFetch (`${API}/tests?status=open`),
         ]);
         if (!tplRes.ok || !myRes.ok) throw new Error("Kunne ikke hente lister");
         setTemplates(await tplRes.json());
@@ -34,10 +36,9 @@ export default function TestPicker() {
 
   async function startTest(template,lang) {
     try {
-      const r = await fetch(`${API}/tests`, {
+      const r = await authFetch(`${API}/tests`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({

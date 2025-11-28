@@ -13,15 +13,21 @@ export default function TestPicker() {
   useEffect(() => {
     (async () => {
       try {
-        const hdrs = { Authorization: `Bearer ${localStorage.getItem("token")}` };
+};
         const [tplRes, myRes] = await Promise.all([
-          fetch(`${API}/test-templates`, { headers: hdrs }),
-          fetch(`${API}/tests?status=open`, { headers: hdrs }),
+          authFetch(`${API}/test-templates`, { headers: hdrs }),
+          authFetch(`${API}/tests?status=open`, { headers: hdrs }),
         ]);
-        if (!tplRes.ok || !myRes.ok) throw new Error("Kunne ikke hente lister");
-        setTemplates(await tplRes.json());
-        const data = await myRes.json();
-        setOpenTests(data.items || []);
+
+      if (!tplRes.ok || !myRes.ok) {
+	throw new Error("Kunne ikke hente lister");
+      }
+
+      setTemplates(await tplRes.json());
+
+      const data = await myRes.json();
+      setOpenTests(data.items || []);
+
       } catch (e) {
         setErr(e.message || "Nettverksfeil");
       } finally {
@@ -32,11 +38,10 @@ export default function TestPicker() {
 
   async function startTest(template) {
     try {
-      const r = await fetch(`${API}/tests`, {
+      const r = await authFetch(`${API}/tests`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ template_id: template.id }),
       });
