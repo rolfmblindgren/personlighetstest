@@ -4,7 +4,7 @@ import { authFetch } from "@/lib/apiFetch";
 import { API, ENDPOINT } from "@/lib/apiBase";
 import Button from "@/components/Button";
 import { H1, H2, H3} from "@/components/Heading";
-import { t } from "@/i18n";
+import { t as tr } from "@/i18n";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
@@ -16,7 +16,7 @@ export default function ProfilePage() {
     async function hentProfil() {
       try {
         const res = await authFetch(ENDPOINT.userProfile);
-        if (!res.ok) throw new Error("Kunne ikke hente profil");
+        if (!res.ok) throw new Error(tr('fetchProfileError'));
         const data = await res.json();
         setProfile(data);
 
@@ -55,12 +55,12 @@ export default function ProfilePage() {
     <div className="max-w-xl mx-auto mt-10">
       <div className="bg-white shadow-md rounded-xl p-8 space-y-6">
 
-        <H2>Min profil</H2>
+        <H2>{tr('myProfile')}</H2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
           <div>
-            <label className="block text-sm font-medium mb-1">Navn</label>
+   <label className="block text-sm font-medium mb-1">{tr('name')}</label>
             <input
               {...register("navn")}
               className="w-full border rounded-lg p-2"
@@ -69,19 +69,19 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Kjønn</label>
+            <label className="block text-sm font-medium mb-1">{tr('gender')}</label>
             <select
               {...register("kjonn")}
               className="w-full border rounded-lg p-2"
             >
-              <option value="mann">Mann</option>
-              <option value="kvinne">Kvinne</option>
-              <option value="annet">Annet</option>
+              <option value="mann">{tr('man')}</option>
+              <option value="kvinne">{tr('woman')}</option>
+              <option value="annet">{tr('other')}</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Fødselsdato</label>
+            <label className="block text-sm font-medium mb-1">{tr('dob')}</label>
             <input
               {...register("foedselsdato")}
               className="w-full border rounded-lg p-2"
@@ -90,7 +90,7 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Telefon</label>
+            <label className="block text-sm font-medium mb-1">{tr('phone')}</label>
             <input
               {...register("telefon")}
               className="w-full border rounded-lg p-2"
@@ -99,7 +99,7 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Adresse</label>
+            <label className="block text-sm font-medium mb-1">{tr('address')}</label>
             <input
               {...register("adresse")}
               className="w-full border rounded-lg p-2"
@@ -108,7 +108,7 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Navn på katt</label>
+            <label className="block text-sm font-medium mb-1">{tr('catsName')}</label>
             <input
               {...register("navn_paa_katt")}
               className="w-full border rounded-lg p-2"
@@ -117,7 +117,7 @@ export default function ProfilePage() {
           </div>
 
           <Button type="submit" variant="primary" className="w-full mt-4">
-            Lagre profil
+            {tr('saveProfile')}
           </Button>
 
         </form>
