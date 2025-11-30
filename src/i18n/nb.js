@@ -158,6 +158,8 @@ export default {
   editProfile: "Rediger profil",
   myProfile: "Min profil",
 
+  saveProfile: "Lagre profil",
+
   name: "Navn",
   gender: "Kjønn",
   dob: "Fødselsdato",
@@ -165,6 +167,10 @@ export default {
   phone: "Telefon",
   address: "Adresse",
   catsName: "Navn på katt",
+
+  man: "Mann",
+  woman: "Kvinne",
+  other: "Annet",
 
 
   tScore: "T-skår"
