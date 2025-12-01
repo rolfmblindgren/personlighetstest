@@ -70,6 +70,11 @@ export default function ImportMyLegacyWidget() {
 	console.warn("Klarte ikke parse JSON");
       }
 
+       if (data.import_complete) {
+	 setIsImporting(false);
+	 setHasLegacy(false);
+       }
+
       console.log("PARSED:", data);
 
       setResult(`${data.imported} tester importert`);

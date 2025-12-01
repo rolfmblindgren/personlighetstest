@@ -56,22 +56,6 @@ export default function ScoresPage() {
     return typeof label === 'string' && label !== key ? label : key;
   };
 
-  useEffect(() => {
-    let abort = false;
-    (async () => {
-      try {
-        setErr("");
-        const r = await authFetch(`${API}/tests/${testId}/scores`);
-        if (!r.ok) throw new Error("Kunne ikke hente skårer");
-        const j = await r.json();
-        if (!abort) setData(j);
-      } catch (e: any) {
-        if (!abort) setErr(e.message || "Feil");
-      }
-    })();
-    return () => { abort = true; };
-  }, [testId]);
-
 
 
   const domainsSorted = useMemo(
@@ -93,20 +77,24 @@ export default function ScoresPage() {
     let abort = false;
     (async () => {
       setLoading(true);
+      setErr("");
+
       try {
-        const r = await authFetch(`${API}/tests/${testId}/scores`);
-        const j = await r.json();
-        if (!abort) setData(j);
-      } catch (e) {
-        console.error(e);
+	const r = await authFetch(`${API}/tests/${testId}/scores`);
+	if (!r.ok) throw new Error("Kunne ikke hente skårer");
+
+	const j = await r.json();
+	if (!abort) setData(j);
+
+      } catch (e: any) {
+	if (!abort) setErr(e.message || "Feil");
       } finally {
-        if (!abort) setLoading(false);
+	if (!abort) setLoading(false);
       }
     })();
+
     return () => { abort = true };
   }, [testId]);
-
-
 
   if (loading) {
     return (
