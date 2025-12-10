@@ -1,3 +1,6 @@
+## 2025-12-10
+- Divvojuvvon prográmmafeaila mii gáfat testta álggahan.
+
 ## 2025-11-13
 - Lasihuvvon vejolašvuođa váldit sisa ovddasat gihppusiid Jotform-rávvagiin.
 

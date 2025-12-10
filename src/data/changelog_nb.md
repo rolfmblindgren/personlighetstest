@@ -1,3 +1,6 @@
+## 2025-12-10
+- Rettet bug som gjorde at tester ikke ville starte
+
 ## 2025-11-13
 - Lagt inn mulighet for å hente inn tidligere tester fra jotform-løsninga
 

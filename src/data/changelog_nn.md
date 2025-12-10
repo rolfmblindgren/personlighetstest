@@ -1,3 +1,6 @@
+## 2025-12-10
+-  Retta ein feil som gjorde at testar ikkje starta.
+
 ## 2025-11-13
 -  Lagt inn moglegheit for å hente inn tidlegare testar frå Jotform-løysinga.
 

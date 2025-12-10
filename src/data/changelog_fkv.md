@@ -1,3 +1,6 @@
+## 2025-12-10
+- Oikaissema virhe joka esti testien alkamisen.
+
 ## 2025-11-13
 - Lissattu mahdolliisuus hakkeet sisään aikhaisemmat testit Jotform-ratkaiusta.
 
