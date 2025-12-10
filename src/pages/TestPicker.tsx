@@ -38,9 +38,9 @@ export default function TestPicker() {
     try {
       const r = await authFetch(`${API}/tests`, {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+	headers: {
+	  "Content-Type": "application/json",
+	},
         body: JSON.stringify({
 	  template_id: template.id,
 	  language: lang,
