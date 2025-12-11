@@ -1,3 +1,6 @@
+## 2025-12-11
+- Rettet bug som ga timeout etter tredve sekunder
+
 ## 2025-12-10
 - Rettet bug som gjorde at tester ikke ville starte
 
