@@ -1,3 +1,6 @@
+## 2025-12-11
+– Fixed a bug that caused a timeout after thirty seconds
+
 ## 2025-12-10
 - Fixed bug that preented tests from starting
 

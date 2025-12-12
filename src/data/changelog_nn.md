@@ -1,3 +1,6 @@
+## 2025-12-11
+– Retta ein feil som førte til tidsavbrot etter tretti sekund
+
 ## 2025-12-10
 -  Retta ein feil som gjorde at testar ikkje starta.
 

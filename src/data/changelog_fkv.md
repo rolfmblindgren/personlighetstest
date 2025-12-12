@@ -1,3 +1,6 @@
+## 2025-12-11
+– Korjattiin vika joka aiheutti aikakatkaisun kolmenkymmenen sekunnin jälkhiin
+
 ## 2025-12-10
 - Oikaissema virhe joka esti testien alkamisen.
 
