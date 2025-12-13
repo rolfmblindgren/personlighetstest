@@ -99,7 +99,7 @@ export default {
   C5: "Selvdisiplin",
   C6: "Betenksomhet",
 
-  scoresTitle: "Restultater",
+  scoresTitle: "Resultater",
   domainsHeading: "Faktorer",
   facetsHeading: "Fasetter",
   domain: "Faktor",
@@ -172,6 +172,7 @@ export default {
   woman: "Kvinne",
   other: "Annet",
 
+  generatesNarrative: "Genererer tolkning. Det tar ca. et minutt.",
 
   tScore: "T-skår"
 

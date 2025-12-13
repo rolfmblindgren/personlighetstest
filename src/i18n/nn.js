@@ -170,6 +170,8 @@ export default {
   "woman": "Kvinne",
   "other": "Anna",
 
+  generatesNarrative: "Genererer tolking. Det tek om lag eitt minutt.",
+
   tScore: "T-skår"
 
 };

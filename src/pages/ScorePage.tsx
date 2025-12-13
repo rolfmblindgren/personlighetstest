@@ -173,10 +173,18 @@ export default function ScoresPage() {
         </div>
       ))}
 
-      {data.narrative?.[0]?.text_md &&  (
+      {data.narrative?.[0]?.text_md ? (
 	<div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-turkis-100">
-	  <Narrative className="prose prose-sm prose-h1:text-turkis-600 dark:prose-invert max-w-none"
-	    text={data.narrative[0].text_md} />
+	  <Narrative
+	    className="prose prose-sm prose-h1:text-turkis-600 dark:prose-invert max-w-none"
+	    text={data.narrative[0].text_md}
+	  />
+	</div>
+      ) : (
+	<div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-turkis-100 opacity-60">
+	  <p className="italic">
+	    {t('generatesNarrative')}
+	  </p>
 	</div>
       )}
 

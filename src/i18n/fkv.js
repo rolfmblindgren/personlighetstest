@@ -168,6 +168,7 @@ export default {
   "woman": "Nainen",
   "other": "Toine",
 
+  generatesNarrative: "Tulkintaa luodaan. Se kestää noin yhden minuutin.",
 
   tScore: "T-pisteet"
 };
