@@ -217,5 +217,7 @@ export default {
   "woman": "Olmmoš nieida/nissun*",
   "other": "Eará",
 
+  generatesNarrative: "Dulkomiid dulkomušaid. Dat váldá sullii ovtta minuhta.",
+
   tScore: "T-skoar"
 };
