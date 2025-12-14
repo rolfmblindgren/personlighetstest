@@ -1,5 +1,11 @@
+## 2025-12-13
+- Endra generering av narrativ slik at ho skjer uavhengig av skårar, slik at skårane blir viste med ein gong.
+
+## 2025-12-13
+- Retta ein feil som førte til at narrativ vart generert fleire gonger.
+
 ## 2025-12-11
-– Retta ein feil som førte til tidsavbrot etter tretti sekund
+- Retta ein feil som førte til tidsavbrot etter tretti sekund
 
 ## 2025-12-10
 -  Retta ein feil som gjorde at testar ikkje starta.

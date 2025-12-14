@@ -1,3 +1,10 @@
+## 2025-12-13
+– Endret generering av narrativ slik at det genereres uavhengig av
+  skårer, slik at skårer blir vist med én gang.
+
+## 2025-12-13
+– Rettet bug som førte til at narrativ ble generert flere ganger
+
 ## 2025-12-11
 - Rettet bug som ga timeout etter tredve sekunder
 

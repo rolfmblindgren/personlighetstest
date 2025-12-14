@@ -1,5 +1,11 @@
+## 2025-12-13
+- Muutettu narratiivin luominen niin, ette se tapahtuu riippumatta skåreista, niin ette skårit näytethään heti.
+
+## 2025-12-13
+- Korjattu vika, joka aiheutti sen, ette narratiivi luothiin useamman kerran.
+
 ## 2025-12-11
-– Korjattiin vika joka aiheutti aikakatkaisun kolmenkymmenen sekunnin jälkhiin
+- Korjattiin vika joka aiheutti aikakatkaisun kolmenkymmenen sekunnin jälkhiin
 
 ## 2025-12-10
 - Oikaissema virhe joka esti testien alkamisen.
