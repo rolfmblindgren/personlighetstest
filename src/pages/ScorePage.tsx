@@ -12,6 +12,7 @@ import Narrative  from '@/components/Narrative';
 import Markdown  from 'react-markdown';
 import { useGetProfile }  from '@/hooks/useGetProfile';
 import { useIsAdmin }  from '@/hooks/useIsAdmin';
+import PrintButton from '@/components/PrintButton.tsx';
 
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
 type FacetRow  = { domain: string; facet: number; mean_score: number | string | null; n_items: number };
@@ -49,14 +50,11 @@ export default function ScoresPage() {
 
   const { profile, profileIsLoading, error } = useGetProfile();
 
-
   const facetLabel = (domain: string, facetNo: number) => {
     const key = `${domain}${facetNo}` as any; // f.eks. "N4"
     const label = t(key);
     return typeof label === 'string' && label !== key ? label : key;
   };
-
-
 
   const domainsSorted = useMemo(
     () => (data.domains ?? []).slice().sort((a,b) => orderIdx(a.domain) - orderIdx(b.domain)),
@@ -106,7 +104,11 @@ export default function ScoresPage() {
 
 
   return (
+
     <div className="max-w-3xl mx-auto p-4">
+
+      <PrintButton />
+
       <H1 className="text-2xl font-semibold mb-4">
         {t('scoresTitle') || t('scores')}
 	{' '}

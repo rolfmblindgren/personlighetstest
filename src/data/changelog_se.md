@@ -1,3 +1,9 @@
+## 2025-12-13
+- Rievdaduvvon narratiiva ráhkadeami nu ahte dat doaibmá skáraid aldekeahttá, vai skáraid oidnojit dáláža.
+
+## 2025-12-13
+- Divvojuvvon meattáhus mii dagahii ahte narratiiva ráhkaduvvui máŋgga geardde.
+
 ##  2025-12-11
 - Divttii vihkki mii dagai ahte dat bođii áigemearrái mannan maŋŋel golbmalogis sekunddaid
 
