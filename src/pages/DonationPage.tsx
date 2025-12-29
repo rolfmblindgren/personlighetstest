@@ -4,9 +4,19 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import Button from "@/components/Button";
 
+
+
 export default function DonationPage() {
+
+
   const { testId } = useParams();
   const navigate = useNavigate();
+
+
+
+  const kittyIndex = (testId % 4) + 1
+  const base = `/bilder/cutekitty${kittyIndex}`
+
 
   async function handleDonate(amount = 75) {
     try {
@@ -30,6 +40,26 @@ export default function DonationPage() {
         Prosjektet drives uten kommersiell støtte. Om du vil bidra til drift og videreutvikling,
         foreslår vi et frivillig bidrag på 75 kroner.
       </p>
+
+
+
+      <picture className="block my-8 p-4 bg-gray-50 rounded-xl">
+	<source
+	  srcSet={`${base}-480.webp 480w, ${base}-1280.webp 1280w`}
+	  type="image/webp"
+	/>
+	<source
+	  srcSet={`${base}-480.png 480w, ${base}-1280.png 1280w`}
+	  type="image/png"
+	/>
+	<img
+	  src={`${base}-1280.png`}
+	  alt="Kan du se nei til desse auga?"
+	  className="w-full h-auto rounded-lg"
+	/>
+      </picture>
+
+
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button onClick={() => handleDonate(75)}>Doner 75 kr</Button>
