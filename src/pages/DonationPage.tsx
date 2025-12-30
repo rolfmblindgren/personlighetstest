@@ -1,6 +1,8 @@
 import { API } from "@/lib/apiBase";
 import { authFetch } from "@/lib/apiFetch";
 import { useParams, useNavigate } from "react-router-dom";
+import { t as tr } from "@/i18n";
+
 
 import Button from "@/components/Button";
 
@@ -35,10 +37,9 @@ export default function DonationPage() {
 
   return (
     <div className="max-w-lg mx-auto mt-12 p-4 text-center space-y-6">
-      <h1 className="text-2xl font-semibold">Takk for at du fullførte testen!</h1>
+      <h1 className="text-2xl font-semibold">{tr('thankyou')}</h1>
       <p className="text-gray-700 leading-relaxed">
-        Prosjektet drives uten kommersiell støtte. Om du vil bidra til drift og videreutvikling,
-        foreslår vi et frivillig bidrag på 75 kroner.
+        {tr('donateplea')}
       </p>
 
 
@@ -54,7 +55,7 @@ export default function DonationPage() {
 	/>
 	<img
 	  src={`${base}-1280.png`}
-	  alt="Kan du se nei til desse auga?"
+	  alt="Kan du sei nei til desse auga?"
 	  className="w-full h-auto rounded-lg"
 	/>
       </picture>
@@ -62,9 +63,9 @@ export default function DonationPage() {
 
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button onClick={() => handleDonate(75)}>Doner 75 kr</Button>
+        <Button onClick={() => handleDonate(75)}>{tr('donate75')}</Button>
         <Button variant="secondary" onClick={() => navigate(`/test/${testId}/results`)}>
-          Vis resultat uten å donere
+          {tr('skinflint')}
         </Button>
       </div>
     </div>

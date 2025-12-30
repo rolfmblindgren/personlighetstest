@@ -174,6 +174,12 @@ export default {
 
   generatesNarrative: "Genererer tolkning. Det tar ca. et minutt.",
 
+  thankyou: "Takk for at du fullførte testen!",
+  donateplea: "Prosjektet drives uten kommersiell støtte. Om du vil bidra til drift og videreutvikling, foreslår vi et frivillig bidrag på 75 kroner.",
+
+  donate75: "Doner 75 kr",
+  skinflint: "Vis resultat uten å donere",
+
   tScore: "T-skår"
 
 

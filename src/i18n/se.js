@@ -219,5 +219,11 @@ export default {
 
   generatesNarrative: "Dulkomiid dulkomušaid. Dat váldá sullii ovtta minuhta.",
 
+  "thankyou": "Giitu ahte don leat válmmaštan geahččaleami!",
+  "donateplea": "Dát prošeakta lea áiggiheaddjiheapmi ilman kommersiella doarjaga. Jus háliidat doarjut doaibma ja ovdánahttima, evttohit mii eaktodáhtolaš ávkkástallama 75 ruvnnu.",
+  "donate75": "Atte 75 ruvnnu",
+  "skinflint": "Čájet bohtosiid almmá donerehaga",
+
+
   tScore: "T-skoar"
 };
