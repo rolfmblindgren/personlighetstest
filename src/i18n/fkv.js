@@ -170,5 +170,11 @@ export default {
 
   generatesNarrative: "Tulkintaa luodaan. Se kestää noin yhden minuutin.",
 
+
+  "thankyou": "Kiitos ette olet suorittanu testin!",
+  "donateplea": "Projekti toimithaan ilman kaupallista tukkee. Jos tahot tukea toiminttaa ja jatkokehittämistä, ehđotama vapaaehtoista 75 kruunun lahjoitusta.",
+  "donate75": "Anna 75 kr",
+  "skinflint": "Näytä tulokset ilman lahjoitusta",
+
   tScore: "T-pisteet"
 };
