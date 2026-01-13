@@ -180,7 +180,56 @@ export default {
   donate75: "Doner 75 kr",
   skinflint: "Vis resultat uten å donere",
 
-  tScore: "T-skår"
+  tScore: "T-skår",
+
+
+desc_E: "Handler om hvor mye sosial og ytre stimulering man typisk søker. Lav skåre innebærer ofte preferanse for ro, fordypning og begrenset sosial eksponering.",
+desc_A: "Beskriver hvordan man forholder seg til andre mennesker. Lav skåre handler oftere om skepsis og selvstendighet enn om mangel på empati.",
+desc_C: "Handler om struktur, selvregulering og målrettethet. Lav skåre innebærer ofte fleksibilitet, men også mindre vekt på planlegging og orden.",
+desc_N: "Beskriver tendens til emosjonell reaktivitet og stress. Høy skåre innebærer sterkere og mer vedvarende følelsesmessige reaksjoner.",
+  desc_O: "Handler om åpenhet for indre opplevelser, ideer og nye perspektiver. Lav skåre innebærer ofte en mer pragmatisk og jordnær tilnærming.",
+
+  desc_E1: "Varme beskriver hvor lett man uttrykker nærhet og positiv affekt. Lav skåre innebærer ofte en mer reservert, men ikke nødvendigvis avvisende, omgangsform.",
+desc_E2: "Sosiabilitet handler om trivsel i sosiale sammenhenger. Lav skåre innebærer ofte at man foretrekker få og oversiktlige relasjoner.",
+desc_E3: "Selvmarkering beskriver hvor lett man tar plass og gjør seg synlig. Lav skåre forbindes ofte med tilbakeholdenhet i grupper.",
+desc_E4: "Aktivitet handler om tempo og behov for å være i gang. Lav skåre innebærer ofte et roligere og mer jevnt tempo.",
+desc_E5: "Spenningssøkning beskriver søken etter stimulans og intensitet. Lav skåre innebærer ofte preferanse for forutsigbarhet.",
+  desc_E6: "Positive følelser handler om hyppighet og intensitet av glede. Lav skåre innebærer ofte mer nøktern affekt, ikke nødvendigvis nedstemthet.",
+
+  desc_A1: "Tillit beskriver forventninger til andres intensjoner. Lav skåre innebærer ofte en mer kritisk og avventende holdning.",
+desc_A2: "Rettframhet handler om åpenhet og direktehet. Lav skåre kan innebære strategisk eller situasjonsavhengig kommunikasjon.",
+desc_A3: "Altruisme beskriver tilbøyelighet til å hjelpe andre. Lav skåre innebærer ofte større vekt på egne behov og grenser.",
+desc_A4: "Ettergivenhet handler om konflikthåndtering. Lav skåre innebærer ofte større vilje til å stå fast ved eget syn.",
+desc_A5: "Beskjedenhet beskriver forholdet til egen betydning. Lav skåre innebærer ofte større selvsikkerhet og tydelighet.",
+  desc_A6: "Følsomhet handler om medfølelse og innlevelse. Lav skåre innebærer ofte en mer nøktern og rasjonell tilnærming.",
+
+  desc_C1: "Kompetanse handler om opplevelse av mestring og kontroll. Lav skåre innebærer ofte mindre fokus på strukturert selvkontroll.",
+desc_C2: "Orden beskriver behov for system og ryddighet. Lav skåre innebærer ofte toleranse for uorden og fleksible løsninger.",
+desc_C3: "Pliktfølelse handler om norm- og regelorientering. Lav skåre innebærer ofte større situasjonsstyrt vurdering.",
+desc_C4: "Målrettethet beskriver utholdenhet mot langsiktige mål. Lav skåre innebærer ofte større åpenhet for endring underveis.",
+desc_C5: "Selvdisiplin handler om å fullføre selv når motivasjonen er lav. Lav skåre innebærer ofte behov for ytre struktur.",
+  desc_C6: "Betenksomhet beskriver grad av overveielse før handling. Lav skåre innebærer ofte spontanitet og rask beslutningstaking.",
+
+  desc_N1: "Engstelse handler om tendens til bekymring og uro. Høy skåre innebærer ofte økt årvåkenhet for risiko.",
+desc_N2: "Fiendtlighet beskriver irritabilitet og frustrasjon. Høy skåre innebærer ofte lavere terskel for sinne.",
+desc_N3: "Depresjon handler om tendens til nedstemthet. Høy skåre innebærer ikke nødvendigvis klinisk depresjon.",
+desc_N4: "Selvbevissthet beskriver følsomhet for sosial evaluering. Høy skåre innebærer ofte sterkere selvmonitorering.",
+desc_N5: "Impulsivitet handler om vansker med følelsesregulering. Høy skåre innebærer ofte raskere følelsesstyrt handling.",
+  desc_N6: "Sårbarhet beskriver reaksjoner under belastning. Høy skåre innebærer ofte lavere stresstoleranse.",
+
+  desc_O1: "Fantasi handler om indre forestillingsevne. Lav skåre innebærer ofte konkret og praktisk tenkning.",
+desc_O2: "Estetikk beskriver følsomhet for kunst og skjønnhet. Lav skåre innebærer ofte mindre vekt på estetiske opplevelser.",
+desc_O3: "Følelser handler om oppmerksomhet mot egne emosjoner. Lav skåre innebærer ofte nøktern følelsesbevissthet.",
+desc_O4: "Handlinger beskriver villighet til å prøve nye ting. Lav skåre innebærer ofte preferanse for det kjente.",
+desc_O5: "Ideer handler om intellektuell nysgjerrighet. Lav skåre innebærer ofte praktisk og anvendt tenkning.",
+desc_O6: "Verdier beskriver åpenhet for alternative normer. Lav skåre innebærer ofte stabilitet i verdigrunnlag."
+
+
+
+
+
+
+
 
 
 };

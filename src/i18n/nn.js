@@ -177,6 +177,53 @@ export default {
   "donate75": "Doner 75 kr",
   "skinflint": "Vis resultat utan å donere",
 
-  tScore: "T-skår"
+  tScore: "T-skår",
+
+  desc_E: "Handlar om kor mykje sosial og ytre stimulering ein vanlegvis søkjer. Låg skåre inneber ofte preferanse for ro, fordjuping og avgrensa sosial eksponering.",
+desc_A: "Skildrar korleis ein forheld seg til andre menneske. Låg skåre handlar oftare om sjølvstende og kritisk vurdering enn om manglande empati.",
+desc_C: "Handlar om struktur, sjølvregulering og målretta åtferd. Låg skåre inneber ofte fleksibilitet, men mindre vekt på planlegging og orden.",
+desc_N: "Skildrar tendens til emosjonell reaktivitet og stress. Høg skåre inneber sterkare og meir vedvarande kjenslemessige reaksjonar.",
+  desc_O: "Handlar om openheit for indre opplevingar, idear og nye perspektiv. Låg skåre inneber ofte ei meir pragmatisk og jordnær tilnærming.",
+
+  desc_E1: "Varme skildrar kor lett ein uttrykkjer nærleik og positiv affekt. Låg skåre inneber ofte ein meir reservert, men ikkje nødvendigvis avvisande, omgangsform.",
+desc_E2: "Sosialitet handlar om trivsel i sosiale samanhengar. Låg skåre inneber ofte at ein føretrekkjer få og oversiktlege relasjonar.",
+desc_E3: "Sjølvmarkering skildrar kor lett ein tek plass og gjer seg synleg. Låg skåre er ofte knytt til tilbakehaldenheit i grupper.",
+desc_E4: "Aktivitet handlar om tempo og behov for å vere i gang. Låg skåre inneber ofte eit rolegare og jamnare tempo.",
+desc_E5: "Spenningssøkking skildrar søking etter stimulans og intensitet. Låg skåre inneber ofte preferanse for føreseielege rammer.",
+  desc_E6: "Positive kjensler handlar om kor ofte og sterkt ein opplever glede. Låg skåre inneber ofte meir nøktern affekt, ikkje nødvendigvis nedstemtheit.",
+
+desc_A1: "Tillit skildrar forventningar til intensjonane til andre. Låg skåre inneber ofte ei meir avventande og kritisk haldning.",
+desc_A2: "Rettframheit handlar om open og direkte kommunikasjon. Låg skåre kan innebere meir strategisk eller situasjonsavhengig framferd.",
+desc_A3: "Altruisme skildrar tilbøyelegheit til å hjelpe andre. Låg skåre inneber ofte større vekt på eigne behov og grenser.",
+desc_A4: "Ettergivenheit handlar om handtering av konflikt. Låg skåre inneber ofte større vilje til å stå fast ved eigne synspunkt.",
+desc_A5: "Beskjedenheit skildrar forholdet til eiga tyding og status. Låg skåre inneber ofte større sjølvsikkerheit og tydelegheit.",
+  desc_A6: "Følsamheit handlar om medkjensle og innleving. Låg skåre inneber ofte ei meir nøktern og rasjonell tilnærming.",
+
+  desc_C1: "Kompetanse handlar om oppleving av meistring og kontroll. Låg skåre inneber ofte mindre fokus på strukturert sjølvkontroll.",
+desc_C2: "Orden skildrar behov for system og ryddigheit. Låg skåre inneber ofte toleranse for uorden og fleksible løysingar.",
+desc_C3: "Pliktkjensle handlar om norm- og regelorientering. Låg skåre inneber ofte meir situasjonsbasert vurdering.",
+desc_C4: "Målretta åtferd skildrar uthald mot langsiktige mål. Låg skåre inneber ofte større openheit for justering undervegs.",
+desc_C5: "Sjølvdisiplin handlar om å fullføre også når motivasjonen er låg. Låg skåre inneber ofte behov for ytre struktur.",
+  desc_C6: "Ettertenksamheit skildrar grad av overveging før handling. Låg skåre inneber ofte spontanitet og rask avgjerdstaking.",
+
+  desc_N1: "Engstelse handlar om tendens til uro og bekymring. Høg skåre inneber ofte auka merksemd mot risiko.",
+desc_N2: "Fiendtlegheit skildrar irritabilitet og frustrasjon. Høg skåre inneber ofte lågare terskel for sinne.",
+desc_N3: "Nedstemtheit handlar om tendens til tristheit og tap av energi. Høg skåre inneber ikkje nødvendigvis klinisk depresjon.",
+desc_N4: "Sjølvmedvit skildrar sensitivitet for sosial vurdering. Høg skåre inneber ofte sterkare sjølvmonitorering.",
+desc_N5: "Impulsivitet handlar om regulering av sterke kjensler. Høg skåre inneber ofte raskare kjenslestyrt handling.",
+  desc_N6: "Sårbarheit skildrar reaksjonar under belastning. Høg skåre inneber ofte lågare stresstoleranse.",
+
+  desc_O1: "Fantasi handlar om indre førestellingsevne. Låg skåre inneber ofte konkret og praktisk tenking.",
+desc_O2: "Estetikk skildrar sensitivitet for kunst og skjønnheit. Låg skåre inneber ofte mindre vekt på estetiske opplevingar.",
+desc_O3: "Kjensler handlar om merksemd mot eigne emosjonar. Låg skåre inneber ofte nøktern kjenslemedvit.",
+desc_O4: "Handlingar skildrar vilje til å prøve nye ting. Låg skåre inneber ofte preferanse for det kjende.",
+desc_O5: "Idear handlar om intellektuell nyfikenskap. Låg skåre inneber ofte praktisk og anvend tenking.",
+desc_O6: "Verdiar skildrar openheit for alternative normer. Låg skåre inneber ofte stabilitet i eige verdigrunnlag."
+
+
+
+
+
+
 
 };

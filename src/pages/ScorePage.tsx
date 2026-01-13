@@ -1,24 +1,51 @@
-// src/pages/ScoresPage.tsx
-import { useEffect, useMemo, useState } from "react";
+ // src/pages/ScoresPage.tsx
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../lib/apiBase";
 import { authFetch } from "../lib/apiFetch";
 import { t } from "@/i18n";
 import Spinner from "@/components/Spinner";
-import createDOMPurify from 'dompurify'
-import { JSDOM } from 'jsdom'
 import { H1, H2, H3 } from '@/components/Heading';
 import Narrative  from '@/components/Narrative';
-import Markdown  from 'react-markdown';
 import { useGetProfile }  from '@/hooks/useGetProfile';
-import { useIsAdmin }  from '@/hooks/useIsAdmin';
 import PrintButton from '@/components/PrintButton.tsx';
 
+
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
+
 type FacetRow  = { domain: string; facet: number; mean_score: number | string | null; n_items: number };
-type DescriptionRow = { text: string; };
+
+type OpenKind = "domain" | "facet";
+type OpenKey = `${OpenKind}:${string}`;
+
 
 export default function ScoresPage() {
+
+  const [open, setOpen] = useState<Set<OpenKey>>(() => new Set());
+
+  const [openKey, setOpenKey] = useState<OpenKey | null>(null);
+
+  const toggle = (k: OpenKey) => {
+    setOpen(prev => {
+      const next = new Set(prev);
+      if (next.has(k)) next.delete(k);
+      else next.add(k);
+      return next;
+    });
+  };
+
+  const domainDesc = (domain: string) => {
+    const key = `desc_${domain}` as any; // f.eks. "desc_E"
+    const s = t(key);
+    return typeof s === "string" && s !== key ? s : "";
+  };
+
+  const facetDesc = (domain: string, facetNo: number) => {
+    const key = `desc_${domain}${facetNo}` as any; // f.eks. "desc_N4"
+    const s = t(key);
+    return typeof s === "string" && s !== key ? s : "";
+  };
+
   const [loading, setLoading] = useState(true);
 
   const { testId } = useParams<{ testId: string }>();
@@ -134,14 +161,52 @@ export default function ScoresPage() {
             <th className="p-2 text-right">{t('tScore') || 'T-skår'}</th>
           </tr>
         </thead>
-        <tbody>
-          {domainsSorted.map(d => (
-            <tr key={d.domain} className="border-t">
-              <td className="p-2">{domainNames[d.domain] ?? d.domain}</td>
-              <td className="p-2 text-right">{fmt(d.mean_score)}</td>
-            </tr>
-          ))}
-        </tbody>
+
+<tbody>
+  {domainsSorted.map(d => {
+    const desc = domainDesc(d.domain);
+    const k: OpenKey = `domain:${d.domain}`;
+    const isOpen = open.has(k);
+
+    return (
+      <Fragment key={d.domain}>
+        <tr className="border-t">
+          <td className="p-2">
+            <button
+              type="button"
+              onClick={() => desc && toggle(k)}
+              className={`w-full text-left flex items-center justify-between gap-2 ${
+                desc ? "cursor-pointer" : "cursor-default"
+              }`}
+              aria-expanded={desc ? isOpen : undefined}
+              aria-controls={desc ? `desc-${k}` : undefined}
+            >
+              <span>{domainNames[d.domain] ?? d.domain}</span>
+              {desc && (
+                <span className="text-gray-400 select-none">
+                  {isOpen ? "⌃" : "⌄"}
+                </span>
+              )}
+            </button>
+          </td>
+          <td className="p-2 text-right">{fmt(d.mean_score)}</td>
+        </tr>
+
+        {desc && isOpen && (
+          <tr className="border-t bg-gray-50/50">
+            <td colSpan={2} className="p-3">
+              <div id={`desc-${k}`} className="text-sm text-gray-700 leading-relaxed">
+                {desc}
+              </div>
+            </td>
+          </tr>
+        )}
+      </Fragment>
+    );
+  })}
+</tbody>
+
+
       </table>
 
       <H2 className="text-xl font-medium mt-4 mb-2">
@@ -161,15 +226,53 @@ export default function ScoresPage() {
                 <th className="p-2 text-right">{t('tScore') || 'T-skår'}</th>
               </tr>
             </thead>
-            <tbody>
-              {items.map(f => (
-                <tr key={`${f.domain}-${f.facet}`} className="border-t">
-                  <td className="p-2">{facetLabel(f.domain, f.facet)}</td>
-                  <td className="p-2 text-right">{fmt(f.mean_score)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+<tbody>
+  {items.map(f => {
+    const desc = facetDesc(f.domain, f.facet);
+    const rowId = `${f.domain}-${f.facet}`;
+    const k: OpenKey = `facet:${rowId}`;
+    const isOpen = open.has(k);
+
+    return (
+      <Fragment key={rowId}>
+        <tr className="border-t">
+          <td className="p-2">
+            <button
+              type="button"
+              onClick={() => desc && toggle(k)}
+              className={`w-full text-left flex items-center justify-between gap-2 ${
+                desc ? "cursor-pointer" : "cursor-default"
+              }`}
+              aria-expanded={desc ? isOpen : undefined}
+              aria-controls={desc ? `desc-${k}` : undefined}
+            >
+              <span>{facetLabel(f.domain, f.facet)}</span>
+              {desc && (
+                <span className="text-gray-400 select-none">
+                  {isOpen ? "⌃" : "⌄"}
+                </span>
+              )}
+            </button>
+          </td>
+          <td className="p-2 text-right">{fmt(f.mean_score)}</td>
+        </tr>
+
+        {desc && isOpen && (
+          <tr className="border-t bg-gray-50/50">
+            <td colSpan={2} className="p-3">
+              <div id={`desc-${k}`} className="text-sm text-gray-700 leading-relaxed">
+                {desc}
+              </div>
+            </td>
+          </tr>
+        )}
+      </Fragment>
+    );
+  })}
+</tbody>
+
+	  </table>
 	  <div>
 	  </div>
         </div>
