@@ -1,5 +1,9 @@
+## 2026-01-13
+– Added expandable descriptions of domains and facets to the score page
+
 ## 2025-12-13
-– Changed narrative generation so it runs independently of scoring, allowing scores to be displayed immediately.
+– Changed narrative generation so it runs independently of scoring,
+allowing scores to be displayed immediately.
 
 ## 2025-12-13
 – Fixed a bug that caused the narrative to be generated multiple times.
