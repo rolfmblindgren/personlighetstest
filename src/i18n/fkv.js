@@ -176,5 +176,52 @@ export default {
   "donate75": "Anna 75 kr",
   "skinflint": "Näytä tulokset ilman lahjoitusta",
 
-  tScore: "T-pisteet"
+  tScore: "T-pisteet",
+
+  desc_E: "Tämä koskee sitä, kuinka paljon ihminen tavallisesti hakee sosiaalista ja ulkoista virikettä. Matala pistemäärä merkitsee usein mieltymystä rauhaan ja keskittymiseen.",
+desc_A: "Kuvaa tapaa suhtautua muihin ihmisiin. Matala pistemäärä liittyy useammin itsenäisyyteen ja kriittisyyteen kuin empatian puutteeseen.",
+desc_C: "Koskkee rakennetta, itsesäätelyä ja tavoitteellista toimintaa. Matala pistemäärä merkitsee usein joustavuutta, mutta vähemmän suunnitelmallisuutta.",
+desc_N: "Kuvaa taipumusta tunneherkkyyteen ja stressireaktioihin. Korkea pistemäärä liittyy voimakkaampiin ja pidempikestoisiin tunnekokemuksiin.",
+  desc_O: "Koskkee avoimuutta sisäisille kokemuksille, ajatuksille ja uusille näkökulmille. Matala pistemäärä merkitsee usein käytännöllistä ja maanläheistä lähestymistapaa.",
+
+desc_E1: "Lämpimyys kuvaa, kuinka helposti ihminen osoittaa läheisyyttä ja myönteisiä tunteita. Matala pistemäärä liittyy usein pidättyväisempään olemukseen.",
+desc_E2: "Sosiaalisuus koskee viihtymistä sosiaalisissa tilanteissa. Matala pistemäärä merkitsee usein mieltymystä pieniin ja selkeisiin ihmissuhteisiin.",
+desc_E3: "Itsensä esiin tuominen kuvaa halukkuutta ottaa tilaa ja näkyä. Matala pistemäärä liittyy usein hillittyyn käyttäytymiseen ryhmissä.",
+desc_E4: "Aktiivisuus koskee tempoa ja tarvetta olla liikkeessä. Matala pistemäärä merkitsee usein rauhallisempaa tahtia.",
+desc_E5: "Jännityksenhaku kuvaa virikkeiden ja intensiivisten kokemusten etsimistä. Matala pistemäärä liittyy usein ennakoitavuuden suosimiseen.",
+  desc_E6: "Myönteiset tunteet koskevat ilon kokemisen yleisyyttä ja voimakkuutta. Matala pistemäärä ei tarkoita masentuneisuutta.",
+
+  desc_A1: "Luottamus kuvaa odotuksia muita ihmisiä kohtaan. Matala pistemäärä liittyy usein varautuneisuuteen.",
+desc_A2: "Suorapuheisuus koskee avointa ja rehellistä viestintää. Matala pistemäärä voi merkitä tilanteen mukaan mukautuvaa ilmaisua.",
+desc_A3: "Altruismi kuvaa halukkuutta auttaa muita. Matala pistemäärä liittyy usein omien rajojen ja tarpeiden painottamiseen.",
+desc_A4: "Sovittelevuus koskee ristiriitojen käsittelyä. Matala pistemäärä liittyy usein haluun pitää kiinni omasta näkemyksestä.",
+desc_A5: "Vaatimattomuus kuvaa suhdetta omaan merkitykseen ja asemaan. Matala pistemäärä liittyy usein itsevarmuuteen.",
+  desc_A6: "Myötätunto koskee tunteiden ja tilanteiden ymmärtämistä. Matala pistemäärä liittyy usein rationaaliseen lähestymistapaan.",
+
+  desc_C1: "Pystyvyys koskee hallinnan ja osaamisen kokemusta. Matala pistemäärä liittyy usein vähäisempään itsesäätelyyn.",
+desc_C2: "Järjestelmällisyys kuvaa tarvetta järjestykseen ja rakenteeseen. Matala pistemäärä liittyy usein joustavuuteen arjessa.",
+desc_C3: "Velvollisuudentunto koskee sääntöjen ja normien noudattamista. Matala pistemäärä liittyy usein tilannekohtaiseen harkintaan.",
+desc_C4: "Tavoitteellisuus kuvaa pitkäjänteisyyttä. Matala pistemäärä liittyy usein suunnitelmien muuttamiseen matkan varrella.",
+desc_C5: "Itsekuri koskee tehtävien loppuunsaattamista myös ilman motivaatiota. Matala pistemäärä liittyy usein ulkoisen rakenteen tarpeeseen.",
+  desc_C6: "Harkitsevuus kuvaa päätöksenteon perusteellisuutta. Matala pistemäärä liittyy usein spontaanisuuteen.",
+
+  desc_N1: "Ahdistuneisuus koskee huolestumista ja levottomuutta. Korkea pistemäärä liittyy usein riskien korostuneeseen huomioimiseen.",
+desc_N2: "Ärtyvyys kuvaa taipumusta turhautumiseen ja vihaan. Korkea pistemäärä liittyy matalampaan ärsytyskynnykseen.",
+desc_N3: "Alakuloisuus koskee taipumusta surumielisyyteen. Korkea pistemäärä ei tarkoita kliinistä masennusta.",
+desc_N4: "Itsetietoisuus kuvaa herkkyyttä muiden arvioille. Korkea pistemäärä liittyy usein voimakkaaseen itsensä tarkkailuun.",
+desc_N5: "Impulsiivisuus koskee tunnesäätelyä. Korkea pistemäärä liittyy nopeampaan tunnepohjaiseen toimintaan.",
+  desc_N6: "Haavoittuvuus kuvaa reagointia kuormittaviin tilanteisiin. Korkea pistemäärä liittyy usein matalampaan stressinsietoon.",
+
+  desc_O1: "Mielikuvitus koskee sisäisiä kuvia ja ajattelua. Matala pistemäärä liittyy usein konkreettiseen ajatteluun.",
+desc_O2: "Esteettisyys kuvaa herkkyyttä taiteelle ja kauneudelle. Matala pistemäärä liittyy usein vähäisempään esteettiseen kiinnostukseen.",
+desc_O3: "Tunneherkkyys koskee omien tunteiden huomioimista. Matala pistemäärä liittyy usein hillittyyn tunneilmaisuun.",
+desc_O4: "Toiminnallinen avoimuus kuvaa halukkuutta kokeilla uutta. Matala pistemäärä liittyy usein tuttujen ratkaisujen suosimiseen.",
+desc_O5: "Älyllinen avoimuus koskee uteliaisuutta ja uuden oppimista. Matala pistemäärä liittyy usein käytännölliseen ajatteluun.",
+desc_O6: "Arvojen avoimuus kuvaa suhtautumista normeihin ja muutokseen. Matala pistemäärä liittyy usein vakaaseen arvopohjaan."
+
+
+
+
+
+
 };

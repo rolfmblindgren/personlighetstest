@@ -224,6 +224,55 @@ export default {
   "donate75": "Atte 75 ruvnnu",
   "skinflint": "Čájet bohtosiid almmá donerehaga",
 
+  tScore: "T-skoar",
 
-  tScore: "T-skoar"
+  desc_E: "Dát lea guoski man ollu olmmoš dábálaččat ohcá sosiála ja olgguldas stimulasjovnna. Vuolleš skárrá sáhttá mearkkašit ahte olmmoš liiko eanet ráfálaš ja suokkardallanlaš birrasiid.",
+desc_A: "Dát čilge mo olmmoš lea oktavuođas eará olbmuide. Vuolleš skárrá lea dávjá čatnon iežasgaskasašvuođa ja kritihkalaš árvvoštallamii, ii empátiija váilevuhtii.",
+desc_C: "Dát lea guoski struktuvrii, iežasreguleremii ja ulbmilohkalaš doaibmii. Vuolleš skárrá sáhttá mearkkašit fleksibilitehta, muhto unnit plánema ja ordnema.",
+desc_N: "Dát čilge dovdoreaktiivitehta ja stresii reagálama. Alla skárrá lea dávjá čatnon eanet ja guhkit bisttevaš dovdoreaktioŋaid.",
+  desc_O: "Dát lea guoski rabasvuođa siskkáldas vásáhusaide, jurdagiidda ja ođđa perspektiivaide. Vuolleš skárrá sáhttá mearkkašit praktihkalaš ja eana-lahkaš láhttema.",
+
+desc_E1: "Liekkasvuohta čilge mo álkit olmmoš čájeha lahkavuođa ja positiivvalaš dovdduid. Vuolleš skárrá lea dávjá čatnon váikkohis ja ruhtadas gaskanbirasii.",
+desc_E2: "Sosiálavuohta lea guoski man bures olmmoš viihtá sosiálalaš dilálašvuođain. Vuolleš skárrá sáhttá mearkkašit ahte olmmoš liiko eanet unna ja čielggas gaskanvuođaide.",
+desc_E3: "Iešalaskandilli čilge mo álkit olmmoš váldá sadjái ja čájeha iežas. Vuolleš skárrá lea dávjá čatnon ruhtadasvuođaide joavkkus.",
+desc_E4: "Doaibmanleahttu lea guoski temposii ja dárbui leat jođus. Vuolleš skárrá sáhttá mearkkašit ráfálaš ja dábálaš tempo.",
+desc_E5: "Geahččalmasvuohta čilge ohcama stimulasjovnna ja intensitehta ala. Vuolleš skárrá lea dávjá čatnon dovddusis ja voorsádanlaš birrasiid mielde.",
+  desc_E6: "Positiivvalaš dovddut leat guoski man dávjá ja man nanosit olmmoš vásiha ilolašvuođa. Vuolleš skárrá ii dárbbaš mearkkašit masáhusa.",
+
+  desc_A1: "Luottaheapmi čilge man váralaš olmmoš lea eará olbmuide. Vuolleš skárrá lea dávjá čatnon váruheapmái ja árvvoštallamii.",
+desc_A2: "Njuolggadallan lea guoski rabas ja čielggas gulahallamii. Vuolleš skárrá sáhttá mearkkašit strategalaš dahje dilálašvuođalaš háliidanvuođa.",
+desc_A3: "Veahkkedoallu čilge man álkit olmmoš veahkeha earáid. Vuolleš skárrá lea dávjá čatnon iežas rájáid ja dárbbuid čuovvunii.",
+desc_A4: "Geahččaleapmi čilge mo olmmoš gieđahallá riidduid. Vuolleš skárrá sáhttá mearkkašit ahte olmmoš bissu iežas oaiviliin.",
+desc_A5: "Unnit iežasdearvvašvuohta lea guoski mo olmmoš čilge iežas mearkkašumi. Vuolleš skárrá lea dávjá čatnon čielggaseappot ja nannet iežasčuvgehusaide.",
+  desc_A6: "Áddejupmi čilge dovddalaš áddejumi ja empátiija. Vuolleš skárrá sáhttá mearkkašit racionálaš ja distanserta láhttema.",
+
+  desc_C1: "Máhttunčuvgehus lea guoski dovdu ahte olmmoš hálddaša iežas ja dilálašvuođaid. Vuolleš skárrá lea dávjá čatnon unnit iežasstivrenii.",
+desc_C2: "Ordnen lea guoski struktuvrii ja ráhkadeapmái. Vuolleš skárrá sáhttá mearkkašit toleránssa eahpeordnejuvvon dilálašvuođaide.",
+desc_C3: "Geatnegasvuohta lea guoski njuolggadusaid ja normaid čuovvumii. Vuolleš skárrá lea dávjá čatnon dilálaš árvvoštallamii.",
+desc_C4: "Ulbmilohkalašvuohta čilge bisttevašvuođa guhkesáigásaš ulbmiliid ektui. Vuolleš skárrá sáhttá mearkkašit ahte olmmoš rievdada planuid eanet.",
+desc_C5: "Iežasdisiplína lea guoski ádjánis čađahuvvot doaimmaid maid ii leat mielas dahkat. Vuolleš skárrá lea dávjá čatnon dárbui olgguldas struktuvrii.",
+  desc_C6: "Maŋŋálmas árvvoštallan čilge man ollu olmmoš jurddaša ovdal go dahká. Vuolleš skárrá lea dávjá čatnon spontánalaš doaibmii.",
+
+  desc_N1: "Unohasvuohta lea guoski váruheapmái ja balddiheapmái. Alla skárrá lea dávjá čatnon eanet riskkuid fuobmámii.",
+desc_N2: "Fierpmádusvuohta čilge suhttima ja irritašuvnna. Alla skárrá lea dávjá čatnon vuolleš suhttanrievttii.",
+desc_N3: "Masáhusa dovdu čilge vássjideami ja energiaváilevuhtii. Alla skárrá ii dárbbaš mearkkašit kliinálaš masáhusa.",
+desc_N4: "Iežasfuobmavuohta lea guoski man garrasit olmmoš reagere earáid árvvoštallamii. Alla skárrá lea dávjá čatnon garrasit iežasmonitoreremii.",
+desc_N5: "Impulsivitehta lea guoski dovdduid reguleremii. Alla skárrá lea dávjá čatnon jođánit dovddustivrron doaibmii.",
+  desc_N6: "Heahpatvuohta čilge mo olmmoš reagere olu belastusii. Alla skárrá lea dávjá čatnon vuolleš stresstoleránsii.",
+
+
+  desc_O1: "Árvvoštallanlaš fantasiija lea guoski siskkáldas govvidit ja jurdagiid. Vuolleš skárrá lea dávjá čatnon konkrehta ja praktihkalaš jurdagiidda.",
+desc_O2: "Estetihkka lea guoski dovddui dáidda ja čáppisvuođa ektui. Vuolleš skárrá sáhttá mearkkašit unnit beroštumi estetihkalaš vásáhusaide.",
+desc_O3: "Dovdduid fuobman lea guoski iežas dovdduid áddejupmái. Vuolleš skárrá lea dávjá čatnon njuolggaseappot dovddumii.",
+desc_O4: "Doaimmaid geahččaleapmi čilge man rabas olmmoš lea ođđa vásáhusaide. Vuolleš skárrá lea dávjá čatnon dovddusis láhttemii.",
+desc_O5: "Jurdagiid rabasvuohta lea guoski intellektuálaš ođđajurddašeapmái. Vuolleš skárrá lea dávjá čatnon praktihkalaš ja geavaheaddji jurdagiidda.",
+desc_O6: "Árvvuid rabasvuohta čilge mo olmmoš suhtestallá normaid ja árvvoštallamiid rievdadeapmái. Vuolleš skárrá lea dávjá čatnon stáđis árvvovuogádahkii."
+
+
+
+
+
+
+
+
 };
