@@ -9,6 +9,7 @@ import { H1, H2, H3 } from '@/components/Heading';
 import Narrative  from '@/components/Narrative';
 import { useGetProfile }  from '@/hooks/useGetProfile';
 import PrintButton from '@/components/PrintButton.tsx';
+import cap from '@/lib/cap';
 
 
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
@@ -189,7 +190,7 @@ export default function ScoresPage() {
 		      )}
 		    </button>
 		  </td>
-		  <td className="p-2 text-right">{fmt(d.mean_score)}</td>
+		  <td className="p-2 text-right">{fmt(cap(d.mean_score))}</td>
 		</tr>
 
 		{desc && isOpen && (
@@ -255,7 +256,7 @@ export default function ScoresPage() {
 			  )}
 			</button>
 		      </td>
-		      <td className="p-2 text-right">{fmt(f.mean_score)}</td>
+		      <td className="p-2 text-right">{fmt(cap(f.mean_score))}</td>
 		    </tr>
 
 		    {desc && isOpen && (
