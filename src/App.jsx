@@ -10,6 +10,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';  // <-- legg til
 import { Layout } from '@/components/Layout';
 import { H1, H2 } from '@/components/Heading';
 import TestRunner from '@/pages/TestRunner';
+import TestSetup from '@/pages/TestSetup';
 import TestPicker from '@/pages/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
 import Profile from '@/pages/Profile';
@@ -103,6 +104,26 @@ function App() {
           />
 
           <Route
+            path="/testsetup/:testId"
+            element={
+              <ProtectedRoute>
+              <TestSetup />
+              </ProtectedRoute>
+            }
+          />
+
+
+          <Route
+            path="/testsetup/:testId"
+            element={
+              <ProtectedRoute>
+                <TestSetup />
+              </ProtectedRoute>
+            }
+          />
+
+
+          <Route
             path="/testrunner/:testId"
             element={
               <ProtectedRoute>
@@ -129,6 +150,9 @@ function App() {
 
             }
           />
+
+
+
 
           <Route
             path="/GDPR"

@@ -58,6 +58,8 @@ export default {
   sendNewConfirmationLink: "Send ny bekreftelses-lenke",
   siteExplanation: "Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under et minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.",
 
+  language: "Språk",
+
   B5A: "Omgjengelighet",
   B5E: "Ekstraversion",
   B5C: "Planmessighet",

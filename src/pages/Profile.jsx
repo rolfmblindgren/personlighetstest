@@ -60,7 +60,7 @@ export default function ProfilePage() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
           <div>
-   <label className="block text-sm font-medium mb-1">{tr('name')}</label>
+            <label className="block text-sm font-medium mb-1">{tr('name')}</label>
             <input
               {...register("navn")}
               className="w-full border rounded-lg p-2"
