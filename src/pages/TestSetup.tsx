@@ -4,6 +4,7 @@ import { authFetch } from "@/lib/apiFetch";
 import { API } from "@/lib/apiBase";
 import { t as tr } from "@/i18n";
 import { languages, type LanguageCode } from "@/i18n/languages";
+import { getPreferredLanguage } from "@/i18n/getPreferredLanguage";
 
 type Profile = {
   navn: string | null;
@@ -24,14 +25,14 @@ const emptyProfile: Profile = {
   adresse: "",
   navn_paa_katt: "",
   foedselsdato: "",
-  language: "nb",
+  language: null,
 };
 
 function isProfileComplete(profile: Profile) {
   return !!(
     profile.navn?.trim() &&
-    profile.foedselsdato &&
-    profile.language
+      profile.foedselsdato &&
+      profile.language
   );
 }
 
@@ -59,13 +60,7 @@ export default function TestSetup() {
 
     async function loadProfile() {
       try {
-        const token = localStorage.getItem("token");
-
-        const res = await authFetch(`${API}/user/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await authFetch(`${API}/user/profile`);
 
         if (!res.ok) {
           throw new Error("Kunne ikke hente profil");
@@ -73,32 +68,34 @@ export default function TestSetup() {
 
         const data: Profile = await res.json();
 
-        const merged: Profile = {
-          ...emptyProfile,
-          ...data,
-          foedselsdato: normalizeDate(data.foedselsdato),
-          language: data.language || "nb",
-        };
+	const merged: Profile = {
+	  ...emptyProfile,
+	  ...data,
+	  foedselsdato: normalizeDate(data.foedselsdato),
+	  language: getPreferredLanguage(data.language),
+	};
 
-        if (cancelled) return;
+	if (cancelled) return;
 
-        setProfile(merged);
+	setProfile(merged);
 
-        if (isProfileComplete(merged)) {
-          localStorage.setItem("testLanguage", merged.language || "nb");
-          document.dispatchEvent(
-            new CustomEvent("testlanguageChanged", {
-              detail: merged.language || "nb",
-            })
-          );
+	if (isProfileComplete(merged)) {
+	  const resolvedLanguage = merged.language || getPreferredLanguage(null);
 
-          if (!testId) {
-            setError("Mangler test-ID.");
-            return;
-          }
+	  localStorage.setItem("testLanguage", resolvedLanguage);
+	  document.dispatchEvent(
+	    new CustomEvent("testlanguageChanged", {
+	      detail: resolvedLanguage,
+	    })
+	  );
 
-          navigate(`/testrunner/${testId}`, { replace: true });
-        }
+	  if (!testId) {
+	    setError("Mangler test-ID.");
+	    return;
+	  }
+
+	  navigate(`/testrunner/${testId}`, { replace: true });
+	}
       } catch (err) {
         if (cancelled) return;
         setError(err instanceof Error ? err.message : "Ukjent feil");
@@ -122,7 +119,7 @@ export default function TestSetup() {
 
     const navn = profile.navn?.trim() || "";
     const foedselsdato = profile.foedselsdato || "";
-    const language = (profile.language || "nb") as LanguageCode;
+    const language = profile.language || getPreferredLanguage(null);
 
     if (!navn || !foedselsdato || !language) {
       setError("Fyll ut navn, fødselsdato og språk.");
@@ -169,19 +166,19 @@ export default function TestSetup() {
   }
 
   if (loading) {
-    return <div className="max-w-2xl mx-auto p-6">Laster profil …</div>;
+    return <div className="max-w-2xl mx-auto p-6">{tr("isLoadingProfile")}</div>;
   }
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-2">Før du starter</h1>
+      <h1 className="text-3xl font-bold mb-2">{tr("priorToStarting")}</h1>
       <p className="mb-6 text-gray-600">
-        Vi trenger noen få opplysninger før testen kan starte.
+        {tr("needSomeInformation")}
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block mb-1 font-medium">Navn</label>
+          <label className="block mb-1 font-medium">{tr("name")}</label>
           <input
             className="w-full border rounded px-3 py-2"
             value={profile.navn || ""}
@@ -192,7 +189,7 @@ export default function TestSetup() {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Fødselsdato</label>
+          <label className="block mb-1 font-medium">{tr("dob")}</label>
           <input
             type="date"
             className="w-full border rounded px-3 py-2"
@@ -204,18 +201,19 @@ export default function TestSetup() {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Språk</label>
-          <select
-            className="w-full border rounded px-3 py-2"
-            value={profile.language || "nb"}
-            onChange={(e) =>
-              setProfile({
-                ...profile,
-                language: e.target.value as LanguageCode,
-              })
-            }
-          >
-            {Object.entries(languages).map(([code, label]) => (
+          <label className="block mb-1 font-medium">{tr("language")}</label>
+	  <select
+	    className="w-full border rounded px-3 py-2"
+	    value={profile.language || getPreferredLanguage(null)}
+	    onChange={(e) =>
+	      setProfile({
+		...profile,
+		language: e.target.value as LanguageCode,
+	      })
+	    }
+	  >
+
+	    {Object.entries(languages).map(([code, label]) => (
               <option key={code} value={code}>
                 {tr(label)}
               </option>
@@ -234,7 +232,7 @@ export default function TestSetup() {
           disabled={saving}
           className="px-5 py-3 rounded bg-teal-500 text-white font-semibold"
         >
-          {saving ? "Lagrer …" : "Lagre og start"}
+          {saving ? tr("isSaving") : tr("saveAndStart")}
         </button>
       </form>
     </div>

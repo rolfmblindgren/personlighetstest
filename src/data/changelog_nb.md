@@ -1,17 +1,29 @@
+## 2026-03-08
+- La til et oppsettsteg før teststart som kontrollerer brukerprofilen
+- Brukeren blir nå bedt om navn, fødselsdato og foretrukket testspråk hvis dette mangler
+- Testspråk lagres nå i brukerprofilen og synkroniseres med det eksisterende språksystemet
+- Standardspråk hentes nå fra nettleseren dersom ingen preferanse er lagret
+
 ## 2026-01-13
 - La til utvidbare beskrivelser av domener og fasetter på resultatsiden
+
 ## 2025-12-13
-- Endret generering av narrativ slik at det genereres uavhengig av
-  skårer, slik at skårer blir vist med én gang.
+- Endret generering av narrativ slik at det genereres uavhengig av skårer, slik at skårer blir vist med én gang.
+
 ## 2025-12-13
 - Rettet bug som førte til at narrativ ble generert flere ganger
+
 ## 2025-12-11
 - Rettet bug som ga timeout etter tredve sekunder
+
 ## 2025-12-10
 - Rettet bug som gjorde at tester ikke ville starte
+
 ## 2025-11-13
 - Lagt inn mulighet for å hente inn tidligere tester fra jotform-løsninga
+
 ## 2025-11-11
 - Fikset bug i tittellinja som gjorde at linja gikk over høyremarg på mobiler.
+
 ## 2025-11-10
 - Fikset bug som gjorde at passord ikke ble lest ved registrering.

@@ -59,6 +59,11 @@ export default {
   siteExplanation: "Dette er en evidensbasert personlighetstest som måler de fem store faktorene (Big Five). Testen tar under et minutt å registrere seg for, og du får en detaljert tilbakemelding umiddelbart etter fullføring.",
 
   language: "Språk",
+  isSaving: "Lagrer …",
+  saveAndStart: "Lagre og start",
+  isLoadingProfile: "Laster profil …",
+  priorToStarting: "Før du starter",
+  needSomeInformation: "Vi trenger noen få opplysninger før testen kan starte.",
 
   B5A: "Omgjengelighet",
   B5E: "Ekstraversion",
