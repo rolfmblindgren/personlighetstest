@@ -56,6 +56,13 @@ export default {
   sendNewConfirmationLink: "Lähetä uus vahvistuslinkki",
   siteExplanation: "Tämä oon evidenssiin perustuva personlighetstesti joka mittaa viisi isoa faktoria (Big Five). Rekisteröinti käy alle minuutissa, ja saat yksityiskohtaisen palautteen heti valmistumisen jälkhiin.",
 
+language: "Kieli",
+isSaving: "Tallennethaan …",
+saveAndStart: "Tallenna ja alota",
+isLoadingProfile: "Profiili lastathaan …",
+priorToStarting: "Ennen ko alothaan",
+needSomeInformation: "Met tarvittemma muutaman tiedon ennen ko testi saattaa alkaa.",
+
   B5A: "Ystävällisyys",
   B5E: "Ekstroversio",
   B5C: "Suunnitelmallisuus",
@@ -218,8 +225,6 @@ desc_O3: "Tunneherkkyys koskee omien tunteiden huomioimista. Matala pistemäär�
 desc_O4: "Toiminnallinen avoimuus kuvaa halukkuutta kokeilla uutta. Matala pistemäärä liittyy usein tuttujen ratkaisujen suosimiseen.",
 desc_O5: "Älyllinen avoimuus koskee uteliaisuutta ja uuden oppimista. Matala pistemäärä liittyy usein käytännölliseen ajatteluun.",
 desc_O6: "Arvojen avoimuus kuvaa suhtautumista normeihin ja muutokseen. Matala pistemäärä liittyy usein vakaaseen arvopohjaan."
-
-
 
 
 

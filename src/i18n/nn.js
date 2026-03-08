@@ -57,6 +57,13 @@ export default {
   sendNewConfirmationLink: "Send ny stadfestingslenkje",
   siteExplanation: "Dette er ein evidensbasert personlegdomstest som måler dei fem store faktorane (Big Five). Det tek under eit minutt å registrere seg, og du får ei detaljert tilbakemelding med det same du er ferdig.",
 
+language: "Språk",
+isSaving: "Lagrar …",
+saveAndStart: "Lagre og start",
+isLoadingProfile: "Lastar profil …",
+priorToStarting: "Før du startar",
+needSomeInformation: "Vi treng nokre få opplysningar før testen kan starte.",
+
   B5A: "Omgjengelegheit",
   B5E: "Ekstraversjon",
   B5C: "Planmessigheit",

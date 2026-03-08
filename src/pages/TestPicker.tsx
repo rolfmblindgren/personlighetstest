@@ -48,7 +48,7 @@ export default function TestPicker() {
       });
       if (!r.ok) throw new Error("Kunne ikke starte test");
       const { test_id } = await r.json();
-      nav(`/testrunner/${test_id}`);
+      nav(`/testsetup/${test_id}`);
     } catch (e) {
       setErr(e.message || "Klarte ikke å starte test");
     }
@@ -75,7 +75,7 @@ export default function TestPicker() {
                 <div className="text-sm text-gray-600">
 							 Startet {new Date(t.started_at).toLocaleString()} · {t.progress}% {tr('answered')}
                 </div>
-                <Button className="mt-3" onClick={() => nav(`/testrunner/${t.id}`)}>Fortsett</Button>
+                <Button className="mt-3" onClick={() => nav(`/testsetup/${t.id}`)}>Fortsett</Button>
               </div>
             ))}
           </div>

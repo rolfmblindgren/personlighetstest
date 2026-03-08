@@ -59,6 +59,13 @@ export default {
   sendNewConfirmationLink: "Sádde ođđa nannenlinnka",
   siteExplanation: "Dát lea evidensii čađahuvvon persoonalašisvuođadieđutgeahččaleapmi mii mearrida vihtta stuorra faktorii (Big Five). Registrerejuvvot sáhttá vajáldas minuhki, ja don oaččut detaljálaš máhcahusa viidne go leat geargan",
 
+  language: "Giella",
+isSaving: "Vurkejuvvo …",
+saveAndStart: "Vurke ja álggat",
+isLoadingProfile: "Profiila viežžat …",
+priorToStarting: "Ovddal go álggat",
+needSomeInformation: "Mii dárbbašit muhtun dieđuid ovdal go geahččaleapmi sáhttá álgit.",
+
   B5A: "Omgjengelegheit",
   B5E: "Ekstraversjon",
   B5C: "Planmessigheit",
