@@ -40,7 +40,6 @@ type LoginErrorInfo = {
 
 
 export default function LoginForm() {
-
   const navigate = useNavigate();  // nødvendig for redirect
   const { loggedIn } = useAuth();  // 👈 reaktiv status
   const { login } = useAuth(); // legg til her, sammen med loggedIn
@@ -52,7 +51,6 @@ export default function LoginForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [capsOn, setCapsOn] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
 
 
@@ -144,11 +142,6 @@ export default function LoginForm() {
       if (!res.ok) {
 	showError(t("unknownError"));
 	return;
-      }
-
-      if (!res.ok) {
-        showError(t("unknownError"));
-        return;
       }
 
       login(data.token); // <- context.login, bare token

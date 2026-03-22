@@ -22,19 +22,6 @@ function usePageSize() {
   return size;
 }
 
-function handleAnswer(position: number, itemId: number, score: number) {
-  setAnswers(a => {
-    const newAnswers = { ...a, [position]: score };
-
-    // lokal lagring
-    localStorage.setItem(`test:${testId}:answers`, JSON.stringify(newAnswers));
-
-    return newAnswers;
-  });
-  // sende til server
-  saveOne(position, itemId, score);
-}
-
 export default function TestRunner({  }) {
   const pageSize = usePageSize();
   const [offset, setOffset]   = useState(0);

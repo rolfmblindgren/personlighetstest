@@ -28,7 +28,6 @@ function DebugAuth() {
   return null;
 }
 
-
 function App() {
   return (
     <HelmetProvider>
@@ -111,7 +110,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
 
           <Route
             path="/testsetup/:testId"

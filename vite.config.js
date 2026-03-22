@@ -4,6 +4,7 @@ import path from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
+  const proxyTarget = env.VITE_API_PROXY;
   return {
     plugins: [react()],
     resolve: {
@@ -14,15 +15,15 @@ export default defineConfig(({ mode }) => {
         '.js', '.jsx', '.ts', '.tsx', '.json'
       ]
     },
-    server: {
+    server: proxyTarget ? {
       proxy: {
         '/api': {
-          target: env.VITE_API_PROXY,        // f.eks. https://flaskapps.grendel.no
+          target: proxyTarget,
           changeOrigin: true,
-          secure: true,                      // bruk true når du går mot https
+          secure: proxyTarget.startsWith('https://'),
           rewrite: p => p.replace(/^\/api/, '/portal/api'),
         }
       }
-    }
+    } : undefined
   }
 })

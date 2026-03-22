@@ -4,8 +4,6 @@ import { useEffect, useState } from "react"
 import {t as tr } from "@/i18n";
 import { testLabels } from "@/i18n/testlabels";
 
-const testLang = localStorage.getItem("testLanguage") || "nb";
-
 
 type Props = {
   question?: string;
@@ -34,6 +32,10 @@ export default function LikertRowText({
   labels = NO_LABELS_7,
   framed = true,
 }: Props) {
+  const [testLang, setTestLang] = useState(
+    () => localStorage.getItem("testLanguage") || "nb"
+  );
+
   const COLOR_CLASSES = [
     "border-red-700",
     "border-red-500",

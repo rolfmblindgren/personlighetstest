@@ -1,4 +1,4 @@
- // src/pages/ScoresPage.tsx
+// src/pages/ScoresPage.tsx
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../lib/apiBase";
@@ -11,10 +11,10 @@ import { useGetProfile }  from '@/hooks/useGetProfile';
 import PrintButton from '@/components/PrintButton.tsx';
 import cap from '@/lib/cap';
 
-
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
 
 type FacetRow  = { domain: string; facet: number; mean_score: number | string | null; n_items: number };
+type NarrativeRow = { text_md: string };
 
 type OpenKind = "domain" | "facet";
 type OpenKey = `${OpenKind}:${string}`;
@@ -23,9 +23,6 @@ type OpenKey = `${OpenKind}:${string}`;
 export default function ScoresPage() {
 
   const [open, setOpen] = useState<Set<OpenKey>>(() => new Set());
-
-  const [openKey, setOpenKey] = useState<OpenKey | null>(null);
-
   const toggle = (k: OpenKey) => {
     setOpen(prev => {
       const next = new Set(prev);
@@ -54,7 +51,7 @@ export default function ScoresPage() {
     total?: { mean_score: number; n_items: number };
     domains?: DomainRow[];
     facets?: FacetRow[];
-    description?: DescriptionRow[];
+    narrative?: NarrativeRow[];
   }>({});
   const [err, setErr] = useState("");
 
@@ -76,7 +73,7 @@ export default function ScoresPage() {
     O: t('B5O'),
   };
 
-  const { profile, profileIsLoading, error } = useGetProfile();
+  const { profile } = useGetProfile();
 
   const facetLabel = (domain: string, facetNo: number) => {
     const key = `${domain}${facetNo}` as any; // f.eks. "N4"
@@ -140,7 +137,7 @@ export default function ScoresPage() {
       <H1 className="text-2xl font-semibold mb-4">
         {t('scoresTitle') || t('scores')}
 	{' '}
-	{profile.navn}
+	{profile?.navn ?? ""}
       </H1>
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
