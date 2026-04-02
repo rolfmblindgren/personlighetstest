@@ -110,8 +110,13 @@ needSomeInformation: "Met tarvittemma muutaman tiedon ennen ko testi saattaa alk
   domain: "Faktori",
   facet: "Ominaisuus",
   downloadReportPdf: "Lataa raportti (PDF)",
+  emailReportPdf: "Lähetä raportti sähköpostilla",
   isPreparingReport: "Luothaan raporttia …",
+  isEmailingReport: "Lähetethään raporttia …",
   couldNotDownloadReport: "Raportin lataaminen ei onnistunu.",
+  couldNotEmailReport: "Raportin lähettäminen sähköpostilla ei onnistunu.",
+  reportEmailSent: "Raportti lähetethiin sähköpostilla.",
+  reportEmailSentTo: "Raportti lähetethiin osoitteeseen",
 
   bokmål: "Bokmål",
   nynorsk: "Nynorsk",

@@ -112,8 +112,13 @@ export default {
   domain: "Faktor",
   facet: "Fasett",
   downloadReportPdf: "Last ned rapport (PDF)",
+  emailReportPdf: "Mail rapport",
   isPreparingReport: "Lager rapport …",
+  isEmailingReport: "Sender rapport …",
   couldNotDownloadReport: "Kunne ikke laste ned rapporten.",
+  couldNotEmailReport: "Kunne ikke sende rapporten på e-post.",
+  reportEmailSent: "Rapporten ble sendt på e-post.",
+  reportEmailSentTo: "Rapporten ble sendt til",
 
 
   bokmål: "Bokmål",

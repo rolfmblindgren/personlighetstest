@@ -160,8 +160,13 @@ needSomeInformation: "Mii dárbbašit muhtun dieđuid ovdal go geahččaleapmi s
   domain: "Fátta",
   facet: "Ovttadat",
   downloadReportPdf: "Viečča raportta (PDF)",
+  emailReportPdf: "Sádde raportta e-poasttain",
   isPreparingReport: "Ráhkadeamen raportta …",
+  isEmailingReport: "Sáddemin raportta …",
   couldNotDownloadReport: "Ii lean vejolaš viežžat raportta.",
+  couldNotEmailReport: "Ii lean vejolaš sáddet raportta e-poasttain.",
+  reportEmailSent: "Raporta sáddejuvvui e-poasttain.",
+  reportEmailSentTo: "Raporta sáddejuvvui čujuhussii",
 
   bokmål: "Ruoŧagiella",     // norsk (bokmål)
   nynorsk: "Vuodnagiella",   // norsk (nynorsk)

@@ -58,7 +58,9 @@ export default function ScoresPage() {
   }>({});
   const [err, setErr] = useState("");
   const [isDownloadingReport, setIsDownloadingReport] = useState(false);
+  const [isEmailingReport, setIsEmailingReport] = useState(false);
   const [reportErr, setReportErr] = useState("");
+  const [reportMsg, setReportMsg] = useState("");
 
   const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(0));
 
@@ -129,6 +131,7 @@ export default function ScoresPage() {
 
     setIsDownloadingReport(true);
     setReportErr("");
+    setReportMsg("");
 
     try {
       const r = await authFetch(`${API}/tests/${testId}/${lang}/report.pdf`);
@@ -159,6 +162,42 @@ export default function ScoresPage() {
     }
   };
 
+  const emailReport = async () => {
+    if (!testId || isEmailingReport) return;
+
+    setIsEmailingReport(true);
+    setReportErr("");
+    setReportMsg("");
+
+    try {
+      const r = await authFetch(`${API}/tests/${testId}/${lang}/report-email`, {
+        method: 'POST',
+      });
+      let payload: any = null;
+      try {
+        payload = await r.json();
+      } catch {
+        payload = null;
+      }
+
+      if (!r.ok) {
+        const message = payload?.error || t('couldNotEmailReport') || 'Kunne ikke sende rapporten på e-post';
+        throw new Error(message);
+      }
+
+      const email = payload?.email;
+      setReportMsg(
+        email
+          ? `${t('reportEmailSentTo') || 'Rapporten ble sendt til'} ${email}`
+          : (t('reportEmailSent') || 'Rapporten ble sendt på e-post.')
+      );
+    } catch (e: any) {
+      setReportErr(e?.message || (t('couldNotEmailReport') || 'Kunne ikke sende rapporten på e-post'));
+    } finally {
+      setIsEmailingReport(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-[50vh] grid place-items-center">
@@ -184,6 +223,16 @@ export default function ScoresPage() {
             ? (t('isPreparingReport') || 'Lager rapport …')
             : (t('downloadReportPdf') || 'Last ned rapport (PDF)')}
         </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={emailReport}
+          disabled={isEmailingReport || !testId}
+        >
+          {isEmailingReport
+            ? (t('isEmailingReport') || 'Sender rapport …')
+            : (t('emailReportPdf') || 'Mail rapport')}
+        </Button>
       </div>
 
       <H1 className="text-2xl font-semibold mb-4">
@@ -194,6 +243,7 @@ export default function ScoresPage() {
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
       {reportErr && <div className="text-red-600 mb-4">{reportErr}</div>}
+      {reportMsg && <div className="text-green-700 mb-4">{reportMsg}</div>}
 
 
       {data.total && false && (
