@@ -2,6 +2,7 @@
 - La til støtte for PDF-rapporter av testresultater med grafiske framstillinger av faktorer og fasetter
 - Forbedret rapporttekster og skårpresentasjon slik at beskrivelser, usikkerhetsmål og totalskår vises mer konsistent
 - Fikset e-postbekreftelse ved registrering og gjorde ny utsending av bekreftelsesmail mer pålitelig
+- La til knapper på resultatsiden for å laste ned rapporten som PDF eller få den sendt på e-post
 
 ## 2026-03-08
 - La til et oppsettsteg før teststart som kontrollerer brukerprofilen

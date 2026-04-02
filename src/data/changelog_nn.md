@@ -2,6 +2,7 @@
 - La til støtte for PDF-rapportar av testresultat med grafiske framstillingar av faktorar og fasettar
 - Forbetra rapporttekstar og presentasjon av skårar slik at skildringar, uvissemål og totalskårar blir viste meir konsekvent
 - Fiksa e-postverifisering ved registrering og gjorde ny utsending av stadfestingse-post meir påliteleg
+- La til knappar på resultatsida for å laste ned rapporten som PDF eller få han send på e-post
 
 ## 2026-03-08
 - La til eit oppsettsteg før teststart som kontrollerer brukarprofilen

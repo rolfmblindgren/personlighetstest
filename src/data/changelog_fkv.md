@@ -2,6 +2,7 @@
 - Lisätty tuki testitulosten PDF-raportille, jossa oon graafiset esitykset faktoreista ja faseteista
 - Parannettu raporttitekstejä ja skårein esitystä niin ette kuvvaukset, epävarmuusmitat ja kokonais-skårit näytethään johdonmukaisemmin
 - Korjattu sähköpostivarmistus rekisteröinissä ja tehty vahvistusviestin uuesthaansentäminen luotettavammaksi
+- Lisätty nappulat tulossivule, joila raportin saattaa ladata PDF:nä eli lähettää sähköpostila
 
 ## 2026-03-08
 - Lisätty asetussivu ennen testin alkua joka tarkistaa käyttäjäprofiilin

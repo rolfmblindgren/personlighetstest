@@ -2,6 +2,7 @@
 - Lasihuvvon doarjja testabohtosiid PDF-raportii, mas leat faktoraid ja fasetaid gráfalaš ovddastusat
 - Buoriduvvon raportateavsttat ja skáraid čájeheapmi vai čilgehusat, eahpesihkkarvuođamihttut ja oppalašskárrat oidnojit dássehasabbut
 - Divvojuvvon e-poastta nanneheapmi registreremis ja dahkkon ođđasit sádden nannehanreivii luohtehahttibun
+- Lasihuvvon boalut bohtossiidui vai raportta sáhttá viežžat PDF:n ja dahje oažžut e-poasttain
 
 ## 2026-03-08
 - Lasiha ovdal geahččaleami álggahusa oktavuođas profiila dárkkisteami

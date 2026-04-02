@@ -2,6 +2,7 @@
 - Added support for PDF reports of test results with graphical presentations of factors and facets
 - Improved report text and score presentation so descriptions, uncertainty measures, and totals are shown more consistently
 - Fixed email verification during registration and made confirmation email re-sending reliable
+- Added buttons on the score page to download the report as a PDF or send it by email
 
 ## 2026-03-08
 - Added a pre-test setup step that checks the user profile before starting a test
