@@ -1,3 +1,8 @@
+## 2026-04-02
+- Lisätty tuki testitulosten PDF-raportille, jossa oon graafiset esitykset faktoreista ja faseteista
+- Parannettu raporttitekstejä ja skårein esitystä niin ette kuvvaukset, epävarmuusmitat ja kokonais-skårit näytethään johdonmukaisemmin
+- Korjattu sähköpostivarmistus rekisteröinissä ja tehty vahvistusviestin uuesthaansentäminen luotettavammaksi
+
 ## 2026-03-08
 - Lisätty asetussivu ennen testin alkua joka tarkistaa käyttäjäprofiilin
 - Käyttäjältä pyydethään nyt nimi, syntymäpäivä ja testin kieli jos net puuttuvat

@@ -1,3 +1,8 @@
+## 2026-04-02
+- Lasihuvvon doarjja testabohtosiid PDF-raportii, mas leat faktoraid ja fasetaid gráfalaš ovddastusat
+- Buoriduvvon raportateavsttat ja skáraid čájeheapmi vai čilgehusat, eahpesihkkarvuođamihttut ja oppalašskárrat oidnojit dássehasabbut
+- Divvojuvvon e-poastta nanneheapmi registreremis ja dahkkon ođđasit sádden nannehanreivii luohtehahttibun
+
 ## 2026-03-08
 - Lasiha ovdal geahččaleami álggahusa oktavuođas profiila dárkkisteami
 - Geavaheaddji bivdojuvvo dál addit nama, riegádanbeaivvi ja válljejuvvon geahččaleami giella jos dat váilu

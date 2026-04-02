@@ -1,3 +1,8 @@
+## 2026-04-02
+- La til støtte for PDF-rapporter av testresultater med grafiske framstillinger av faktorer og fasetter
+- Forbedret rapporttekster og skårpresentasjon slik at beskrivelser, usikkerhetsmål og totalskår vises mer konsistent
+- Fikset e-postbekreftelse ved registrering og gjorde ny utsending av bekreftelsesmail mer pålitelig
+
 ## 2026-03-08
 - La til et oppsettsteg før teststart som kontrollerer brukerprofilen
 - Brukeren blir nå bedt om navn, fødselsdato og foretrukket testspråk hvis dette mangler

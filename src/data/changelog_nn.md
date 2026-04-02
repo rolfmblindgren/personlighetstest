@@ -1,3 +1,8 @@
+## 2026-04-02
+- La til støtte for PDF-rapportar av testresultat med grafiske framstillingar av faktorar og fasettar
+- Forbetra rapporttekstar og presentasjon av skårar slik at skildringar, uvissemål og totalskårar blir viste meir konsekvent
+- Fiksa e-postverifisering ved registrering og gjorde ny utsending av stadfestingse-post meir påliteleg
+
 ## 2026-03-08
 - La til eit oppsettsteg før teststart som kontrollerer brukarprofilen
 - Brukaren blir no beden om namn, fødselsdato og føretrekt testspråk dersom dette manglar
