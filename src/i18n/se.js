@@ -159,6 +159,9 @@ needSomeInformation: "Mii dárbbašit muhtun dieđuid ovdal go geahččaleapmi s
   facetsHeading: "Ovttadatfitnat",
   domain: "Fátta",
   facet: "Ovttadat",
+  downloadReportPdf: "Viečča raportta (PDF)",
+  isPreparingReport: "Ráhkadeamen raportta …",
+  couldNotDownloadReport: "Ii lean vejolaš viežžat raportta.",
 
   bokmål: "Ruoŧagiella",     // norsk (bokmål)
   nynorsk: "Vuodnagiella",   // norsk (nynorsk)

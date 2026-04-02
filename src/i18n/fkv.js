@@ -109,6 +109,9 @@ needSomeInformation: "Met tarvittemma muutaman tiedon ennen ko testi saattaa alk
   facetsHeading: "Ominaisuudet",
   domain: "Faktori",
   facet: "Ominaisuus",
+  downloadReportPdf: "Lataa raportti (PDF)",
+  isPreparingReport: "Luothaan raporttia …",
+  couldNotDownloadReport: "Raportin lataaminen ei onnistunu.",
 
   bokmål: "Bokmål",
   nynorsk: "Nynorsk",

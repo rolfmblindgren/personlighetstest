@@ -8,7 +8,9 @@ import Spinner from "@/components/Spinner";
 import { H1, H2, H3 } from '@/components/Heading';
 import Narrative  from '@/components/Narrative';
 import { useGetProfile }  from '@/hooks/useGetProfile';
+import { useLang } from '@/i18n/hooks';
 import PrintButton from '@/components/PrintButton.tsx';
+import Button from '@/components/Button';
 import cap from '@/lib/cap';
 
 type DomainRow = { domain: string; mean_score: number | string | null; n_items: number };
@@ -21,6 +23,7 @@ type OpenKey = `${OpenKind}:${string}`;
 
 
 export default function ScoresPage() {
+  const lang = useLang();
 
   const [open, setOpen] = useState<Set<OpenKey>>(() => new Set());
   const toggle = (k: OpenKey) => {
@@ -54,6 +57,8 @@ export default function ScoresPage() {
     narrative?: NarrativeRow[];
   }>({});
   const [err, setErr] = useState("");
+  const [isDownloadingReport, setIsDownloadingReport] = useState(false);
+  const [reportErr, setReportErr] = useState("");
 
   const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(0));
 
@@ -119,6 +124,41 @@ export default function ScoresPage() {
     return () => { abort = true };
   }, [testId]);
 
+  const downloadReport = async () => {
+    if (!testId || isDownloadingReport) return;
+
+    setIsDownloadingReport(true);
+    setReportErr("");
+
+    try {
+      const r = await authFetch(`${API}/tests/${testId}/${lang}/report.pdf`);
+      if (!r.ok) {
+        let message = t('couldNotDownloadReport') || 'Kunne ikke laste ned rapport';
+        try {
+          const payload = await r.json();
+          if (payload?.error) message = payload.error;
+        } catch {
+          // behold standardmeldingen hvis responsen ikke er JSON
+        }
+        throw new Error(message);
+      }
+
+      const blob = await r.blob();
+      const objectUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = `rapport-${testId}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(objectUrl);
+    } catch (e: any) {
+      setReportErr(e?.message || (t('couldNotDownloadReport') || 'Kunne ikke laste ned rapport'));
+    } finally {
+      setIsDownloadingReport(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-[50vh] grid place-items-center">
@@ -132,7 +172,19 @@ export default function ScoresPage() {
 
     <div className="max-w-3xl mx-auto p-4">
 
-      <PrintButton />
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <PrintButton />
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={downloadReport}
+          disabled={isDownloadingReport || !testId}
+        >
+          {isDownloadingReport
+            ? (t('isPreparingReport') || 'Lager rapport …')
+            : (t('downloadReportPdf') || 'Last ned rapport (PDF)')}
+        </Button>
+      </div>
 
       <H1 className="text-2xl font-semibold mb-4">
         {t('scoresTitle') || t('scores')}
@@ -141,6 +193,7 @@ export default function ScoresPage() {
       </H1>
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
+      {reportErr && <div className="text-red-600 mb-4">{reportErr}</div>}
 
 
       {data.total && false && (

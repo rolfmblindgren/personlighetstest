@@ -111,6 +111,9 @@ export default {
   facetsHeading: "Fasetter",
   domain: "Faktor",
   facet: "Fasett",
+  downloadReportPdf: "Last ned rapport (PDF)",
+  isPreparingReport: "Lager rapport …",
+  couldNotDownloadReport: "Kunne ikke laste ned rapporten.",
 
 
   bokmål: "Bokmål",
