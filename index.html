@@ -8,18 +8,79 @@
       name="description"
       content="Grendel Personlighetstest tilbyr vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
     />
+    <link rel="canonical" href="https://personlighetstest.grendel.no/" />
     <meta name="robots" content="index,follow" />
     <meta name="bingbot" content="index,follow" />
     <meta name="google-site-verification" content="o_sMLZjQ-qy5wk9q0RhyW_DAbtLmX79aOgREc7Sci_0" />
     <meta name="msvalidate.01" content="21A55F2D174EBD13C0215D02F8C167F9" />
     <meta name="theme-color" content="#f1f5f9" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nb_NO" />
+    <meta property="og:site_name" content="Grendel Personlighetstest" />
+    <meta property="og:title" content="Grendel Personlighetstest" />
+    <meta
+      property="og:description"
+      content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
+    />
+    <meta property="og:url" content="https://personlighetstest.grendel.no/" />
+    <meta property="og:image" content="https://personlighetstest.grendel.no/grendel-share-card.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Grendel Personlighetstest med lys blå delingsgrafikk og kort beskrivelse av testen."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Grendel Personlighetstest" />
+    <meta
+      name="twitter:description"
+      content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
+    />
+    <meta name="twitter:image" content="https://personlighetstest.grendel.no/grendel-share-card.svg" />
+    <meta
+      name="twitter:image:alt"
+      content="Grendel Personlighetstest med lys blå delingsgrafikk og kort beskrivelse av testen."
+    />
     <title>Grendel Personlighetstest</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Grendel Personlighetstest",
+        "url": "https://personlighetstest.grendel.no/",
+        "inLanguage": "no",
+        "description": "Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Grendel",
+          "url": "https://personlighetstest.grendel.no"
+        }
+      }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M19N4XC355"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-M19N4XC355');
+    </script>
+    <script>
+      (function () {
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) return;
+        var url = new URL(window.location.href);
+        url.hash = '';
+        canonical.href = url.origin + url.pathname;
+      })();
+    </script>
+    <script>
+      (function () {
+        var url = new URL(window.location.href);
+        url.hash = '';
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', url.origin + url.pathname);
+      })();
     </script>
   </head>
   <body class="bg-slate-100">

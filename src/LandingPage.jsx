@@ -14,20 +14,6 @@ const SITE_URL = 'https://personlighetstest.grendel.no';
 const OG_IMAGE_URL = `${SITE_URL}/grendel-share-card.svg`;
 
 function LandingPage() {
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Grendel Personlighetstest',
-    url: `${SITE_URL}/`,
-    inLanguage: 'no',
-    description: 'Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt.',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Grendel',
-      url: SITE_URL,
-    },
-  };
-
   const navigate = useNavigate();  // nødvendig for redirect
   const { loggedIn } = useAuth();  // 👈 reaktiv status
 
@@ -56,37 +42,8 @@ function LandingPage() {
   return (
     <>
       <Helmet>
-        <title>Grendel Personlighetstest</title>
-        <meta
-          name="description"
-          content="Grendel Personlighetstest tilbyr vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
-        />
         <link rel="canonical" href={`${SITE_URL}/`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="nb_NO" />
-        <meta property="og:site_name" content="Grendel Personlighetstest" />
-        <meta property="og:title" content="Grendel Personlighetstest" />
-        <meta
-          property="og:description"
-          content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
-        />
         <meta property="og:url" content={`${SITE_URL}/`} />
-        <meta property="og:image" content={OG_IMAGE_URL} />
-        <meta property="og:image:type" content="image/svg+xml" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Grendel Personlighetstest med lys blå delingsgrafikk og kort beskrivelse av testen." />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Grendel Personlighetstest" />
-        <meta
-          name="twitter:description"
-          content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
-        />
-        <meta name="twitter:image" content={OG_IMAGE_URL} />
-        <meta name="twitter:image:alt" content="Grendel Personlighetstest med lys blå delingsgrafikk og kort beskrivelse av testen." />
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
       </Helmet>
 
       <div>
