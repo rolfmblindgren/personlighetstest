@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://flaskapps.grendel.no/portal/sitemap.xml
+Sitemap: https://personlighetstest.grendel.no/sitemap.xml

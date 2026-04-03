@@ -10,7 +10,7 @@ import { H1, H2 } from './components/Heading.tsx';
 import { t } from '@/i18n';
 import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
-const SITE_URL = 'https://flaskapps.grendel.no/portal';
+const SITE_URL = 'https://personlighetstest.grendel.no';
 const OG_IMAGE_URL = `${SITE_URL}/grendel-share-card.svg`;
 
 function LandingPage() {
