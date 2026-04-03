@@ -11,7 +11,7 @@ import { t } from '@/i18n';
 import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
 const SITE_URL = 'https://flaskapps.grendel.no/portal';
-const OG_IMAGE_URL = `${SITE_URL}/bilder/zahlenzauberer-1280.png`;
+const OG_IMAGE_URL = `${SITE_URL}/grendel-share-card.svg`;
 
 function LandingPage() {
   const structuredData = {
@@ -72,13 +72,18 @@ function LandingPage() {
         />
         <meta property="og:url" content={`${SITE_URL}/`} />
         <meta property="og:image" content={OG_IMAGE_URL} />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="Grendel Personlighetstest" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Grendel Personlighetstest med lys blå delingsgrafikk og kort beskrivelse av testen." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Grendel Personlighetstest" />
         <meta
-          property="twitter:description"
+          name="twitter:description"
           content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
         />
-        <meta property="twitter:image" content={OG_IMAGE_URL} />
+        <meta name="twitter:image" content={OG_IMAGE_URL} />
+        <meta name="twitter:image:alt" content="Grendel Personlighetstest med lys blå delingsgrafikk og kort beskrivelse av testen." />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>

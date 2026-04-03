@@ -1,0 +1,54 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="68" y1="42" x2="1104" y2="592" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E0F2FE"/>
+      <stop offset="0.52" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#DBEAFE"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="165" y1="78" x2="267" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <filter id="shadow" x="77" y="69" width="1046" height="510" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="14"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0588235 0 0 0 0 0.0941176 0 0 0 0 0.156863 0 0 0 0.12 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1047" cy="117" r="166" fill="#BFDBFE" fill-opacity="0.55"/>
+  <circle cx="1118" cy="521" r="130" fill="#C7D2FE" fill-opacity="0.45"/>
+  <circle cx="131" cy="566" r="148" fill="#BAE6FD" fill-opacity="0.55"/>
+
+  <g filter="url(#shadow)">
+    <rect x="113" y="91" width="974" height="438" rx="28" fill="white"/>
+  </g>
+
+  <rect x="165" y="123" width="102" height="102" rx="28" fill="url(#accent)"/>
+  <rect x="190" y="103" width="24" height="142" rx="12" fill="#22C55E"/>
+  <rect x="214" y="78" width="24" height="167" rx="12" fill="#60A5FA"/>
+  <rect x="238" y="98" width="24" height="147" rx="12" fill="#2563EB"/>
+
+  <text x="305" y="166" fill="#0F172A" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="56" font-weight="700">
+    Grendel Personlighetstest
+  </text>
+  <text x="165" y="284" fill="#334155" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="34" font-weight="500">
+    Vitenskapelig personlighetstesting med tydelige resultater
+  </text>
+  <text x="165" y="336" fill="#475569" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="30" font-weight="400">
+    Test deg selv, sammenlign profiler og utforsk styrker,
+  </text>
+  <text x="165" y="378" fill="#475569" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="30" font-weight="400">
+    mønstre og trekk i et oversiktlig dashboard.
+  </text>
+
+  <rect x="165" y="430" width="292" height="62" rx="31" fill="#0F172A"/>
+  <text x="209" y="471" fill="white" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="28" font-weight="600">
+    flaskapps.grendel.no/portal
+  </text>
+</svg>
