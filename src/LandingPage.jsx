@@ -10,7 +10,23 @@ import { H1, H2 } from './components/Heading.tsx';
 import { t } from '@/i18n';
 import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
+const SITE_URL = 'https://flaskapps.grendel.no/portal';
+const OG_IMAGE_URL = `${SITE_URL}/bilder/zahlenzauberer-1280.png`;
+
 function LandingPage() {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Grendel Personlighetstest',
+    url: `${SITE_URL}/`,
+    inLanguage: 'no',
+    description: 'Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Grendel',
+      url: SITE_URL,
+    },
+  };
 
   const navigate = useNavigate();  // nødvendig for redirect
   const { loggedIn } = useAuth();  // 👈 reaktiv status
@@ -41,7 +57,31 @@ function LandingPage() {
     <>
       <Helmet>
         <title>Grendel Personlighetstest</title>
-        <meta name="description" content="Vitenskapelig testing av personlighet" />
+        <meta
+          name="description"
+          content="Grendel Personlighetstest tilbyr vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
+        />
+        <link rel="canonical" href={`${SITE_URL}/`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="nb_NO" />
+        <meta property="og:site_name" content="Grendel Personlighetstest" />
+        <meta property="og:title" content="Grendel Personlighetstest" />
+        <meta
+          property="og:description"
+          content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
+        />
+        <meta property="og:url" content={`${SITE_URL}/`} />
+        <meta property="og:image" content={OG_IMAGE_URL} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="Grendel Personlighetstest" />
+        <meta
+          property="twitter:description"
+          content="Vitenskapelig personlighetstesting med tydelige resultater og en enkel testflyt."
+        />
+        <meta property="twitter:image" content={OG_IMAGE_URL} />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Helmet>
 
       <div>
