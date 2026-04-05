@@ -51,6 +51,7 @@ export default function ScoresPage() {
 
   const { testId } = useParams<{ testId: string }>();
   const [data, setData] = useState<{
+    test_lang?: string;
     total?: { mean_score: number; n_items: number };
     domains?: DomainRow[];
     facets?: FacetRow[];
@@ -61,6 +62,7 @@ export default function ScoresPage() {
   const [isEmailingReport, setIsEmailingReport] = useState(false);
   const [reportErr, setReportErr] = useState("");
   const [reportMsg, setReportMsg] = useState("");
+  const reportLang = data.test_lang || lang || "nb";
 
   const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(0));
 
@@ -134,7 +136,7 @@ export default function ScoresPage() {
     setReportMsg("");
 
     try {
-      const r = await authFetch(`${API}/tests/${testId}/${lang}/report.pdf`);
+      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report.pdf`);
       if (!r.ok) {
         let message = t('couldNotDownloadReport') || 'Kunne ikke laste ned rapport';
         try {
@@ -170,7 +172,7 @@ export default function ScoresPage() {
     setReportMsg("");
 
     try {
-      const r = await authFetch(`${API}/tests/${testId}/${lang}/report-email`, {
+      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report-email`, {
         method: 'POST',
       });
       let payload: any = null;
