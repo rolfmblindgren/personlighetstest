@@ -1,8 +1,11 @@
 // lib/apiFetch.tsx
 
-import { useAuth } from "@/context/AuthContext";  // 👈 ny
 import { API } from "@/lib/apiBase";
 import { authContext } from "@/context/AuthContext";
+import {
+  applyMaintenanceBypass,
+  notifyMaintenanceFromResponse,
+} from "@/lib/maintenance";
 
 // apiFetch er en vanlig funksjon som fungerer både i komponenter og utenfor React.
 // Den får tilgang til AuthContext via authContext (ikke via useAuth-hooken).
@@ -14,8 +17,10 @@ export async function apiFetch(input: string, init: RequestInit = {}) {
   const token = ctx?.getToken?.() || localStorage.getItem("token");
   const headers = new Headers(init.headers || {});
   if (token) headers.set("Authorization", `Bearer ${token}`);
+  applyMaintenanceBypass(headers);
 
   const res = await fetch(input, { ...init, headers });
+  await notifyMaintenanceFromResponse(res.clone());
 
   // Rolling renewal: backend sender nytt access-token i responsheader
   const fresh = res.headers.get("X-Access-Token");
@@ -33,8 +38,11 @@ export async function apiFetch(input: string, init: RequestInit = {}) {
 
   const rr = await fetch(`${API}/auth/refresh`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${refresh}` },
+    headers: applyMaintenanceBypass(
+      new Headers({ Authorization: `Bearer ${refresh}` })
+    ),
   });
+  await notifyMaintenanceFromResponse(rr.clone());
   if (!rr.ok) {
     ctx?.logout?.();
     return res;
@@ -50,7 +58,10 @@ export async function apiFetch(input: string, init: RequestInit = {}) {
   ctx?.setToken?.(data.token);
   const retryHeaders = new Headers(init.headers || {});
   retryHeaders.set("Authorization", `Bearer ${data.token}`);
-  return fetch(input, { ...init, headers: retryHeaders });
+  applyMaintenanceBypass(retryHeaders);
+  const retried = await fetch(input, { ...init, headers: retryHeaders });
+  await notifyMaintenanceFromResponse(retried.clone());
+  return retried;
 }
 
 
@@ -60,10 +71,10 @@ export async function authFetch(url: string, init: RequestInit = {}) {
 
   const headers = new Headers(init.headers || {});
   if (token) headers.set("Authorization", `Bearer ${token}`);
+  applyMaintenanceBypass(headers);
 
   const res = await fetch(url, { ...init, headers });
-  console.log(url)
-  console.log(headers)
+  await notifyMaintenanceFromResponse(res.clone());
 
   // 2) plukk opp rullende token fra responsheader
   const fresh = res.headers.get("X-Access-Token");
@@ -81,8 +92,11 @@ export async function authFetch(url: string, init: RequestInit = {}) {
 
   const rr = await fetch(`${API}/auth/refresh`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${refresh}` },
+    headers: applyMaintenanceBypass(
+      new Headers({ Authorization: `Bearer ${refresh}` })
+    ),
   });
+  await notifyMaintenanceFromResponse(rr.clone());
   if (!rr.ok) {
     ctx?.logout?.();
     return res;
@@ -99,6 +113,9 @@ export async function authFetch(url: string, init: RequestInit = {}) {
 
   const retryHeaders = new Headers(init.headers || {});
   retryHeaders.set("Authorization", `Bearer ${data.token}`);
+  applyMaintenanceBypass(retryHeaders);
 
-  return fetch(url, { ...init, headers: retryHeaders });
+  const retried = await fetch(url, { ...init, headers: retryHeaders });
+  await notifyMaintenanceFromResponse(retried.clone());
+  return retried;
 }

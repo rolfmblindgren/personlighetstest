@@ -11,7 +11,6 @@ export function useIsAdmin() {
       try {
         const res = await authFetch(`${API}/check-admin-status`);
 	const data = await res.json();
-	console.log("adminresp", data);
         setIsAdmin(data.is_admin);
       } catch {
         setIsAdmin(false);

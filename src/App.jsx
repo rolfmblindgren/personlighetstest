@@ -1,5 +1,6 @@
 // App.jsx
 import { HelmetProvider } from 'react-helmet-async';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from '@/LandingPage';
 import Dashboard from '@/pages/Dashboard';
@@ -19,21 +20,57 @@ import DonationPage from "@/pages/DonationPage";
 import GDPR from "@/pages/GDPR";
 import CHANGELOG from "@/pages/ChangeLog";
 import IpipNeo from '@/ipip_neo';
-
-import { useAuth } from "@/context/AuthContext";
-
-function DebugAuth() {
-  const { loggedIn } = useAuth();
-  console.log("loggedIn =", loggedIn);
-  return null;
-}
+import MaintenancePage from '@/pages/MaintenancePage';
+import {
+  MAINTENANCE_EVENT,
+  captureMaintenanceBypassFromUrl,
+  fetchMaintenanceState,
+  getEnvMaintenanceState,
+} from '@/lib/maintenance';
 
 function App() {
+  const [maintenance, setMaintenance] = useState(
+    () => {
+      captureMaintenanceBypassFromUrl();
+      return getEnvMaintenanceState() || { active: false };
+    }
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    const refresh = async () => {
+      const next = await fetchMaintenanceState();
+      if (!cancelled) setMaintenance(next);
+    };
+
+    refresh();
+    const intervalId = window.setInterval(refresh, 60000);
+
+    const handleMaintenance = (event) => {
+      setMaintenance(event.detail || { active: false });
+    };
+
+    window.addEventListener(MAINTENANCE_EVENT, handleMaintenance);
+    return () => {
+      cancelled = true;
+      window.clearInterval(intervalId);
+      window.removeEventListener(MAINTENANCE_EVENT, handleMaintenance);
+    };
+  }, []);
+
+  const retryMaintenanceCheck = async () => {
+    const next = await fetchMaintenanceState();
+    setMaintenance(next);
+    if (!next.active) window.location.reload();
+  };
+
   return (
     <HelmetProvider>
+      {maintenance.active ? (
+        <MaintenancePage state={maintenance} onRetry={retryMaintenanceCheck} />
+      ) : (
       <Router>
         <Layout>
-          <DebugAuth />
         <Routes>
 
           <Route path="/"
@@ -175,6 +212,7 @@ function App() {
         </Routes>
         </Layout>
       </Router>
+      )}
     </HelmetProvider>
   )
 }

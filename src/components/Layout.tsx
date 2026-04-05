@@ -8,7 +8,6 @@ import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
 export function Layout({ children }) {
   const { loggedIn } = useAuth();
-  console.log("Layout render → loggedIn =", loggedIn);
 
   return (
     <div className="min-h-screen bg-slate-100 py-8">

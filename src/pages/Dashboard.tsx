@@ -8,6 +8,7 @@ import Button from '@/components/Button';
 import UsersWidget from '@/components/UsersWidget';
 import TestWidget from '@/components/TestWidget';
 import MyTestsWidget from '@/components/MyTestsWidget';
+import MaintenanceWidget from '@/components/MaintenanceWidget';
 import { H1, H2, H3 } from '@/components/Heading';
 import ImportLegacyWidget from '@/components/ImportLegacyWidget';
 import { t } from '@/i18n';
@@ -46,6 +47,17 @@ export default function Dashboard() {
           </Card>
 
 	)}
+
+        {isAdmin && (
+          <Card className="border-amber-200 bg-[linear-gradient(180deg,rgba(255,251,235,0.96),rgba(255,255,255,0.98))]">
+            <CardHeader>
+              <CardTitle>{t("maintenanceModeTitle")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <MaintenanceWidget />
+            </CardContent>
+          </Card>
+        )}
 
         <Card>
           <CardHeader><CardTitle>{t('startNewTest')}</CardTitle></CardHeader>
