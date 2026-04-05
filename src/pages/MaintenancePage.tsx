@@ -1,5 +1,6 @@
 import logo from "@/assets/Grendel-G.png";
 import Button from "@/components/Button";
+import LanguagePicker from "@/components/LanguagePicker";
 import { t } from "@/i18n";
 import { useLang } from "@/i18n/hooks";
 import type { MaintenanceState } from "@/lib/maintenance";
@@ -39,6 +40,10 @@ export default function MaintenancePage({ state, onRetry }: Props) {
       <div className="pointer-events-none absolute inset-x-0 top-[-120px] mx-auto h-80 w-80 rounded-full bg-teal-300/35 blur-3xl" />
       <div className="pointer-events-none absolute right-[-120px] top-1/3 h-72 w-72 rounded-full bg-cyan-200/45 blur-3xl" />
       <div className="pointer-events-none absolute bottom-[-80px] left-[-60px] h-64 w-64 rounded-full bg-emerald-200/40 blur-3xl" />
+
+      <div className="relative z-10 mx-auto flex max-w-6xl justify-end pb-4">
+        <LanguagePicker />
+      </div>
 
       <div className="relative mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl items-center">
         <div className="grid w-full gap-8 lg:grid-cols-[1.15fr_0.85fr]">
