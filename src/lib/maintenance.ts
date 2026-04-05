@@ -1,6 +1,9 @@
 import { API } from "@/lib/apiBase";
 
 export const MAINTENANCE_EVENT = "portal:maintenance";
+export const DEFAULT_MAINTENANCE_TITLE = "Vi er straks tilbake";
+export const DEFAULT_MAINTENANCE_MESSAGE =
+  "Vi oppgraderer tjenesten akkurat nå. Det skal ikke vare lenge.";
 
 const BYPASS_STORAGE_KEY = "maintenanceBypassToken";
 const BYPASS_QUERY_KEY = "maintenance_bypass";
@@ -11,6 +14,8 @@ export type MaintenanceState = {
   code?: string;
   title?: string;
   message?: string;
+  title_is_custom?: boolean;
+  message_is_custom?: boolean;
   until?: string | null;
   contact_email?: string | null;
   source?: "env" | "backend" | "runtime";
@@ -21,14 +26,22 @@ function parseBool(value: unknown): boolean {
 }
 
 function normalizeState(payload: any, source: MaintenanceState["source"]): MaintenanceState {
+  const title = payload?.title || DEFAULT_MAINTENANCE_TITLE;
+  const message = payload?.message || DEFAULT_MAINTENANCE_MESSAGE;
+
   return {
     active: Boolean(payload?.active),
     bypassed: Boolean(payload?.bypassed),
     code: payload?.code || (payload?.active ? "MAINTENANCE" : "OK"),
-    title: payload?.title || "Vi er straks tilbake",
-    message:
-      payload?.message ||
-      "Vi oppgraderer tjenesten akkurat nå. Det skal ikke vare lenge.",
+    title,
+    message,
+    title_is_custom: Boolean(
+      payload?.title_is_custom ?? (title && title !== DEFAULT_MAINTENANCE_TITLE)
+    ),
+    message_is_custom: Boolean(
+      payload?.message_is_custom ??
+        (message && message !== DEFAULT_MAINTENANCE_MESSAGE)
+    ),
     until: payload?.until || null,
     contact_email: payload?.contact_email || null,
     source,
@@ -75,6 +88,16 @@ export function getEnvMaintenanceState(): MaintenanceState | null {
       code: "MAINTENANCE",
       title: import.meta.env.VITE_MAINTENANCE_TITLE,
       message: import.meta.env.VITE_MAINTENANCE_MESSAGE,
+      title_is_custom: Boolean(
+        String(import.meta.env.VITE_MAINTENANCE_TITLE || "").trim() &&
+          String(import.meta.env.VITE_MAINTENANCE_TITLE || "").trim() !==
+            DEFAULT_MAINTENANCE_TITLE
+      ),
+      message_is_custom: Boolean(
+        String(import.meta.env.VITE_MAINTENANCE_MESSAGE || "").trim() &&
+          String(import.meta.env.VITE_MAINTENANCE_MESSAGE || "").trim() !==
+            DEFAULT_MAINTENANCE_MESSAGE
+      ),
       until: import.meta.env.VITE_MAINTENANCE_UNTIL,
       contact_email: import.meta.env.VITE_MAINTENANCE_CONTACT_EMAIL,
     },

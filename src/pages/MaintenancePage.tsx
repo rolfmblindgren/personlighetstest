@@ -3,7 +3,11 @@ import Button from "@/components/Button";
 import LanguagePicker from "@/components/LanguagePicker";
 import { t } from "@/i18n";
 import { useLang } from "@/i18n/hooks";
-import type { MaintenanceState } from "@/lib/maintenance";
+import {
+  DEFAULT_MAINTENANCE_MESSAGE,
+  DEFAULT_MAINTENANCE_TITLE,
+  type MaintenanceState,
+} from "@/lib/maintenance";
 
 type Props = {
   state: MaintenanceState;
@@ -34,6 +38,14 @@ function formatUntil(until: string | null | undefined, lang: string): string {
 export default function MaintenancePage({ state, onRetry }: Props) {
   const lang = useLang();
   const formattedUntil = formatUntil(state.until, lang);
+  const title =
+    state.title_is_custom && state.title
+      ? state.title
+      : t("maintenanceTitle") || DEFAULT_MAINTENANCE_TITLE;
+  const message =
+    state.message_is_custom && state.message
+      ? state.message
+      : t("maintenanceBody") || DEFAULT_MAINTENANCE_MESSAGE;
 
   return (
     <div className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#e8fffb_0%,#f8fbff_45%,#eef7f4_100%)] px-6 py-10 text-slate-900">
@@ -61,13 +73,11 @@ export default function MaintenancePage({ state, onRetry }: Props) {
             </div>
 
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">
-              {state.title || t("maintenanceTitle") || "Vi er straks tilbake"}
+              {title}
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
-              {state.message ||
-                t("maintenanceBody") ||
-                "Vi oppgraderer tjenesten akkurat nå. Det skal ikke vare lenge."}
+              {message}
             </p>
 
             {formattedUntil && (
