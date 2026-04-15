@@ -16,10 +16,15 @@ const DEFAULT_LOCALE = "nb";
 
 // normaliser «nb», «nb_NO», «nb-NO»
 export function normalizeLocale(tag) {
-  if (!tag) return DEFAULT_LOCALE;
+  if (!tag) return { full: DEFAULT_LOCALE, base: DEFAULT_LOCALE };
   const clean = String(tag).replace("_", "-").toLowerCase();  // nb-no
   const [base] = clean.split("-");                             // nb
   return { full: clean, base };
+}
+
+function resolveLocale(tag) {
+  const { base } = normalizeLocale(tag || DEFAULT_LOCALE);
+  return strings[base] ? base : DEFAULT_LOCALE;
 }
 
 export function getLocale() {
@@ -33,8 +38,8 @@ export function setLocale(tag) {
   localStorage.setItem("locale", tag);
 }
 
-export function t(key, { lower = false, upper = false } = {}) {
-  const lang = localStorage.getItem("locale") || "nb";
+export function translate(locale, key, { lower = false, upper = false } = {}) {
+  const lang = resolveLocale(locale);
   let text = strings[lang]?.[key] ?? `⚠️ ${key}`;
 
   if (lower) {
@@ -47,14 +52,12 @@ export function t(key, { lower = false, upper = false } = {}) {
   return text;
 }
 
-export function useT() {
-  const lang = localStorage.getItem("locale") || "nb";
+export function t(key, options = {}) {
+  const lang = localStorage.getItem("locale") || DEFAULT_LOCALE;
+  return translate(lang, key, options);
+}
 
-  return (key, { lower = false, upper = false } = {}) => {
-    const text = strings[lang]?.[key] ?? `⚠️ ${key}`;
-    let result = text;
-    if (lower) result = result.charAt(0).toLowerCase() + result.slice(1);
-    if (upper) result = result.toUpperCase();
-    return result;
-  };
+export function useT() {
+  const lang = localStorage.getItem("locale") || DEFAULT_LOCALE;
+  return (key, options = {}) => translate(lang, key, options);
 }

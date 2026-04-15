@@ -3,7 +3,7 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../lib/apiBase";
 import { authFetch } from "../lib/apiFetch";
-import { t } from "@/i18n";
+import { translate } from "@/i18n";
 import Spinner from "@/components/Spinner";
 import { H1, H2, H3 } from '@/components/Heading';
 import Narrative  from '@/components/Narrative';
@@ -37,13 +37,13 @@ export default function ScoresPage() {
 
   const domainDesc = (domain: string) => {
     const key = `desc_${domain}` as any; // f.eks. "desc_E"
-    const s = t(key);
+    const s = tr(key);
     return typeof s === "string" && s !== key ? s : "";
   };
 
   const facetDesc = (domain: string, facetNo: number) => {
     const key = `desc_${domain}${facetNo}` as any; // f.eks. "desc_N4"
-    const s = t(key);
+    const s = tr(key);
     return typeof s === "string" && s !== key ? s : "";
   };
 
@@ -65,7 +65,19 @@ export default function ScoresPage() {
   const [isEmailingReport, setIsEmailingReport] = useState(false);
   const [reportErr, setReportErr] = useState("");
   const [reportMsg, setReportMsg] = useState("");
-  const reportLang = data.test_lang || lang || "nb";
+  const pageLang = data.test_lang || lang || "nb";
+  const reportLang = pageLang;
+
+  const tr = (
+    key: string,
+    fallback?: string,
+    options?: { lower?: boolean; upper?: boolean }
+  ) => {
+    const text = translate(pageLang, key, options);
+    return typeof text === "string" && !text.startsWith("⚠️")
+      ? text
+      : (fallback ?? text);
+  };
 
   const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(0));
 
@@ -76,20 +88,20 @@ export default function ScoresPage() {
     return i === -1 ? 999 : i;
   };
 
-  // navn pr. render (respekterer locale)
+  // navn pr. render (følger testens språk)
   const domainNames: Record<string,string> = {
-    A: t('B5A'),
-    E: t('B5E'),
-    C: t('B5C'),
-    N: t('B5N'),
-    O: t('B5O'),
+    A: tr('B5A', 'Medmenneskelighet'),
+    E: tr('B5E', 'Ekstroversjon'),
+    C: tr('B5C', 'Planmessighet'),
+    N: tr('B5N', 'Nevrotisisme'),
+    O: tr('B5O', 'Åpenhet for erfaringer'),
   };
 
   const { profile } = useGetProfile();
 
   const facetLabel = (domain: string, facetNo: number) => {
     const key = `${domain}${facetNo}` as any; // f.eks. "N4"
-    const label = t(key);
+    const label = tr(key);
     return typeof label === 'string' && label !== key ? label : key;
   };
 
@@ -141,7 +153,7 @@ export default function ScoresPage() {
     try {
       const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report.pdf`);
       if (!r.ok) {
-        let message = t('couldNotDownloadReport') || 'Kunne ikke laste ned rapport';
+        let message = tr('couldNotDownloadReport', 'Kunne ikke laste ned rapport');
         try {
           const payload = await r.json();
           if (payload?.error) message = payload.error;
@@ -161,7 +173,7 @@ export default function ScoresPage() {
       link.remove();
       window.URL.revokeObjectURL(objectUrl);
     } catch (e: any) {
-      setReportErr(e?.message || (t('couldNotDownloadReport') || 'Kunne ikke laste ned rapport'));
+      setReportErr(e?.message || tr('couldNotDownloadReport', 'Kunne ikke laste ned rapport'));
     } finally {
       setIsDownloadingReport(false);
     }
@@ -186,18 +198,18 @@ export default function ScoresPage() {
       }
 
       if (!r.ok) {
-        const message = payload?.error || t('couldNotEmailReport') || 'Kunne ikke sende rapporten på e-post';
+        const message = payload?.error || tr('couldNotEmailReport', 'Kunne ikke sende rapporten på e-post');
         throw new Error(message);
       }
 
       const email = payload?.email;
       setReportMsg(
         email
-          ? `${t('reportEmailSentTo') || 'Rapporten ble sendt til'} ${email}`
-          : (t('reportEmailSent') || 'Rapporten ble sendt på e-post.')
+          ? `${tr('reportEmailSentTo', 'Rapporten ble sendt til')} ${email}`
+          : tr('reportEmailSent', 'Rapporten ble sendt på e-post.')
       );
     } catch (e: any) {
-      setReportErr(e?.message || (t('couldNotEmailReport') || 'Kunne ikke sende rapporten på e-post'));
+      setReportErr(e?.message || tr('couldNotEmailReport', 'Kunne ikke sende rapporten på e-post'));
     } finally {
       setIsEmailingReport(false);
     }
@@ -206,7 +218,7 @@ export default function ScoresPage() {
   if (loading) {
     return (
       <div className="min-h-[50vh] grid place-items-center">
-        <Spinner text="Laster skårer …" />
+        <Spinner text={tr('loadingScores', 'Laster skårer …')} />
       </div>
     );
   }
@@ -225,8 +237,8 @@ export default function ScoresPage() {
           disabled={isDownloadingReport || !testId}
         >
           {isDownloadingReport
-            ? (t('isPreparingReport') || 'Lager rapport …')
-            : (t('downloadReportPdf') || 'Last ned rapport (PDF)')}
+            ? tr('isPreparingReport', 'Lager rapport …')
+            : tr('downloadReportPdf', 'Last ned rapport (PDF)')}
         </Button>
         <Button
           variant="secondary"
@@ -235,13 +247,13 @@ export default function ScoresPage() {
           disabled={isEmailingReport || !testId}
         >
           {isEmailingReport
-            ? (t('isEmailingReport') || 'Sender rapport …')
-            : (t('emailReportPdf') || 'Mail rapport')}
+            ? tr('isEmailingReport', 'Sender rapport …')
+            : tr('emailReportPdf', 'Mail rapport')}
         </Button>
       </div>
 
       <H1 className="text-2xl font-semibold mb-4">
-        {t('scoresTitle') || t('scores')}
+        {tr('scoresTitle', tr('scores', 'Resultater'))}
 	{' '}
 	{data.subject_name || profile?.navn || data.subject_email || ""}
       </H1>
@@ -253,18 +265,18 @@ export default function ScoresPage() {
 
       {data.total && false && (
         <div className="mb-6 text-sm text-gray-600">
-          {(t('totalAnswered') || 'Totalt besvart')}: {data.total.n_items} · {t('tScore') || 'T-skår'} {fmt(data.total.mean_score)}
+          {tr('totalAnswered', 'Totalt besvart')}: {data.total.n_items} · {tr('tScore', 'T-skår')} {fmt(data.total.mean_score)}
         </div>
       )}
 
       <H2 className="text-xl font-medium mt-4 mb-2">
-        {t('domainsHeading') || 'Domener'}
+        {tr('domainsHeading', 'Domener')}
       </H2>
       <table className="w-full text-sm mb-8 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
         <thead>
           <tr className="bg-gray-50">
-            <th className="p-2 text-left">{t('domain') || 'Faktor'}</th>
-            <th className="p-2 text-right">{t('tScore') || 'T-skår'}</th>
+            <th className="p-2 text-left">{tr('domain', 'Faktor')}</th>
+            <th className="p-2 text-right">{tr('tScore', 'T-skår')}</th>
           </tr>
         </thead>
 
@@ -316,7 +328,7 @@ export default function ScoresPage() {
       </table>
 
       <H2 className="text-xl font-medium mt-4 mb-2">
-        {t('facetsHeading') || 'Fasetter'}
+        {tr('facetsHeading', 'Fasetter')}
       </H2>
 
       {groupedFacets.map(({ domain, items }) => (
@@ -328,8 +340,8 @@ export default function ScoresPage() {
           <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden shadow-sm">
             <thead>
               <tr className="bg-gray-50">
-                <th className="p-2 text-left">{t('facet') || 'Fasett'}</th>
-                <th className="p-2 text-right">{t('tScore') || 'T-skår'}</th>
+                <th className="p-2 text-left">{tr('facet', 'Fasett')}</th>
+                <th className="p-2 text-right">{tr('tScore', 'T-skår')}</th>
               </tr>
             </thead>
 
@@ -394,7 +406,7 @@ export default function ScoresPage() {
       ) : (
 	<div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-turkis-100 opacity-60">
 	  <p className="italic">
-	    {t('generatesNarrative')}
+	    {tr('generatesNarrative', 'Lager tekstlig tolkning …')}
 	  </p>
 	</div>
       )}
