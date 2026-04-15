@@ -15,13 +15,13 @@ type Props = {
 
 
 const NO_LABELS_7 = [
-  "heltenig",
-  "noksåenig",
-  "littenig",
-  "usikker",
-  "littuenig",
+  "heltuenig",
   "noksåuenig",
-  "heltuenig"
+  "littuenig",
+  "usikker",
+  "littenig",
+  "noksåenig",
+  "heltenig",
 ];
 
 
