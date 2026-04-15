@@ -1,3 +1,9 @@
+## 2026-04-15
+- La til en ny invitasjonsflyt der brukere kan invitere andre til å ta testen, betale for invitasjonen og følge opp resultatet etterpå
+- Skillesidene for inviterte tester og vanlige tester ble tydeligere, og resultatsiden følger nå språket den aktuelle testen faktisk ble tatt på
+- La til vedlikeholdsmodus i administrasjonen med egen driftsside og språkvalg for brukerne
+- Rettet en feil som stoppet generering av narrativer i produksjon og oppdaterte berørte testresultater
+
 ## 2026-04-02
 - La til støtte for PDF-rapporter av testresultater med grafiske framstillinger av faktorer og fasetter
 - Forbedret rapporttekster og skårpresentasjon slik at beskrivelser, usikkerhetsmål og totalskår vises mer konsistent

@@ -1,3 +1,9 @@
+## 2026-04-15
+- Lasihuvvui ođđa bovdenvuohki, mas geavaheaddjit sáhttet bovdet eará olbmo váldit geahččaleami, máksit bovdemis ja čuovvut bohtosa maŋŋel
+- Bovdejuvvon geahččaleamit ja dábálaš geahččaleamit earuhuvvojedje čielgaseappot, ja bohtossiidu čuovvu dál dan giela mii lei geavahuvvon go geahččaleapmi váldojuvvui
+- Lasihuvvui admina stivrejuvvon dikšunmodus sierra stáhtussiidduin ja giellaválljemiin geavaheaddjiide
+- Divvojuvvui buvttadeami meattáhus mii bisttihii narrativaid ráhkadeami, ja guoskevaš geahččalanbohtosat ođasmahttojuvvojedje
+
 ## 2026-04-02
 - Lasihuvvon doarjja testabohtosiid PDF-raportii, mas leat faktoraid ja fasetaid gráfalaš ovddastusat
 - Buoriduvvon raportateavsttat ja skáraid čájeheapmi vai čilgehusat, eahpesihkkarvuođamihttut ja oppalašskárrat oidnojit dássehasabbut

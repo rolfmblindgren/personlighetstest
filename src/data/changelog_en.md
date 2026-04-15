@@ -1,3 +1,9 @@
+## 2026-04-15
+- Added a new invite flow where users can invite someone else to take the test, pay for the invite, and follow up on the result afterward
+- Separated invited tests more clearly from regular tests, and the score page now follows the language the specific test was actually taken in
+- Added an admin-controlled maintenance mode with a dedicated status page and language picker for users
+- Fixed a production issue that stopped narrative generation and refreshed the affected test results
+
 ## 2026-04-02
 - Added support for PDF reports of test results with graphical presentations of factors and facets
 - Improved report text and score presentation so descriptions, uncertainty measures, and totals are shown more consistently

@@ -1,3 +1,9 @@
+## 2026-04-15
+- Lisäthiin uus kutsumisflyyti, missä käyttäjät saattavat kutsuut muita tekkeen testin, maksaat kutsumisesta ja seurata tulemii jälkhiin
+- Kutsutut testit ja tavaliset testit erotethiin selvemästi, ja tulossivu seuraa nyt sitä kieltä millä testi oikhein tehtiin
+- Lisäthiin administrasuunhiin ylläpitomoodi omala driftisivula ja kielivalinala käyttäjiile
+- Korjatthiin tuotannon virhe, joka pysäytti narratiivien generoinnin, ja päivitetthiin ne testitulokset joihin se vaikutti
+
 ## 2026-04-02
 - Lisätty tuki testitulosten PDF-raportille, jossa oon graafiset esitykset faktoreista ja faseteista
 - Parannettu raporttitekstejä ja skårein esitystä niin ette kuvvaukset, epävarmuusmitat ja kokonais-skårit näytethään johdonmukaisemmin
