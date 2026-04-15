@@ -15,6 +15,11 @@ import { t } from '@/i18n';
 import { useHasLegacy } from '@/hooks/useHasLegacy';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 
+function safeText(key: string, fallback: string) {
+  const value = t(key);
+  return typeof value === "string" && !value.startsWith("⚠️") ? value : fallback;
+}
+
 export default function Dashboard() {
   const { logout } = useAuth()
   const navigate = useNavigate()
@@ -66,6 +71,18 @@ export default function Dashboard() {
               onClick={() => navigate("/tests")}
               className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
             >              {t('chooseTests')}
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader><CardTitle>{safeText('inviteTestsTitle', "Inviter til test")}</CardTitle></CardHeader>
+          <CardContent>
+            <Button
+              onClick={() => navigate("/invites")}
+              className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700"
+            >
+              {safeText('inviteOpenButton', "Åpne invitasjoner")}
             </Button>
           </CardContent>
         </Card>

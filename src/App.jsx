@@ -16,6 +16,8 @@ import TestPicker from '@/pages/TestPicker';
 import ScoresPage from '@/pages/ScorePage';
 import Profile from '@/pages/Profile';
 import TestsOverview from '@/pages/TestOverviews';
+import InviteTestsPage from '@/pages/InviteTestsPage';
+import PublicInvitePage from '@/pages/PublicInvitePage';
 import DonationPage from "@/pages/DonationPage";
 import GDPR from "@/pages/GDPR";
 import CHANGELOG from "@/pages/ChangeLog";
@@ -90,6 +92,15 @@ function App() {
             }
           />
 
+          <Route
+            path="/invites"
+            element={
+              <ProtectedRoute>
+                <InviteTestsPage />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/testsOverview"
                  element={
                    <ProtectedRoute>
@@ -127,6 +138,11 @@ function App() {
             element={
                 <VerifyEmailPage />
             }
+          />
+
+          <Route
+            path="/invite"
+            element={<PublicInvitePage />}
           />
 
           <Route

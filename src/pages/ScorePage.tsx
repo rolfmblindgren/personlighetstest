@@ -52,6 +52,9 @@ export default function ScoresPage() {
   const { testId } = useParams<{ testId: string }>();
   const [data, setData] = useState<{
     test_lang?: string;
+    subject_name?: string;
+    subject_email?: string;
+    is_invited_test?: boolean;
     total?: { mean_score: number; n_items: number };
     domains?: DomainRow[];
     facets?: FacetRow[];
@@ -240,7 +243,7 @@ export default function ScoresPage() {
       <H1 className="text-2xl font-semibold mb-4">
         {t('scoresTitle') || t('scores')}
 	{' '}
-	{profile?.navn ?? ""}
+	{data.subject_name || profile?.navn || data.subject_email || ""}
       </H1>
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
