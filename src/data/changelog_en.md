@@ -1,3 +1,6 @@
+## 2026-04-16
+- Notified all affected users that their test results had been corrected after the response-scale bug, and asked them to review their scores and report again
+
 ## 2026-04-15
 - Added a new invite flow where users can invite someone else to take the test, pay for the invite, and follow up on the result afterward
 - Separated invited tests more clearly from regular tests, and the score page now follows the language the specific test was actually taken in

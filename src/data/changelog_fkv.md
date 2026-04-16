@@ -1,3 +1,6 @@
+## 2026-04-16
+- Ilmoitimma kaikile vaikutetuille käyttäjille ette heän testitulokset olthiin korjattu vastausasteikkovirheen jälkhiin, ja pyysimä heitä kattomhaan pisteet ja raportin uuesti
+
 ## 2026-04-15
 - Lisäthiin uus kutsumisflyyti, missä käyttäjät saattavat kutsuut muita tekkeen testin, maksaat kutsumisesta ja seurata tulemii jälkhiin
 - Kutsutut testit ja tavaliset testit erotethiin selvemästi, ja tulossivu seuraa nyt sitä kieltä millä testi oikhein tehtiin

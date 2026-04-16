@@ -1,3 +1,6 @@
+## 2026-04-16
+- Mii dieđihimme buot váikkuhuvvon geavaheddjiide ahte sin testabohtosat leat divvojuvvon vástádusskálla-vihkkedaga maŋŋel, ja bivddaimme sin geahččat skoraid ja raportta ođđasit
+
 ## 2026-04-15
 - Lasihuvvui ođđa bovdenvuohki, mas geavaheaddjit sáhttet bovdet eará olbmo váldit geahččaleami, máksit bovdemis ja čuovvut bohtosa maŋŋel
 - Bovdejuvvon geahččaleamit ja dábálaš geahččaleamit earuhuvvojedje čielgaseappot, ja bohtossiidu čuovvu dál dan giela mii lei geavahuvvon go geahččaleapmi váldojuvvui

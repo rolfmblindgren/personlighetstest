@@ -1,3 +1,6 @@
+## 2026-04-16
+- Varslet alle berørte brukere om at testresultatene deres var korrigert etter skala-feilen, og ba dem se gjennom skårene og rapporten på nytt
+
 ## 2026-04-15
 - La til en ny invitasjonsflyt der brukere kan invitere andre til å ta testen, betale for invitasjonen og følge opp resultatet etterpå
 - Skillesidene for inviterte tester og vanlige tester ble tydeligere, og resultatsiden følger nå språket den aktuelle testen faktisk ble tatt på
