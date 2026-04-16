@@ -25,6 +25,16 @@ export default {
   maintenanceEnvNotice: "Birasheivehusain lea maid dikšunmodus aktiverejuvvon. Dát boallu stivre ealli runtime-dili.",
   maintenanceModeSaving: "Ođasmahttimin …",
   maintenanceTurnOn: "Bija dikšunmodus ala",
+  scoringAuditTitle: "Skårerevisuvdna",
+  scoringAuditHelp: "Čális sisa test-ID vai oaččut čielga čađaheami olles skårengáhttema birra, vurkejuvvon vástádusain gitta faktor- ja fasettskóriide.",
+  scoringAuditTestIdPlaceholder: "Test-ID, ovdamearkka dihte 228",
+  scoringAuditRun: "Vuojit revisuvnna",
+  scoringAuditRunning: "Ráhkadeamen revisuvnna …",
+  scoringAuditResultTitle: "Revisuvdnaraporta",
+  scoringAuditCopy: "Máŋge Markdown",
+  scoringAuditCopied: "Máŋgejuvvon",
+  scoringAuditLoadError: "Ii lean vejolaš viežžat skårerevisuvnna.",
+  scoringAuditCopyError: "Ii lean vejolaš máŋget revisuvdnaraportta.",
   maintenanceTurnOff: "Bija dikšunmodus eret",
   dashboard: "Dashboard",                 // bevisst uoversatt
   myTests: "Geahččaleamit muhtun",         // Testane mine

@@ -9,6 +9,7 @@ import UsersWidget from '@/components/UsersWidget';
 import TestWidget from '@/components/TestWidget';
 import MyTestsWidget from '@/components/MyTestsWidget';
 import MaintenanceWidget from '@/components/MaintenanceWidget';
+import ScoringAuditWidget from '@/components/ScoringAuditWidget';
 import { H1, H2, H3 } from '@/components/Heading';
 import ImportLegacyWidget from '@/components/ImportLegacyWidget';
 import { t } from '@/i18n';
@@ -60,6 +61,17 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <MaintenanceWidget />
+            </CardContent>
+          </Card>
+        )}
+
+        {isAdmin && (
+          <Card className="border-sky-200 bg-[linear-gradient(180deg,rgba(239,246,255,0.96),rgba(255,255,255,0.98))] lg:col-span-2">
+            <CardHeader>
+              <CardTitle>{t("scoringAuditTitle")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ScoringAuditWidget />
             </CardContent>
           </Card>
         )}
