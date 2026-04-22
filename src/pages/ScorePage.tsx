@@ -55,6 +55,10 @@ export default function ScoresPage() {
     subject_name?: string;
     subject_email?: string;
     is_invited_test?: boolean;
+    norm_sex?: string | null;
+    stored_norm_sex?: string | null;
+    norm_is_override?: boolean;
+    norm_age?: number | null;
     total?: { mean_score: number; n_items: number };
     domains?: DomainRow[];
     facets?: FacetRow[];
@@ -65,6 +69,7 @@ export default function ScoresPage() {
   const [isEmailingReport, setIsEmailingReport] = useState(false);
   const [reportErr, setReportErr] = useState("");
   const [reportMsg, setReportMsg] = useState("");
+  const [selectedNormSex, setSelectedNormSex] = useState("");
   const pageLang = data.test_lang || lang || "nb";
   const reportLang = pageLang;
 
@@ -80,6 +85,17 @@ export default function ScoresPage() {
   };
 
   const fmt = (v: unknown) => (v == null ? "–" : Number(v).toFixed(0));
+  const normLabel = (value?: string | null) => {
+    if (value === "mann") return tr("normMan", "Mannsnorm");
+    if (value === "kvinne") return tr("normWoman", "Kvinnenorm");
+    return tr("normCommon", "Felles norm");
+  };
+  const effectiveNormSex = selectedNormSex || data.norm_sex || "unspecified";
+  const normQuery = () => {
+    const params = new URLSearchParams();
+    params.set("norm_sex", effectiveNormSex);
+    return params.toString();
+  };
 
   // rekkefølge E A C N O
   const factorOrder: Array<'E'|'A'|'C'|'N'|'O'> = ['E','A','C','N','O'];
@@ -126,8 +142,11 @@ export default function ScoresPage() {
       setLoading(true);
       setErr("");
 
-      try {
-	const r = await authFetch(`${API}/tests/${testId}/scores`);
+	      try {
+	        const params = new URLSearchParams();
+	        if (selectedNormSex) params.set("norm_sex", selectedNormSex);
+	        const suffix = params.toString() ? `?${params.toString()}` : "";
+		const r = await authFetch(`${API}/tests/${testId}/scores${suffix}`);
 	if (!r.ok) throw new Error("Kunne ikke hente skårer");
 
 	const j = await r.json();
@@ -141,7 +160,7 @@ export default function ScoresPage() {
     })();
 
     return () => { abort = true };
-  }, [testId]);
+  }, [testId, selectedNormSex]);
 
   const downloadReport = async () => {
     if (!testId || isDownloadingReport) return;
@@ -151,7 +170,7 @@ export default function ScoresPage() {
     setReportMsg("");
 
     try {
-      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report.pdf`);
+	      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report.pdf?${normQuery()}`);
       if (!r.ok) {
         let message = tr('couldNotDownloadReport', 'Kunne ikke laste ned rapport');
         try {
@@ -187,7 +206,7 @@ export default function ScoresPage() {
     setReportMsg("");
 
     try {
-      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report-email`, {
+	      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report-email?${normQuery()}`, {
         method: 'POST',
       });
       let payload: any = null;
@@ -254,9 +273,36 @@ export default function ScoresPage() {
 
       <H1 className="text-2xl font-semibold mb-4">
         {tr('scoresTitle', tr('scores', 'Resultater'))}
-	{' '}
-	{data.subject_name || profile?.navn || data.subject_email || ""}
+			{' '}
+			{data.subject_name || profile?.navn || data.subject_email || ""}
       </H1>
+
+      <div className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+        <label className="mb-1 block text-sm font-medium text-slate-700">
+          {tr("normBasis", "Normgrunnlag")}
+        </label>
+        <select
+          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm"
+          value={effectiveNormSex}
+          onChange={(event) => {
+            setReportErr("");
+            setReportMsg("");
+            setSelectedNormSex(event.target.value);
+          }}
+        >
+          <option value="unspecified">{tr("normCommon", "Felles norm")}</option>
+          <option value="mann">{tr("normMan", "Mannsnorm")}</option>
+          <option value="kvinne">{tr("normWoman", "Kvinnenorm")}</option>
+        </select>
+        <p className="mt-2 text-xs text-slate-500">
+          {tr("normBasisHelp", "Velg hvilket normgrunnlag skårene skal sammenlignes med.")}
+        </p>
+      </div>
+
+      <div className="mb-4 text-sm text-slate-500">
+        {tr("normBasis", "Normgrunnlag")}: {normLabel(data.norm_sex)}
+        {data.norm_age != null ? ` · ${tr("age", "Alder")}: ${data.norm_age}` : ""}
+      </div>
 
       {err && <div className="text-red-600 mb-4">{err}</div>}
       {reportErr && <div className="text-red-600 mb-4">{reportErr}</div>}

@@ -15,6 +15,7 @@ type InviteState = {
   subject_name?: string | null;
   subject_birthdate?: string | null;
   subject_language?: LanguageCode | null;
+  subject_norm_sex?: string | null;
   answered: number;
   total_items: number;
   status: "sent" | "opened" | "in_progress" | "completed";
@@ -190,6 +191,7 @@ export default function PublicInvitePage() {
           subject_name: invite.subject_name,
           subject_birthdate: invite.subject_birthdate,
           subject_language: invite.subject_language,
+          subject_norm_sex: invite.subject_norm_sex || "unspecified",
         }),
       });
       const payload = await response.json().catch(() => null);
@@ -408,6 +410,28 @@ export default function PublicInvitePage() {
                   </option>
                 ))}
               </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block font-medium text-slate-800">
+                {tx("normBasis", "Normgrunnlag")}
+              </label>
+              <select
+                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
+                value={invite.subject_norm_sex || "unspecified"}
+                onChange={(event) =>
+                  setInvite((prev) =>
+                    prev ? { ...prev, subject_norm_sex: event.target.value } : prev
+                  )
+                }
+              >
+                <option value="unspecified">{tx("normCommon", "Felles norm")}</option>
+                <option value="mann">{tx("normMan", "Mannsnorm")}</option>
+                <option value="kvinne">{tx("normWoman", "Kvinnenorm")}</option>
+              </select>
+              <p className="mt-2 text-sm text-slate-500">
+                {tx("normBasisHelp", "Velg hvilket normgrunnlag skårene skal sammenlignes med.")}
+              </p>
             </div>
 
             <div className="flex items-end">

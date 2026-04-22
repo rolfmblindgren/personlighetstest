@@ -217,9 +217,15 @@ needSomeInformation: "Vi treng nokre få opplysningar før testen kan starte.",
   "address": "Adresse",
   "catsName": "Namn på katt",
 
-   "man": "Mann",
+  "man": "Mann",
   "woman": "Kvinne",
   "other": "Anna",
+  normBasis: "Normgrunnlag",
+  normBasisHelp: "Vel kva normgrunnlag skårane skal samanliknast med. Dette er uavhengig av kjønn i profilen.",
+  normCommon: "Felles norm",
+  normMan: "Mannsnorm",
+  normWoman: "Kvinnenorm",
+  age: "Alder",
 
   generatesNarrative: "Genererer tolking. Det tek om lag eitt minutt.",
 

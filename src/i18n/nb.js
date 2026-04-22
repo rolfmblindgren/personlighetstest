@@ -222,6 +222,12 @@ export default {
   man: "Mann",
   woman: "Kvinne",
   other: "Annet",
+  normBasis: "Normgrunnlag",
+  normBasisHelp: "Velg hvilket normgrunnlag skårene skal sammenlignes med. Dette er uavhengig av kjønn i profilen.",
+  normCommon: "Felles norm",
+  normMan: "Mannsnorm",
+  normWoman: "Kvinnenorm",
+  age: "Alder",
 
   generatesNarrative: "Genererer tolkning. Det tar ca. et minutt.",
 

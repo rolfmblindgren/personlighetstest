@@ -81,6 +81,19 @@ export default function ProfilePage() {
           </div>
 
           <div>
+            <label className="block text-sm font-medium mb-1">{tr('normBasis')}</label>
+            <select
+              {...register("norm_sex")}
+              className="w-full border rounded-lg p-2"
+            >
+              <option value="unspecified">{tr('normCommon')}</option>
+              <option value="mann">{tr('normMan')}</option>
+              <option value="kvinne">{tr('normWoman')}</option>
+            </select>
+            <p className="mt-1 text-sm text-slate-500">{tr('normBasisHelp')}</p>
+          </div>
+
+          <div>
             <label className="block text-sm font-medium mb-1">{tr('dob')}</label>
             <input
               {...register("foedselsdato")}

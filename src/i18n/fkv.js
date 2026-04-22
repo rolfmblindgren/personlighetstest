@@ -215,9 +215,15 @@ needSomeInformation: "Met tarvittemma muutaman tiedon ennen ko testi saattaa alk
   "address": "Aadressi",
   "catsName": "Kissan nimi",
 
-   "man": "Mies",
+  "man": "Mies",
   "woman": "Nainen",
   "other": "Toine",
+  normBasis: "Normipohja",
+  normBasisHelp: "Valitse normipohja, johon pisteitä verrathaan. Tämä oon eri asia ko profiilin sukupuoli.",
+  normCommon: "Yhteinen normi",
+  normMan: "Miesten normi",
+  normWoman: "Naisten normi",
+  age: "Ikä",
 
   generatesNarrative: "Tulkintaa luodaan. Se kestää noin yhden minuutin.",
 

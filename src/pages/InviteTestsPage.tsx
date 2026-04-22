@@ -31,6 +31,7 @@ type InviteRow = {
   subject_name?: string | null;
   subject_birthdate?: string | null;
   subject_language?: string | null;
+  subject_norm_sex?: string | null;
   progress: number;
   answered: number;
   total_items: number;
@@ -51,6 +52,7 @@ type FormState = {
   subject_name: string;
   subject_birthdate: string;
   subject_language: LanguageCode;
+  subject_norm_sex: string;
 };
 
 const emptyForm: FormState = {
@@ -60,6 +62,7 @@ const emptyForm: FormState = {
   subject_name: "",
   subject_birthdate: "",
   subject_language: "nb",
+  subject_norm_sex: "unspecified",
 };
 
 function tx(key: string, fallback: string): string {
@@ -220,6 +223,7 @@ export default function InviteTestsPage() {
           subject_name: form.subject_name,
           subject_birthdate: form.subject_birthdate,
           subject_language: form.subject_language,
+          subject_norm_sex: form.subject_norm_sex,
         }),
       });
 
@@ -342,6 +346,29 @@ export default function InviteTestsPage() {
 
           <div>
             <label className="mb-1 block font-medium text-slate-800">
+              {tx("normBasis", "Normgrunnlag")}
+            </label>
+            <select
+              className="w-full rounded-2xl border border-slate-300 px-4 py-3"
+              value={form.subject_norm_sex}
+              onChange={(event) =>
+                setForm((prev) => ({
+                  ...prev,
+                  subject_norm_sex: event.target.value,
+                }))
+              }
+            >
+              <option value="unspecified">{tx("normCommon", "Felles norm")}</option>
+              <option value="mann">{tx("normMan", "Mannsnorm")}</option>
+              <option value="kvinne">{tx("normWoman", "Kvinnenorm")}</option>
+            </select>
+            <p className="mt-2 text-sm text-slate-500">
+              {tx("normBasisHelp", "Velg hvilket normgrunnlag skårene skal sammenlignes med.")}
+            </p>
+          </div>
+
+          <div>
+            <label className="mb-1 block font-medium text-slate-800">
               {tx("inviteSubjectNameLabel", "Navn i rapporten")}
             </label>
             <input
@@ -419,6 +446,13 @@ export default function InviteTestsPage() {
                 <div className="mt-4 text-sm text-slate-600 space-y-1">
                   <div>
                     {tx("inviteProgressLabel", "Fremdrift")}: {invite.answered}/{invite.total_items}
+                  </div>
+                  <div>
+                    {tx("normBasis", "Normgrunnlag")}: {invite.subject_norm_sex === "mann"
+                      ? tx("normMan", "Mannsnorm")
+                      : invite.subject_norm_sex === "kvinne"
+                        ? tx("normWoman", "Kvinnenorm")
+                        : tx("normCommon", "Felles norm")}
                   </div>
                   {invite.payment_amount ? (
                     <div>

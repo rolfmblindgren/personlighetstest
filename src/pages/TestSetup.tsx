@@ -9,6 +9,7 @@ import { getPreferredLanguage } from "@/i18n/getPreferredLanguage";
 type Profile = {
   navn: string | null;
   kjonn: string | null;
+  norm_sex: string | null;
   tittel: string | null;
   telefon: string | null;
   adresse: string | null;
@@ -20,6 +21,7 @@ type Profile = {
 const emptyProfile: Profile = {
   navn: "",
   kjonn: "",
+  norm_sex: "unspecified",
   tittel: "",
   telefon: "",
   adresse: "",
@@ -73,6 +75,7 @@ export default function TestSetup() {
 	  ...data,
 	  foedselsdato: normalizeDate(data.foedselsdato),
 	  language: getPreferredLanguage(data.language),
+	  norm_sex: data.norm_sex || "unspecified",
 	};
 
 	if (cancelled) return;
@@ -120,6 +123,7 @@ export default function TestSetup() {
     const navn = profile.navn?.trim() || "";
     const foedselsdato = profile.foedselsdato || "";
     const language = profile.language || getPreferredLanguage(null);
+    const norm_sex = profile.norm_sex || "unspecified";
 
     if (!navn || !foedselsdato || !language) {
       setError("Fyll ut navn, fødselsdato og språk.");
@@ -143,6 +147,7 @@ export default function TestSetup() {
           navn,
           foedselsdato,
           language,
+          norm_sex,
         }),
       });
 
@@ -219,6 +224,22 @@ export default function TestSetup() {
               </option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">{tr("normBasis")}</label>
+          <select
+            className="w-full border rounded px-3 py-2"
+            value={profile.norm_sex || "unspecified"}
+            onChange={(e) =>
+              setProfile({ ...profile, norm_sex: e.target.value })
+            }
+          >
+            <option value="unspecified">{tr("normCommon")}</option>
+            <option value="mann">{tr("normMan")}</option>
+            <option value="kvinne">{tr("normWoman")}</option>
+          </select>
+          <p className="mt-1 text-sm text-gray-500">{tr("normBasisHelp")}</p>
         </div>
 
         {error && (

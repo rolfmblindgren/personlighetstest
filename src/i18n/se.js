@@ -267,6 +267,12 @@ needSomeInformation: "Mii dárbbašit muhtun dieđuid ovdal go geahččaleapmi s
   "man": "Olmmoš almmái",
   "woman": "Olmmoš nieida/nissun*",
   "other": "Eará",
+  normBasis: "Normavuođđu",
+  normBasisHelp: "Vállje makkár normavuođđui skoarat galget buohtastahttojuvvot. Dát lea sierra ášši go profiilla sohkabealli.",
+  normCommon: "Oktasaš norma",
+  normMan: "Albmánorma",
+  normWoman: "Nissonorma",
+  age: "Ahki",
 
   generatesNarrative: "Dulkomiid dulkomušaid. Dat váldá sullii ovtta minuhta.",
 

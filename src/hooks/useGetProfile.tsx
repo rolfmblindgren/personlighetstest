@@ -6,6 +6,7 @@ import { API } from "@/lib/apiBase";
 export type UserProfile = {
   navn: string | null;
   kjonn: string | null;
+  norm_sex: string | null;
   tittel: string | null;
   telefon: string | null;
   adresse: string | null;
