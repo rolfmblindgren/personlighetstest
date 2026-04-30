@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "@/components/Button";
 import { API } from "@/lib/apiBase";
 import { authFetch } from "@/lib/apiFetch";
@@ -9,10 +9,29 @@ import { useAuth } from "@/context/AuthContext";  // 👈 ny
 
 export default function TestPicker() {
   const nav = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [templates, setTemplates] = useState([]);
   const [openTests, setOpenTests] = useState([]);
   const [err, setErr] = useState("");
+  const [notice, setNotice] = useState("");
+
+  useEffect(() => {
+    const status = (searchParams.get("self_test_checkout") || "").trim();
+    if (!status) return;
+
+    if (status === "ok") {
+      setNotice("Betalingen er registrert. Start testen på nytt for å bruke den betalte testkreditten.");
+      setErr("");
+    } else if (status === "cancelled") {
+      setErr("Betalingen ble avbrutt. Du kan prøve igjen når du vil.");
+      setNotice("");
+    }
+
+    const next = new URLSearchParams(searchParams);
+    next.delete("self_test_checkout");
+    setSearchParams(next, { replace: true });
+  }, [searchParams, setSearchParams]);
 
   useEffect(() => {
     (async () => {
@@ -46,9 +65,14 @@ export default function TestPicker() {
 	  language: lang,
 	}),
       });
-      if (!r.ok) throw new Error("Kunne ikke starte test");
-      const { test_id } = await r.json();
-      nav(`/testsetup/${test_id}`);
+	      const payload = await r.json().catch(() => null);
+	      if (r.status === 402 && payload?.checkout_url) {
+	        window.location.href = payload.checkout_url;
+	        return;
+	      }
+	      if (!r.ok) throw new Error(payload?.message || payload?.error || "Kunne ikke starte test");
+	      const { test_id } = payload;
+	      nav(`/testsetup/${test_id}`);
     } catch (e) {
       setErr(e.message || "Klarte ikke å starte test");
     }
@@ -62,8 +86,9 @@ export default function TestPicker() {
   if (loading) return <p>Laster…</p>;
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-8">
-      <h1 className="text-2xl font-semibold">Velg test</h1>
-      {err && <div className="text-red-700">{err}</div>}
+	      <h1 className="text-2xl font-semibold">Velg test</h1>
+	      {err && <div className="text-red-700">{err}</div>}
+	      {notice && <div className="text-green-700">{notice}</div>}
 
       {openTests.length > 0 && (
         <section>
