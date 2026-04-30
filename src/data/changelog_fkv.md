@@ -1,3 +1,6 @@
+## 2026-04-30
+- Lisättiin huomaamaton normivalinta raporttisivulle, jossa valinta on piilossa ”Muuta”-kohdan takana ja skaalat päivittyvät automaattisesti kun normi vaihtuu
+
 ## 2026-04-16
 - Ilmoitimma kaikile vaikutetuille käyttäjille ette heän testitulokset olthiin korjattu vastausasteikkovirheen jälkhiin, ja pyysimä heitä kattomhaan pisteet ja raportin uuesti
 

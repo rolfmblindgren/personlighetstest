@@ -1,3 +1,6 @@
+## 2026-04-30
+- Added a discreet report norm selector on the score page, hidden behind “Change” and refreshing scores automatically when the norm changes
+
 ## 2026-04-16
 - Notified all affected users that their test results had been corrected after the response-scale bug, and asked them to review their scores and report again
 

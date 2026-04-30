@@ -1,3 +1,6 @@
+## 2026-04-30
+- La til eit diskret normval på rapportsida, med skjult val bak «Endre» og automatisk oppdatering av skårar når norma blir endra
+
 ## 2026-04-16
 - Varsla alle råka brukarar om at testresultata deira var korrigerte etter skala-feilen, og bad dei sjå gjennom skårane og rapporten på nytt
 

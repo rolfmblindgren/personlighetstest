@@ -1,3 +1,6 @@
+## 2026-04-30
+- Lasihuvvui diskret normaválljen rapporttasidui, mas válljen lea čiegus «Rievdat» vuolde ja skárrat ođasmahttojuvvojit go norma rievdaduvvo
+
 ## 2026-04-16
 - Mii dieđihimme buot váikkuhuvvon geavaheddjiide ahte sin testabohtosat leat divvojuvvon vástádusskálla-vihkkedaga maŋŋel, ja bivddaimme sin geahččat skoraid ja raportta ođđasit
 
