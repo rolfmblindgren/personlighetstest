@@ -21,6 +21,10 @@ type NarrativeRow = { text_md: string };
 type OpenKind = "domain" | "facet";
 type OpenKey = `${OpenKind}:${string}`;
 
+function normalizeReportNormSex(value?: string | null): string {
+  if (value === "mann" || value === "kvinne") return value;
+  return "unspecified";
+}
 
 export default function ScoresPage() {
   const lang = useLang();
@@ -69,7 +73,8 @@ export default function ScoresPage() {
   const [isEmailingReport, setIsEmailingReport] = useState(false);
   const [reportErr, setReportErr] = useState("");
   const [reportMsg, setReportMsg] = useState("");
-  const [selectedNormSex, setSelectedNormSex] = useState("");
+  const [selectedReportNormSex, setSelectedReportNormSex] = useState("");
+  const [showReportNormPicker, setShowReportNormPicker] = useState(false);
   const pageLang = data.test_lang || lang || "nb";
   const reportLang = pageLang;
 
@@ -90,10 +95,26 @@ export default function ScoresPage() {
     if (value === "kvinne") return tr("normWoman", "Kvinnenorm");
     return tr("normCommon", "Felles norm");
   };
-  const effectiveNormSex = selectedNormSex || data.norm_sex || "unspecified";
-  const normQuery = () => {
+  const { profile, loading: profileLoading } = useGetProfile();
+  const profileReportNormSex = normalizeReportNormSex(profile?.kjonn);
+  const reportNormSex = selectedReportNormSex || profileReportNormSex;
+  const reportNormSuffix =
+    reportNormSex !== profileReportNormSex ? ` (${normLabel(reportNormSex)})` : "";
+  const reportNormHelp = profileLoading
+    ? ""
+    : profile?.kjonn
+      ? tr(
+          "reportNormBasisHelpProfile",
+          "Rapporten bruker kjønnet du har registrert i profilen som utgangspunkt. Du kan endre det før du laster ned eller sender rapporten."
+        )
+      : tr(
+          "reportNormBasisHelpMissing",
+          "Du har ikke registrert kjønn i profilen. Velg hvilket normgrunnlag rapporten skal bruke før du laster ned eller sender rapporten."
+        );
+  const profileHasGender = Boolean(profile?.kjonn);
+  const normQuery = (normSex: string) => {
     const params = new URLSearchParams();
-    params.set("norm_sex", effectiveNormSex);
+    params.set("norm_sex", normSex);
     return params.toString();
   };
 
@@ -112,8 +133,6 @@ export default function ScoresPage() {
     N: tr('B5N', 'Nevrotisisme'),
     O: tr('B5O', 'Åpenhet for erfaringer'),
   };
-
-  const { profile } = useGetProfile();
 
   const facetLabel = (domain: string, facetNo: number) => {
     const key = `${domain}${facetNo}` as any; // f.eks. "N4"
@@ -137,30 +156,34 @@ export default function ScoresPage() {
     .filter(g => g.items.length > 0);
 
   useEffect(() => {
+    if (!profileLoading && !profileHasGender && !selectedReportNormSex) {
+      setSelectedReportNormSex("unspecified");
+      setShowReportNormPicker(true);
+    }
+  }, [profileLoading, profileHasGender, selectedReportNormSex]);
+
+  useEffect(() => {
     let abort = false;
     (async () => {
       setLoading(true);
       setErr("");
 
-	      try {
-	        const params = new URLSearchParams();
-	        if (selectedNormSex) params.set("norm_sex", selectedNormSex);
-	        const suffix = params.toString() ? `?${params.toString()}` : "";
-		const r = await authFetch(`${API}/tests/${testId}/scores${suffix}`);
-	if (!r.ok) throw new Error("Kunne ikke hente skårer");
+      try {
+        const suffix = reportNormSex ? `?${normQuery(reportNormSex)}` : "";
+        const r = await authFetch(`${API}/tests/${testId}/scores${suffix}`);
+        if (!r.ok) throw new Error("Kunne ikke hente skårer");
 
-	const j = await r.json();
-	if (!abort) setData(j);
-
+        const j = await r.json();
+        if (!abort) setData(j);
       } catch (e: any) {
-	if (!abort) setErr(e.message || "Feil");
+        if (!abort) setErr(e.message || "Feil");
       } finally {
-	if (!abort) setLoading(false);
+        if (!abort) setLoading(false);
       }
     })();
 
     return () => { abort = true };
-  }, [testId, selectedNormSex]);
+  }, [testId, reportNormSex]);
 
   const downloadReport = async () => {
     if (!testId || isDownloadingReport) return;
@@ -170,7 +193,7 @@ export default function ScoresPage() {
     setReportMsg("");
 
     try {
-	      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report.pdf?${normQuery()}`);
+	      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report.pdf?${normQuery(reportNormSex)}`);
       if (!r.ok) {
         let message = tr('couldNotDownloadReport', 'Kunne ikke laste ned rapport');
         try {
@@ -206,7 +229,7 @@ export default function ScoresPage() {
     setReportMsg("");
 
     try {
-	      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report-email?${normQuery()}`, {
+	      const r = await authFetch(`${API}/tests/${testId}/${reportLang}/report-email?${normQuery(reportNormSex)}`, {
         method: 'POST',
       });
       let payload: any = null;
@@ -257,7 +280,7 @@ export default function ScoresPage() {
         >
           {isDownloadingReport
             ? tr('isPreparingReport', 'Lager rapport …')
-            : tr('downloadReportPdf', 'Last ned rapport (PDF)')}
+            : `${tr('downloadReportPdf', 'Last ned rapport (PDF)')}${reportNormSuffix}`}
         </Button>
         <Button
           variant="secondary"
@@ -267,8 +290,67 @@ export default function ScoresPage() {
         >
           {isEmailingReport
             ? tr('isEmailingReport', 'Sender rapport …')
-            : tr('emailReportPdf', 'Mail rapport')}
+            : `${tr('emailReportPdf', 'Mail rapport')}${reportNormSuffix}`}
         </Button>
+      </div>
+
+      <div className="mb-4 space-y-1">
+        {showReportNormPicker ? (
+          <div className="inline-flex flex-col gap-2 rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2 text-sm text-slate-700 sm:flex-row sm:items-center sm:gap-3">
+            <label className="text-slate-500">
+              {tr("reportNormBasis", "Normgrunnlag for rapport")}
+            </label>
+            <select
+              className="w-full max-w-xs rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm shadow-sm focus:border-slate-300 focus:outline-none focus:ring-1 focus:ring-slate-200"
+              value={reportNormSex}
+              onChange={(event) => {
+                setReportErr("");
+                setReportMsg("");
+                setSelectedReportNormSex(event.target.value);
+                setShowReportNormPicker(false);
+              }}
+            >
+              <option value="unspecified">{tr("normCommon", "Felles norm")}</option>
+              <option value="mann">{tr("normMan", "Mannsnorm")}</option>
+              <option value="kvinne">{tr("normWoman", "Kvinnenorm")}</option>
+            </select>
+            <Button
+              type="button"
+              variant="link"
+              size="sm"
+              className="h-auto px-0 py-0 text-xs text-slate-500"
+              onClick={() => setShowReportNormPicker(false)}
+            >
+              {tr("hide", "Skjul")}
+            </Button>
+          </div>
+        ) : (
+          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+            <span>
+              {tr("reportNormBasis", "Normgrunnlag for rapport")}:{" "}
+              <span className="font-medium text-slate-700">{normLabel(reportNormSex)}</span>
+            </span>
+            <Button
+              type="button"
+              variant="link"
+              size="sm"
+              className="h-auto px-0 py-0 text-xs text-slate-500"
+              onClick={() => setShowReportNormPicker(true)}
+            >
+              {tr("change", "Endre")}
+            </Button>
+          </div>
+        )}
+        {showReportNormPicker && (
+          <p className="text-xs text-slate-500">
+            {profileHasGender
+              ? reportNormHelp
+              : tr(
+                  "reportNormBasisHelpMissing",
+                  "Du har ikke registrert kjønn i profilen. Velg hvilket normgrunnlag rapporten skal bruke før du laster ned eller sender rapporten."
+                )}
+          </p>
+        )}
       </div>
 
       <H1 className="text-2xl font-semibold mb-4">
@@ -276,28 +358,6 @@ export default function ScoresPage() {
 			{' '}
 			{data.subject_name || profile?.navn || data.subject_email || ""}
       </H1>
-
-      <div className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-        <label className="mb-1 block text-sm font-medium text-slate-700">
-          {tr("normBasis", "Normgrunnlag")}
-        </label>
-        <select
-          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm"
-          value={effectiveNormSex}
-          onChange={(event) => {
-            setReportErr("");
-            setReportMsg("");
-            setSelectedNormSex(event.target.value);
-          }}
-        >
-          <option value="unspecified">{tr("normCommon", "Felles norm")}</option>
-          <option value="mann">{tr("normMan", "Mannsnorm")}</option>
-          <option value="kvinne">{tr("normWoman", "Kvinnenorm")}</option>
-        </select>
-        <p className="mt-2 text-xs text-slate-500">
-          {tr("normBasisHelp", "Velg hvilket normgrunnlag skårene skal sammenlignes med.")}
-        </p>
-      </div>
 
       <div className="mb-4 text-sm text-slate-500">
         {tr("normBasis", "Normgrunnlag")}: {normLabel(data.norm_sex)}
