@@ -227,6 +227,9 @@ export default {
   normCommon: "Felles norm",
   normMan: "Mannsnorm",
   normWoman: "Kvinnenorm",
+  reportNormBasis: "Normgrunnlag for rapport",
+  reportNormBasisHelpProfile: "Rapporten bruker kjønnet du har registrert i profilen som utgangspunkt. Du kan endre det før du laster ned eller sender rapporten.",
+  reportNormBasisHelpMissing: "Du har ikke registrert kjønn i profilen. Velg hvilket normgrunnlag rapporten skal bruke før du laster ned eller sender rapporten.",
   age: "Alder",
 
   generatesNarrative: "Genererer tolkning. Det tar ca. et minutt.",

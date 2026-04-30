@@ -223,6 +223,9 @@ needSomeInformation: "Met tarvittemma muutaman tiedon ennen ko testi saattaa alk
   normCommon: "Yhteinen normi",
   normMan: "Miesten normi",
   normWoman: "Naisten normi",
+  reportNormBasis: "Raportin normipohja",
+  reportNormBasisHelpProfile: "Raportti käyttää lähtökohtana profiiliin tallennettua sukupuolta. Sen voi vaihtaa ennen lataamista tai sähköpostin lähettämistä.",
+  reportNormBasisHelpMissing: "Profiiliin ei ole tallennettu sukupuolta. Valitse mikä normipohja raportin pitää käyttää ennen kuin lataat sen tai lähetät sen.",
   age: "Ikä",
 
   generatesNarrative: "Tulkintaa luodaan. Se kestää noin yhden minuutin.",

@@ -272,6 +272,9 @@ needSomeInformation: "Mii dárbbašit muhtun dieđuid ovdal go geahččaleapmi s
   normCommon: "Oktasaš norma",
   normMan: "Albmánorma",
   normWoman: "Nissonorma",
+  reportNormBasis: "Raportta normavuođđu",
+  reportNormBasisHelpProfile: "Raporta geavaha du profiillas vurkejuvvon sohkabealli vuođđun. Sáhtát rievdadit dan ovdal go vieččaš dahje sáddeš rapportta.",
+  reportNormBasisHelpMissing: "Dutnje ii leat vurkejuvvon sohkabealli profiiillas. Vállje makkár normavuođđu raportta galgá geavahit ovdal go vieččaš dahje sáddeš dan.",
   age: "Ahki",
 
   generatesNarrative: "Dulkomiid dulkomušaid. Dat váldá sullii ovtta minuhta.",
