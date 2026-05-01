@@ -40,13 +40,10 @@ export default function LoginForm() {
   const navigate = useNavigate();  // nødvendig for redirect
   const { loggedIn, login } = useAuth();  // 👈 reaktiv status + login
 
-  const [loginError, setLoginError] = useState<LoginError | null>(null);
+  const [loginError, setLoginError] = useState<LoginErrorInfo | null>(null);
 
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [capsOn, setCapsOn] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
 
@@ -72,34 +69,6 @@ export default function LoginForm() {
       });
       const data = await res.json();
 
-
-      if (res.status === 403 && data.code === 'EMAIL_NOT_VERIFIED') {
-	const currentEmail = email.trim().toLowerCase(); // alltid riktig verdi
-
-	showError(
-	  <>
-	    {t('registeredButNotConfirmedEmail')}.{' '}
-	    <button
-              type="button"
-              className="text-emerald-700 underline font-medium hover:text-emerald-900 focus:outline-none"
-              onClick={async () => {
-		const r = await resendVerification(currentEmail);
-		showError(
-		  r.ok
-		    ? t('newRegistrationLinkIsSent')
-		    : (r.data?.error || t('couldNotSendRegistrationEmail')),
-		  false
-		);
-              }}
-	    >
-              {t('clickHere')}
-	    </button>{' '}
-	    {t('toReceiveNewConfirmationLink')}
-	  </>,
-	  false
-	);
-	return;
-      }
 
       if (res.status === 401 && data.code === "INVALID_CREDENTIALS") {
 	showError(t("invalidEmailOrPassword"));
