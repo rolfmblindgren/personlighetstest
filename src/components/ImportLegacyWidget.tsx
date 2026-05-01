@@ -9,7 +9,7 @@ export default function ImportMyLegacyWidget() {
   const [loading, setLoading] = useState(true);
   const [hasLegacy, setHasLegacy] = useState(false);
   const [count, setCount] = useState(0);
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<string | null>(null);
 
   const { isImporting, setIsImporting } = useLegacyImport();
 
@@ -17,24 +17,10 @@ export default function ImportMyLegacyWidget() {
   useEffect(() => {
     async function check() {
       try {
-
-
-        const res = await authFetch(`${API}/check-legacy-tests`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-	const data = await res.json();
-
-	console.log(data.hasLegacy)
-
+        const res = await authFetch(`${API}/check-legacy-tests`);
+        const data = await res.json();
         setHasLegacy(data.hasLegacy);
         setCount(data.count);
-
-
-
       } catch (err) {
         console.error("⚠️ Feil i check-legacy-tests:", err);
       } finally {
@@ -53,29 +39,21 @@ export default function ImportMyLegacyWidget() {
     try {
       const resp = await authFetch(`${API}/import-legacy-tests`, {
         method: "POST",
-	headers: {
-	  "Content-Type": "application/json",
-        },
       });
 
-      console.log("HTTP-status:", resp.status);
-
       const raw = await resp.text();
-      console.log("Raw body:", raw);
 
       let data = {};
       try {
-	data = JSON.parse(raw);
+        data = JSON.parse(raw);
       } catch {
-	console.warn("Klarte ikke parse JSON");
+        console.warn("Klarte ikke parse JSON");
       }
 
-       if (data.import_complete) {
-	 setIsImporting(false);
-	 setHasLegacy(false);
-       }
-
-      console.log("PARSED:", data);
+      if (data.import_complete) {
+        setIsImporting(false);
+        setHasLegacy(false);
+      }
 
       setResult(`${data.imported} tester importert`);
       setHasLegacy(false);

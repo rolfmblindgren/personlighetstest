@@ -1,16 +1,10 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { isTokenValid } from '@/auth';
-import { API } from '@/lib/apiBase';
 import Button from '@/components/Button';
 import UsersWidget from '@/components/UsersWidget';
-import TestWidget from '@/components/TestWidget';
-import MyTestsWidget from '@/components/MyTestsWidget';
 import MaintenanceWidget from '@/components/MaintenanceWidget';
 import ScoringAuditWidget from '@/components/ScoringAuditWidget';
-import { H1, H2, H3 } from '@/components/Heading';
 import ImportLegacyWidget from '@/components/ImportLegacyWidget';
 import { t } from '@/i18n';
 import { useHasLegacy } from '@/hooks/useHasLegacy';

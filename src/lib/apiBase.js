@@ -8,6 +8,5 @@ export const ENDPOINT = {
   logout:         `${API}/logout`,
   testById: id => `${API}/tests/${id}`,
   testsOverview:  `${API}/tests/overview`,
-  importLegacy:   `${API}/import-legacy`,
   numberOfUsers:  `${API}/admin/users/count`,
 };

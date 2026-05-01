@@ -9,7 +9,6 @@ import ResetPassword from '@/ResetPassword';
 import VerifyEmailPage from '@/VerifyEmailPage';
 import ProtectedRoute from '@/components/ProtectedRoute';  // <-- legg til
 import { Layout } from '@/components/Layout';
-import { H1, H2 } from '@/components/Heading';
 import TestRunner from '@/pages/TestRunner';
 import TestSetup from '@/pages/TestSetup';
 import TestPicker from '@/pages/TestPicker';
@@ -153,15 +152,6 @@ function App() {
               </ProtectedRoute>
             }
 
-          />
-
-          <Route
-            path="/testsetup/:testId"
-            element={
-              <ProtectedRoute>
-              <TestSetup />
-              </ProtectedRoute>
-            }
           />
 
           <Route
