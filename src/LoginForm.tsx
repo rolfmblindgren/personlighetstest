@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { API } from "./lib/apiBase";
 import Button from './components/Button';
-import InputPassword from '@/components/InputPassword';
 import { t } from '@/i18n';
 import { useAuth } from "@/context/AuthContext";  // 👈 ny
 import { Eye, EyeOff } from "lucide-react";
@@ -14,8 +13,6 @@ async function parseJsonMaybe(res) {
   if (ct.includes('application/json')) {
     try { return await res.json(); } catch { return {}; }
   }
-  // fall back til tekst (for logging), men vis ikke i UI
-  try { console.debug(await res.text()); } catch {}
   return {};
 }
 
@@ -41,8 +38,7 @@ type LoginErrorInfo = {
 
 export default function LoginForm() {
   const navigate = useNavigate();  // nødvendig for redirect
-  const { loggedIn } = useAuth();  // 👈 reaktiv status
-  const { login } = useAuth(); // legg til her, sammen med loggedIn
+  const { loggedIn, login } = useAuth();  // 👈 reaktiv status + login
 
   const [loginError, setLoginError] = useState<LoginError | null>(null);
 
@@ -75,9 +71,6 @@ export default function LoginForm() {
 	body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-
-      console.log("res er", res);
-      console.log("LOGIN RESPONSE:", res.status, data);
 
 
       if (res.status === 403 && data.code === 'EMAIL_NOT_VERIFIED') {

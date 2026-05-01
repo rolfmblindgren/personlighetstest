@@ -11,14 +11,12 @@ import { languages } from "@/i18n/languages";
 
 export function LanguageSelector() {
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState<string>();
   const [testLanguage, setTestLanguage] = useState<string>();
 
   useEffect(() => {
     const update = () => {
       const uiLang = localStorage.getItem("locale") || "nb";
       const stored = localStorage.getItem("testLanguage");
-      setLang(uiLang);
       setTestLanguage(stored || uiLang);
     };
 
@@ -35,7 +33,6 @@ export function LanguageSelector() {
     document.dispatchEvent(new CustomEvent("testlanguageChanged", {
       detail: value
     }));
-    console.log("Testspråk endret til:", value);
   };
 
   return (

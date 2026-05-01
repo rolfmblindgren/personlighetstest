@@ -31,19 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const check = () => {
-
       const t = getToken();
-      console.log("Stored token:", t);
-
-
-      if (t) {
-	try {
-	  const [, payload] = t.split(".");
-	  console.log("Decoded JWT payload:", JSON.parse(atob(payload)));
-	} catch (e) {
-	  console.error("JWT decode error", e);
-	}
-      }
 
       const ok = isTokenValid();
       setLoggedIn(ok);

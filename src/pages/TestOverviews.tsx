@@ -26,7 +26,7 @@ export default function TestsOverview() {
   const [toast, setToast] = useState<string | null>(null);
 
   const [page, setPage] = useState(1);
-  const [limit] = useState(50);   // eller 100
+  const [limit] = useState(50);
 
   function handleBatchDelete() {
     const ids = Object.entries(testStates)
@@ -82,27 +82,18 @@ export default function TestsOverview() {
 	  current === "marked" ? "idle" :
 	    current;
 
-      const newState = { ...prev, [id]: next };
-
-      console.log(
-	`%cToggled ${id}: ${current} → ${next}`,
-	"color: orange; font-weight: bold;",
-	newState
-      );
-
-      return newState;
+      return { ...prev, [id]: next };
     });
   }
 
   // 🔹 Hent data når komponenten lastes
   useEffect(() => {
-    let abort = false;
     const loadTests = async () => {
+      setLoading(true);
       try {
         const res = await authFetch(`${API}/tests?status=all&page=${page}&limit=${limit}`);
         if (!res.ok) throw new Error(`Feil fra API: ${res.status}`);
         const data = await res.json();
-        console.log("Fetched data:", data);
         setTests(data);
       } catch (err) {
         console.error(err);
@@ -112,7 +103,7 @@ export default function TestsOverview() {
       }
     };
     loadTests();
-  }, []);
+  }, [page, limit]);
 
   // 🔹 Lokal sortering
   const sorted = useMemo(() => {
